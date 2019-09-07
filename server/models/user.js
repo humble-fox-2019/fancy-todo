@@ -3,6 +3,8 @@ const Schema = mongoose.Schema
 const uniqueValidator = require('../helpers/uniqueValidator')
 const { hash } = require('../helpers/bcryptjs')
 
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const User = new Schema({
     username: {
         type: String,
@@ -25,12 +27,15 @@ const User = new Schema({
     password: {
         type: String,
         min: [8, 'Minimum password length is 8 characters.']
-    }
+    },
+    todo: { type: ObjectId },
+    inProject: { type: ObjectId },
+    ownProject: { type: ObjectId }
 })
 
 User.pre('save', next => {
-    User.password = hash(User.password)
-    next()
+    User.password = hash(User.password);
+    next();
 })
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('User', User);
