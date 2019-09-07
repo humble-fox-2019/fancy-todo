@@ -14,7 +14,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "NODE_ENV='development' nodemon server/app.js",
-    "client": "live-server client/index.html --host=localhost"
+    "client": "live-server client/index.html --host=localhost",
+    "db": "sudo mongod"
   },
   "repository": {
     "type": "git",
