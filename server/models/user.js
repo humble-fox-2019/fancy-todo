@@ -28,9 +28,9 @@ const User = new Schema({
         type: String,
         min: [8, 'Minimum password length is 8 characters.']
     },
-    todo: { type: ObjectId },
-    inProject: { type: ObjectId },
-    ownProject: { type: ObjectId }
+    todo: [{ type: ObjectId, ref: "Todo" }],
+    inProject: [{ type: ObjectId, ref: "Project" }],
+    ownProject: { type: ObjectId, ref: "Project" }
 })
 
 User.pre('save', next => {

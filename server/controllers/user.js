@@ -1,18 +1,9 @@
 const { user: User } = require('../models');
 
 class UserController {
-    static read(req, res, next) {
-        User.find({})
-            .then((Users) => {
-                res.status(200).json(Users)
-            })
-            .catch(next);
-    };
-
     static create(req, res, next) {
-        const { _id: userId } = req.decode
-        const { fields } = req.body
-        User.create({ fields })
+        const { username, email, password } = req.body
+        User.create({ username, email, password })
             .then((newUser) => {
                 res.status(201).json(newUser)
             })
@@ -20,8 +11,9 @@ class UserController {
     };
 
     static update(req, res, next) {
-        const { fields, id } = req.body
-        User.updateOne({ _id: id }, { fields }, { runValidators: true })
+        const { userId } = req.params
+        const { username } = req.body
+        User.updateOne({ _id: userId }, { username }, { runValidators: true })
             .then((updatedUser) => {
                 res.status(200).json(updatedUser)
             })
@@ -29,9 +21,9 @@ class UserController {
     };
 
     static delete(req, res, next) {
-        const { id } = req.body
+        const { userId } = req.params
         User.delete({
-            _id: id
+            _id: userId
         })
             .then((deletedUser) => {
                 res.status(200).json(deletedUser)
