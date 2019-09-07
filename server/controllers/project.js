@@ -1,7 +1,7 @@
 const { project: Project, todo: Todo } = require('../models');
 
 class ProjectController {
-    static getAll(req, res, next) {
+    static read(req, res, next) {
         Project.find({})
             .then((projects) => {
                 res.status(200).json(projects)
@@ -22,8 +22,9 @@ class ProjectController {
             .catch(next);
     };
 
-    static updateName(req, res, next) {
-        const { name, projectId } = req.body
+    static update(req, res, next) {
+        const { projectId } = req.params
+        const { name } = req.body
         Project.updateOne({ _id: projectId }, { name }, { runValidators: true })
             .then((updatedProject) => {
                 res.status(200).json(updatedProject)
@@ -42,7 +43,7 @@ class ProjectController {
     };
 
     static delete(req, res, next) {
-        const { projectId } = req.body
+        const { projectId } = req.params
         Project.delete({
             _id: projectId
         })
@@ -53,7 +54,7 @@ class ProjectController {
     };
 
     static deleteTodo(req, res, next) {
-        const { projectId } = req.body
+        const { projectId } = req.params
         const { todoId } = req.query
         Project.update({ _id: projectId }, { $pull: { todos: todoId } })
             .then((Projects) => {
