@@ -7,7 +7,11 @@ const Project = new Schema({
         type: String,
         required: [true, "Project must have a name"]
     },
-    todo: ObjectId
+    todos: ObjectId,
+    projectOwner: {
+        type: ObjectId,
+        required: [true, "user ID must be given"]
+    }
 })
 
 module.exports = mongoose.model('Project', Project)

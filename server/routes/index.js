@@ -16,7 +16,7 @@ fs.readdirSync(__dirname)
     )
 
 // * select routes to use
-const { } = output
+const { users, projects, todos } = output
 
 Router.get('/', (req, res) => {
     res.status(200).json({
@@ -25,7 +25,9 @@ Router.get('/', (req, res) => {
 })
 
 // * Routes
-
+Router.use('/users', users)
+Router.use('/projects', projects)
+Router.use('/todos', todos)
 
 
 module.exports = Router
