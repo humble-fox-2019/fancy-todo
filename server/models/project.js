@@ -10,8 +10,13 @@ const Project = new Schema({
     todos: [{ type: ObjectId, ref: "Todo" }],
     projectOwner: {
         type: ObjectId,
-        required: [true, "user ID must be given"]
-    }
+        required: [true, "user ID must be given"],
+        ref: "User"
+    },
+    projectMembers: [{
+        type: ObjectId,
+        ref: "User"
+    }]
 })
 
 module.exports = mongoose.model('Project', Project)

@@ -62,6 +62,26 @@ class ProjectController {
             })
             .catch(next);
     };
+
+    static addMember(req, res, next) {
+        const { projectId } = req.params
+        const { userId } = req.query
+        Project.updateOne({ _id: projectId }, { $push: { projectMembers: userId } })
+            .then((addedMember) => {
+                res.status(200).json(addedMember)
+            })
+            .catch(next);
+    };
+
+    static removeMember(req, res, next) {
+        const { projectId } = req.params
+        const { userId } = req.query
+        Project.updateOne({ _id: projectId }, { $pull: { projectMembers: userId } })
+            .then((deletedMember) => {
+                res.status(200).json(deletedMember)
+            })
+            .catch(next);
+    };
 };
 
 module.exports = ProjectController
