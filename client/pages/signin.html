@@ -20,28 +20,28 @@
                 <!-- Sign In Form -->
                 <div class="row justify-content-center px-5">
                     <div class="col-sm-8 col-md-6 col-xl-4">
-                        <form class="js-validation-signin" action="#todos-active" method="post">
+                        <form class="js-validation-signin" action="" method="post" id="frmSignIn">
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="form-material floating">
-                                        <input type="text" class="form-control" id="login-username"
-                                            name="login-username">
-                                        <label for="login-username">Email</label>
+                                        <input type="text" class="form-control" id="email" name="email"
+                                            value="candrabe@gmail.com">
+                                        <label for="email">Email</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="form-material floating">
-                                        <input type="password" class="form-control" id="login-password"
-                                            name="login-password">
-                                        <label for="login-password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            value="candrabe123">
+                                        <label for="password">Password</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row gutters-tiny">
                                 <div class="col-12 mb-10">
-                                    <button type="submit"
+                                    <button type="button" id="signin"
                                         class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-primary">
                                         <i class="si si-login mr-10"></i> Sign In
                                     </button>
@@ -51,12 +51,6 @@
                                         <i class="fa fa-plus text-muted mr-5"></i> New Account
                                     </a>
                                 </div>
-                                <!-- <div class="col-sm-6 mb-5">
-                                    <a class="btn btn-block btn-noborder btn-rounded btn-alt-secondary"
-                                        href="op_auth_reminder.html">
-                                        <i class="fa fa-warning text-muted mr-5"></i> Forgot password
-                                    </a>
-                                </div> -->
                             </div>
                         </form>
                     </div>
@@ -72,3 +66,4 @@
 <!-- END Page Container -->
 
 <script src="assets/js/codebase.app.min.js"></script>
+<script src="./public/js/signin.js"></script>

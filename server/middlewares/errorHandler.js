@@ -15,7 +15,7 @@ function errorHandler(err, req, res, next) {
         return res.status(400).send({
             message: 'Invalid ID'
         });
-    } else if (err.statusCode == 404) {
+    } else if (err.statusCode == 404 && err.msg === undefined) {
         res.status(404).json({
             message: "Data not found"
         });
