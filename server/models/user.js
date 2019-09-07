@@ -5,7 +5,7 @@ const { bcrypt } = require('../helpers')
 const userSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'Please input your name']
+        required: [true, 'Name is required']
     },
     email: {
         type: String,
@@ -35,7 +35,8 @@ const userSchema = new Schema({
                 },
                 message: 'Email has been used'
             }
-        ]
+        ],
+        required: [true, 'Email is required']
     },
     password: {
         type: String,
@@ -44,10 +45,8 @@ const userSchema = new Schema({
                 return /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/.test(val)
             },
             message: 'Password must contain at least one letter, one number, and minimum six characters'
-        }
-    },
-    phone: {
-        type: String
+        },
+        required: [true, 'Password is required']
     }
 }, {
     timestamps: true

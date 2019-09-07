@@ -18,7 +18,7 @@ const projectSchema = new Schema({
             ref: 'User'
         }
     ],
-    created_by: {
+    createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

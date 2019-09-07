@@ -11,8 +11,8 @@ const todoSchema = new Schema({
         required: [true, 'Description is required']
     },
     status: Boolean,
-    due_date: Date,
-    created_by: {
+    dueDate: Date,
+    createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
