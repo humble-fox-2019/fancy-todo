@@ -15,9 +15,13 @@ class TodoController {
 
     static findOne(req, res, next) {
         Todo.findOne({
-
-        }).then(todos => {
-            res.status(200).json(todos)
+            id: req.params.id
+        }).then(todo => {
+            if (todo.length > 0) {
+                res.status(200).json(todo);
+            } else {
+                next({ statusCode: 404 })
+            }
         }).catch(next);
     }
 
