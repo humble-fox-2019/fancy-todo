@@ -4,9 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="385113193051-gfufptka9sfsktifdcqbqsiq6kd5r9e4.apps.googleusercontent.com">
     <title>Famcy TODO</title>
 </head>
 <body>
     
+    <nav>
+        <a href="#" class="sign-out" onclick="signOut();">Sign out</a>
+    </nav>
+    
+    <main>
+        <div class="regis">
+            <h3>Register New Account</h3>
+            <form action="" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Input your Fullname Here">
+                <br>
+                <label for="usernameRegis">Username</label>
+                <input type="text" id="usernameRegis" name="username" placeholder="Input your Username Here">
+                <br>
+                <label for="passwordRegis">Password</label>
+                <input type="password" id="passwordRegis" name="password" placeholder="Input your Password Here">
+                <br>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Input your Email Here">
+                <br>
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" placeholder="Input your Phone Here">
+                <br>
+                <button class="btn btn-register">Register</button>
+            </form>
+        </div>
+
+        <div class="login">
+            <h3>Sign In</h3>
+            <form action="" method="POST">
+                <label for="usernameLogin">Username</label>
+                <input type="text" id="usernameLogin" name="username" placeholder="Input your Username Here" value="candrabae">
+                <br>
+                <label for="passwordLogin">Password</label>
+                <input type="password" id="passwordLogin" name="password" placeholder="Input your Password Here" value="Candrabae123">
+                <br>
+                <button class="btn btn-login">Login</button>
+            </form>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+    </main>
+    
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <script src="./script/index.js"></script> -->
+    <script src="./script//register.js"></script>
+    <script src="./script/login.js"></script>
+    <script src="./script/loginGoogle.js"></script>
+    <script src="./script/logout.js"></script>
+    <script>
+        
+    </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 module.exports = ()=>{
-    mongoose.connect('mongodb://localhost:27017/FancyTodo', { useNewUrlParser : true})
+    mongoose.connect('mongodb://localhost:27017/FancyTodoDB', { useNewUrlParser : true})
         .then( success => {
             console.log(`mongoose connected`)
         })

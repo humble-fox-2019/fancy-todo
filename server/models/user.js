@@ -9,7 +9,6 @@ const userSchema = new Schema({
     },
     username : {
         type : String,
-        required : [true, `Username must be filled`],
         minlength : [6, `Phone Number must be between 11 and 13 characters`],
         maxlength : [10, `Phone Number must be between 11 and 13 characters`],
         validate : {
