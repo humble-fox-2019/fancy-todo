@@ -5,30 +5,34 @@ class TodoController {
         Todo.find({
             createdBy: req.params.createdBy
         }).then(todos => {
-            if (todos.length > 0) {
+            if (todos != null) {
                 res.status(200).json(todos);
             } else {
-                next({ statusCode: 404 })
+                next({ statusCode: 404 });
             }
         }).catch(next);
     }
 
     static findOne(req, res, next) {
         Todo.findOne({
-            id: req.params.id
+            _id: req.params.id
         }).then(todo => {
-            if (todo.length > 0) {
+            if (todo != null) {
                 res.status(200).json(todo);
             } else {
-                next({ statusCode: 404 })
+                next({ statusCode: 404 });
             }
         }).catch(next);
     }
 
     static store(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        const { name, description, dueDate, project } = req.body;
+        let createdBy = '5d73858a04e30318a85ad436';
+        Todo.create(
+            { name, description, dueDate, createdBy, project }
+        ).then(todo => {
+            res.status(201).json(todo)
+        }).catch(next);
     }
 
     static update(req, res, next) {

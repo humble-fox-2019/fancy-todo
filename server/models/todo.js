@@ -7,11 +7,16 @@ const todoSchema = new Schema({
         required: [true, 'Name is required']
     },
     description: {
-        type: String,
-        required: [true, 'Description is required']
+        type: String
     },
-    status: Boolean,
-    dueDate: Date,
+    status: {
+        type: Boolean,
+        default: false
+    },
+    dueDate: {
+        type: Date,
+        required: [true, 'Due date is required']
+    },
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'
