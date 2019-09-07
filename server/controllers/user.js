@@ -1,9 +1,25 @@
 const User = require('../models/user')
+const List = require('../models/list')
 const { generateToken } = require('../helpers/jwt')
 const { comparePassword } = require('../helpers/bcryptjs')
-const {OAuth2Client} = require('google-auth-library')
+const { OAuth2Client } = require('google-auth-library')
 
 class UserController {
+    static findOne(req, res, next){
+        let user;
+        User.findOne({
+            username : req.params.username
+        })
+        .then(data => {
+            user = data
+            return List.find({ user_id : data._id})
+        })
+        .then(lists => {
+            res.status(200).json({user, lists})
+        })
+        .catch(next)
+    }
+
     static register(req, res, next){
         const { name, username, password, email, phone } = req.body
         //payload
@@ -91,6 +107,8 @@ class UserController {
         })
         .then(user => {
             const token = generateToken({
+                id : user._id,
+                username : user.username,
                 email : user.email
             })
             res.status(201).json({

@@ -1,4 +1,3 @@
-// const baseUrl = 'http://localhost:3000'
 $(document).ready(function(){
 
     $('.btn-login').click(function(event){
@@ -14,8 +13,6 @@ $(document).ready(function(){
             }
         })
         .done(function(data) {
-            console.log(data)
-            console.log(`,,,,,,,,,,,,,,,<<<<<<<<<<<<`)
             localStorage.setItem('token', data.token)
         })
         .fail(err => {
