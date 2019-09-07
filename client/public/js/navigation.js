@@ -64,9 +64,11 @@
 
     // If no fragment identifier is provided,
     if (!location.hash) {
-
-        // default to #todos-active.
-        location.hash = "#todos-active";
+        if (localStorage.getItem('token')) {
+            location.hash = "#todos-active";
+        } else {
+            location.hash = "#signin";
+        }
     }
 
     // Navigate once to the initial fragment identifier.
