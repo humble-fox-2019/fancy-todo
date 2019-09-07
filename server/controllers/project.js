@@ -32,8 +32,7 @@ class ProjectController {
     };
 
     static addTodo(req, res, next) {
-        const { projectId } = req.params
-        const { name, description } = req.body
+        const { name, description, projectId } = req.body
         Todo.create({ name, description })
             .then((Todo) => {
                 return Project.UpdateOne({ _id: projectId }, { $push: { todos: Todo._id } })
@@ -43,7 +42,7 @@ class ProjectController {
     };
 
     static delete(req, res, next) {
-        const { projectId } = req.params
+        const { projectId } = req.body
         Project.delete({
             _id: projectId
         })
@@ -54,7 +53,7 @@ class ProjectController {
     };
 
     static deleteTodo(req, res, next) {
-        const { projectId } = req.params
+        const { projectId } = req.body
         const { todoId } = req.query
         Project.update({ _id: projectId }, { $pull: { todos: todoId } })
             .then((Projects) => {
