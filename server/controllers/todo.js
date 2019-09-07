@@ -1,0 +1,68 @@
+const { User, Todo } = require('../models')
+
+class TodoController {
+  static getAll(req, res, next) {
+    const { _id } = req.decode
+    User.findById(_id).populate('todos')
+      .then(list => {
+        res.status(200).json(list.todos)
+      })
+      .catch(next)
+  }
+
+  static getOne(req, res, next) {
+    const { id } = req.params // todo ID
+    Todo.findById(id)
+      .then(todo => {
+        if (todo) {
+          res.status(200).json({ todo })
+        }
+      })
+  }
+
+  static create(req, res, next) {
+    const { _id } = req.decode
+    const { name, description, due_date } = req.body
+    const dueDate = new Date(due_date)
+    Todo.create({ name, description, due_date: dueDate, userId: _id })
+      .then(created => {
+        return User.findByIdAndUpdate(_id, { $push: { todos: created._id } })
+      })
+      .then(user => {
+        res.status(201).json(user)
+      })
+      .catch(next)
+  }
+
+  static update(req, res, next) {
+    const { id } = req.params // todo ID
+    const { name, description, due_date } = req.body
+    const dueDate = new Date(due_date)
+    Todo.findByIdAndUpdate(id, { name, description, due_date: dueDate })
+      .then(updated => {
+        res.status(200).json(updated)
+      })
+      .catch(next)
+  }
+
+  static updateStatus(req, res, next) {
+    const { id } = req.params // todo ID
+    const { status } = req.body
+    Todo.findByIdAndUpdate(id, { status })
+      .then(updated => {
+        res.status(200).json(updated)
+      })
+      .catch(next)
+  }
+
+  static delete(req, res, next) {
+    const { id } = req.params // todo ID
+    Todo.findByIdAndDelete(id)
+      .then(updated => {
+        res.status(200).json(updated)
+      })
+      .catch(next)
+  }
+}
+
+module.exports = TodoController
