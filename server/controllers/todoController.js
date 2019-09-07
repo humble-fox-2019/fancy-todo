@@ -27,7 +27,8 @@ class TodoController {
 
     static store(req, res, next) {
         const { name, description, dueDate, project } = req.body;
-        let createdBy = '5d73858a04e30318a85ad436';
+        let createdBy = req.decode.id;
+
         Todo.create(
             { name, description, dueDate, createdBy, project }
         ).then(todo => {
@@ -36,9 +37,14 @@ class TodoController {
     }
 
     static update(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        const { name, description, status, dueDate } = req.body;
+        const data = { name, description, status, dueDate };
+
+        Todo.updateOne({ _id: req.params.id }, data, { omitUndefined: true })
+            .then((info) => {
+                res.status(201).json({ message: 'successfully updated', data: info });
+            })
+            .catch(next)
     }
 
     static delete(req, res, next) {
