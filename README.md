@@ -22,6 +22,7 @@ Route | HTTP | Header(s) | Body | Code | Response | Description
 
 ### List of todos routes:
 Authenticaion required
+
 Route | HTTP | Header(s) | Body | Code | Response | Description
 ----- | ---- | --------- | ---- | ---- | ------------ | -----------
 `/todos` | GET | `token` | `none` | `200` | `todos data` | Get all user's todo
@@ -34,6 +35,7 @@ Route | HTTP | Header(s) | Body | Code | Response | Description
  | | | | | `500` | `Internal server error`
 
 Authenticaion and Authorization required
+
 Route | HTTP | Header(s) | Body | Code | Response | Description
 ----- | ---- | --------- | ---- | ---- | ------------ | -----------
 `/todos/:id` | GET | `token` | `none` | `200` | `todo data` | Get a todo
