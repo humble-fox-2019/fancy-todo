@@ -7,7 +7,7 @@ module.exports = {
         try {
             let decoded = verifyToken(token);
             req.decoded = decoded;
-            console.log(decoded)
+            // console.log(decoded)
             next();
         } catch(err) {
             next({status: 401, message: err.message})
