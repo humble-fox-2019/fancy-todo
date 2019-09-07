@@ -3,6 +3,8 @@ const projectRoute = require('./projectRoute');
 const todoRoute = require('./todoRoute');
 const userRoute = require('./userRoute');
 
+const authentication = require('../middlewares/authentication');
+
 const UserController = require('../controllers/userController');
 
 router.get('/', (req, res) => {
@@ -13,6 +15,8 @@ router.get('/', (req, res) => {
 
 router.post('/signup', UserController.signup);
 router.post('/signin', UserController.signin);
+
+router.use(authentication);
 
 router.use('/projects', projectRoute)
 router.use('/todos', todoRoute)

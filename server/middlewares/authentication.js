@@ -1,22 +1,20 @@
-const jwt = require("jsonwebtoken")
-const secret = process.env.JWT_SECRET
-const User = require("../models/User")
+const { jwt } = require("../helpers")
+const User = require("../models/user")
 
 function authentication(req, res, next) {
     try {
         const token = req.headers.token
-        const decode = jwt.verify(token, secret)
+        const decode = jwt.decodeToken(token)
 
         req.decode = decode
-        let id = req.decode.id
+        let _id = req.decode.id
 
-        User.findById(id)
-            .then(theuser => {
-                if (theuser) {
+        User.findById(_id)
+            .then(user => {
+                if (user) {
                     next()
                 } else {
                     next({ statusCode: 401, msg: "You are not authenticated user" })
-
                 }
             })
             .catch(next)
