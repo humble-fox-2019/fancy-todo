@@ -1,10 +1,9 @@
 const { project: Project, todo: Todo } = require('../models');
 
 class ProjectController {
-    static findAll(req, res, next) {
+    static getAll(req, res, next) {
         Project.find({})
             .then((projects) => {
-
                 res.status(200).json(projects)
             })
             .catch(next);
@@ -25,7 +24,7 @@ class ProjectController {
 
     static updateName(req, res, next) {
         const { name, projectId } = req.body
-        Project.updateOne({ _id: projectId }, { name })
+        Project.updateOne({ _id: projectId }, { name }, { runValidators: true })
             .then((updatedProject) => {
                 res.status(200).json(updatedProject)
             })
@@ -35,17 +34,9 @@ class ProjectController {
     static addTodo(req, res, next) {
         const { projectId } = req.params
         const { name, description } = req.body
-        let newTodo
         Todo.create({ name, description })
             .then((Todo) => {
-                newTodo = Todo
-                return Project.findOne({ _id: projectId })
-            })
-            .then(Project => {
-                let arr = Project.todos
-                if (!Array.isArray(arr)) arr = [arr]
-                arr.push(newTodo._id)
-                Project.updateOne({ _id: projectId }, { todos: arr })
+                return Project.UpdateOne({ _id: projectId }, { $push: { todos: Todo._id } })
             })
             .then(updatedProject => res.json(updatedProject))
             .catch(next);

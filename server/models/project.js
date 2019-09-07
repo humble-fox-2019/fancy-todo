@@ -7,7 +7,7 @@ const Project = new Schema({
         type: String,
         required: [true, "Project must have a name"]
     },
-    todos: ObjectId,
+    todos: [{ type: ObjectId }],
     projectOwner: {
         type: ObjectId,
         required: [true, "user ID must be given"]
