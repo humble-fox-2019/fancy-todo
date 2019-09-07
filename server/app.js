@@ -4,8 +4,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const mongoose = require('mongoose');
 const express = require('express');
-// const indexRouter = require('./routes');
-// const errorHandler = require('./middlewares/errorHandler')
+const routes = require('./routes')
 const cors = require('cors');
 
 const app = express();
@@ -16,17 +15,9 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-mongoose.connect('mongodb://localhost:27017/hacktivGit', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_CONNECTION, { useNewUrlParser: true });
 
-app.get('/', (req, res) => {
-    res.status(200).json({
-        "message": 'ok'
-    });
-});
-
-// app.use('/gits', gitsRouter);
-
-// app.use(errorHandler)
+app.use('/', routes);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}`);
