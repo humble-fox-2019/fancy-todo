@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="google-signin-client_id"
+        content="460499102150-gea5lk00v1r8u0c3jjdj675287lc5c5i.apps.googleusercontent.com">
 
     <title>Make todo with love</title>
 
@@ -16,21 +18,80 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
 
     <div id="display"></div>
 
+    <!-- Pop In Modal -->
+    <div class="modal fade" id="modal-popin" tabindex="-1" role="dialog" aria-labelledby="modal-popin"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popin" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Login using your google account</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        <br />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Pop In Modal -->
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="./assets/js/codebase.core.min.js"></script>
     <script src="./assets/js/codebase.app.min.js"></script>
     <script src="./public/js/navigation.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script>
+        function onSignIn(googleUser) {
+            const baseUrl = "http://localhost:3000";
+
+            let idToken = googleUser.getAuthResponse().id_token;
+
+            $('#modal-popin').modal('hide');
+            $.ajax({
+                type: "POST",
+                url: `${baseUrl}/Gsignin`,
+                data: {
+                    idToken
+                },
+                success: function (response) {
+                    localStorage.setItem('token', response.token);
+                    window.location.href = "#todos-active";
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        }
+
         function signout() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+
             localStorage.removeItem("token");
-            window.location.href = "#signin"
+            window.location.href = "#signin";
         }
     </script>
 </body>

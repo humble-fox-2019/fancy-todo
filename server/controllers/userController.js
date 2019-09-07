@@ -1,6 +1,9 @@
 const User = require('../models/user');
+const { OAuth2Client } = require('google-auth-library');
 const { jwt } = require('../helpers');
 const { bcrypt } = require('../helpers');
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 class UserController {
     static signup(req, res, next) {
@@ -44,6 +47,38 @@ class UserController {
                 }
             })
             .catch(next)
+    }
+
+    static Gsignin(req, res, next) {
+
+        client.verifyIdToken({
+            idToken: req.body.idToken,
+            audience: GOOGLE_CLIENT_ID
+        }).then(ticket => {
+            const { email } = ticket.getPayload()
+            User.findOne({ email })
+                .then(user => {
+                    if (!user) {
+                        return User.create({
+                            "email": email,
+                            "password": process.env.DEFAULT_PASSWORD
+                        })
+                    } else {
+                        return user
+                    }
+                }).then(user => {
+
+                    let userData = {
+                        'name': user.name,
+                        "id": user._id,
+                        "email": user.email
+                    }
+
+                    let token = jwt.generateToken(userData);
+                    res.status(200).json({ token });
+                })
+                .catch(next)
+        }).catch(next)
     }
 }
 
