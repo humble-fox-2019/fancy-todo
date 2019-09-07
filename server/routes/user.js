@@ -1,9 +1,6 @@
 const router = require('express').Router();
+const UserController = require('../controllers/user');
 
-router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'connected to user!'
-    })
-})
+router.get('/', UserController.findAll);
 
 module.exports = router;

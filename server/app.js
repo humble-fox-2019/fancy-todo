@@ -4,11 +4,20 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const routes = require('./routes');
 const { errorHandle } = require('./middlewares/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+mongoose.connect('mongodb://localhost/fancy-todo', {useNewUrlParser: true})
+    .then(() => {
+        console.log('mongodb connected!');
+    })
+    .catch(err => {
+        console.log('Failed connect to mongodb!', err);
+    });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
