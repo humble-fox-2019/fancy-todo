@@ -2,7 +2,8 @@ const Todo = require('../models/todo');
 
 class TodoController {
     static findAll(req, res, next) {
-        Todo.find()
+        const { UserId } = req.decoded;
+        Todo.find( { UserId } )
             .then(todos => {
                 res.status(200).json(todos);
             })
@@ -11,11 +12,13 @@ class TodoController {
 
     static create(req, res, next) {
         const { name, description, status, due_date } = req.body;
+        const { UserId } = req.decoded;
         Todo.create({
             name, 
             description,
             status,
-            due_date
+            due_date,
+            UserId
         })
         .then(todo => {
             res.status(201).json(todo);
@@ -35,14 +38,16 @@ class TodoController {
 
     static update(req, res, next) {
         const _id = req.params.id;
-        const { name, description, status, due_date } = req.body;
+        const { name, description, due_date, status } = req.body;
+        const { UserId } = req.decoded;
         Todo.updateOne({
             _id
         }, {
             name, 
-            description, 
+            description,
+            due_date,
             status,
-            due_date
+            UserId
         })
         .then(todo => {
             res.status(200).json(todo);

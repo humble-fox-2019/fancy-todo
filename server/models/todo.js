@@ -16,12 +16,12 @@ const TodoSchema = new Schema({
     due_date: {
         type: Date
     }
-    // ,
-    // UserId: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     required: true
-    // }
+    ,
+    UserId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
     // ,
     // createdAt: {
     //     type: Date,

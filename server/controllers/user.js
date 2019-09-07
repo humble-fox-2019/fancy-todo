@@ -20,7 +20,7 @@ class UserController {
         })
         .then(user => {
             const payload = {
-                id: user.id,
+                UserId: user.id,
                 name: user.name,
                 email: user.email
             }
@@ -43,7 +43,7 @@ class UserController {
                 if (user) {
                     if (comparePassword(password, user.password)) {
                         const payload = {
-                            id: user.id,
+                            UserId: user.id,
                             name: user.name,
                             email: user.email
                         };
