@@ -48,33 +48,11 @@ class TodoController {
     }
 
     static delete(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
-
-    static invite(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
-
-    static accept(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
-
-    static decline(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
-
-    static leave(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        Todo.findByIdAndDelete(req.params.id)
+            .then(data => {
+                res.status(200).json({ message: 'successfully deleted', data });
+            })
+            .catch(next);
     }
 }
 
