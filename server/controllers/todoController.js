@@ -1,16 +1,24 @@
 const Todo = require('../models/todo');
 
 class TodoController {
-    static findAll(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+    static getUserTodo(req, res, next) {
+        Todo.find({
+            createdBy: req.params.createdBy
+        }).then(todos => {
+            if (todos.length > 0) {
+                res.status(200).json(todos);
+            } else {
+                next({ statusCode: 404 })
+            }
+        }).catch(next);
     }
 
     static findOne(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        Todo.findOne({
+
+        }).then(todos => {
+            res.status(200).json(todos)
+        }).catch(next);
     }
 
     static store(req, res, next) {

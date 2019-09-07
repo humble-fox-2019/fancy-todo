@@ -18,7 +18,8 @@ const todoSchema = new Schema({
     },
     project: {
         type: Schema.Types.ObjectId,
-        ref: 'Project'
+        ref: 'Project',
+        default: null
     }
 }, {
     timestamps: true
