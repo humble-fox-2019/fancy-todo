@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const List = require('../models/list')
+// const transporter = require('../helpers/nodemailer')
 const { generateToken } = require('../helpers/jwt')
 const { comparePassword } = require('../helpers/bcryptjs')
 const { OAuth2Client } = require('google-auth-library')
@@ -50,9 +51,9 @@ class UserController {
     }
 
     static signIn(req, res, next){
-        const username = req.body.username
+        const email = req.body.email
         User.findOne({
-            username
+            email
         })
         .then(user => {
             if(user){
@@ -67,7 +68,8 @@ class UserController {
                    console.log(token)
                    res.status(201).json({
                        message : `SignIn Success`,
-                       token : token
+                       token : token,
+                       username : user.username
                    })
                 }
             } else {
@@ -113,7 +115,8 @@ class UserController {
             })
             res.status(201).json({
                 token,
-                message : `login success`
+                username : user.username,
+                id : user._id
             })
         })
         .catch(next)

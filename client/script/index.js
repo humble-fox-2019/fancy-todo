@@ -1,39 +1,71 @@
+const baseUrl = 'http://localhost:3000'
 $(document).ready(function(){
-    $('.g-signin2').click(function(event){
+    if(!localStorage.getItem('token')){
+        $('nav').show()
+        $('.box-login').show()
+        $('.box-regis').hide()
+        $('.box-todos').hide()
+        $('.box-cardList').hide()
+        $('.box-password').hide()
+        $('.box-edit-profile').hide()
+    } else {
+        $('nav').show()
+        $('.box-login').hide()
+        $('.box-regis').hide()
+        $('.box-todos').hide()
+        $('.box-cardList').show()
+        $('.box-password').hide()
+        $('.box-edit-profile').hide()
+    }
+
+    $('.toRegister').click(function(event){
         event.preventDefault()
-        onSignIn()
+        $('nav').hide()
+        $('.box-login').hide()
+        $('.box-regis').show()
+        $('.box-todos').hide()
+        $('.box-cardList').hide()
+        $('.box-password').hide()
+        $('.box-edit-profile').hide()
     })
 
-    $('.sign-out').click(function(event){
+    $('.toLogin').click(function(event){
         event.preventDefault()
-        signOut()
+        $('nav').hide()
+        $('.box-login').show()
+        $('.box-regis').hide()
+        $('.box-todos').hide()
+        $('.box-cardList').hide()
+        $('.box-password').hide()
+        $('.box-edit-profile').hide()
     })
-    
-    function onSignIn(googleUser) {
-        const profile = googleUser.getBasicProfile()
-        var id_token = googleUser.getAuthResponse().id_token;
+
+    $('.create-list').click(function(event){
+        event.preventDefault()
+        let name = $('#name-list').val()
         $.ajax({
+            url : `${baseUrl}/lists`,
             method : 'post',
-            url : 'http://localhost:3000/users/login',
             data : {
-                token : id_token
+                name
+            },
+            headers: {
+                token : localStorage.getItem('token')
             }
         })
-        .done(data => {
-            localStorage.setItem('token', data.data.token)
-            
+        .done(function(data){
+            mainPage()
         })
         .fail(err => {
             console.log(err)
         })
-    }
+    })
 
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-        localStorage.removeItem('token')
-        console.log('User signed out.');
-        });
-    }
+    
+
+        // $.ajax({
+        //     url : `${baseUrl}/lists`
+        //     method : 'delete'
+        // })
 
 })
