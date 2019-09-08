@@ -1,9 +1,3 @@
-function list() {
-    var table = $('#datatables').DataTable({
-        "aaSorting": []
-    });
-}
-
 function getProjects() {
     $.ajax({
         type: "GET",
@@ -20,7 +14,7 @@ function getProjects() {
                             <td>
                                 <button class="btn btn-primary btn-sm p-1">open</button>
                                 <button class="btn btn-info btn-sm p-1" onclick="editProject('${el._id}')">Edit</button>
-                                <button class="btn btn-danger btn-sm p-1">leave</button>
+                                <button class="btn btn-danger btn-sm p-1" onclick="leave('${el._id}')">leave</button>
                             </td>
                         </tr>`;
             });
@@ -114,6 +108,37 @@ function saveProject() {
                 text: data.message
             }).then((result) => {
                 $('#modal-project').modal('show');
+            })
+        }
+    });
+}
+
+function leave(projectId) {
+    $.ajax({
+        type: "DELETE",
+        url: baseUrl + '/projects/leave/' + projectId,
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            Swal.fire({
+                position: 'top-center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            getProjects();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.close();
+
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
             })
         }
     });

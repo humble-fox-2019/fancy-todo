@@ -16,12 +16,6 @@ const projectSchema = new Schema({
             ref: 'User'
         }
     ],
-    // pendings: [
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'User'
-    //     }
-    // ],
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'

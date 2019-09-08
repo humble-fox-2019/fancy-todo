@@ -1,9 +1,5 @@
 # Todotive (fancy-todo)
 
-## Demo Link
-
-## Preview
-
 ## How to use
 ```
 npm install

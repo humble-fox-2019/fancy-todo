@@ -93,11 +93,11 @@ class ProjectController {
         Project.findOne(
             {
                 _id: req.params.id,
-                'members': req.body.userId
+                'members': req.decode.id
             }
         ).then(member => {
             if (member) {
-                return Project.updateOne({ _id: req.params.id }, { $pull: { members: req.body.userId } }, { omitUndefined: true });
+                return Project.updateOne({ _id: req.params.id }, { $pull: { members: req.decode.id } }, { omitUndefined: true });
             } else {
                 throw next({ statusCode: 401, msg: 'The user not in this project' });
             }
@@ -105,18 +105,6 @@ class ProjectController {
             res.status(200).json({ message: 'successfully leave project', data: info });
         }).catch(next);
     }
-
-    // static accept(req, res, next) {
-    //     res.status(200).json({
-    //         "message": 'ok'
-    //     });
-    // }
-
-    // static decline(req, res, next) {
-    //     res.status(200).json({
-    //         "message": 'ok'
-    //     });
-    // }
 }
 
 module.exports = ProjectController
