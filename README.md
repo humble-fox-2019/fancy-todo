@@ -10,6 +10,8 @@ CLIENT
 ```
 live-server --host=localhost
 ```
+
+jangan lupa membuat .env file seperti template env yang disediakan.
 # 
 ## Routes
 ### Sign In
@@ -314,7 +316,8 @@ Headers :
 }
 ```
 Body : -  
-```
+
+
 Response : 
 ```
 Success : < Previous Updated Data >
