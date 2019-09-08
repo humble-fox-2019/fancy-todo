@@ -28,11 +28,6 @@ class TodoController {
       .sort({ 'dueDate': 1 }).exec()
       .then(todos => {
         if (todos) {
-          // todos.forEach(el =>{
-          //   let test = el.getDaysLeft()
-          //   console.log(test , '<<<<<<,');
-          //   console.log(el);
-          // })
           res.status(200).json({
             message: 'Here is your todo :',
             todos
@@ -54,8 +49,6 @@ class TodoController {
   static getOne(req, res) {
     Todo.findById(req.params.id)
       .then(isFound => {
-        console.log(isFound.dueDate);
-        // console.log(isFound.getDaysLeft(isFound.dueDate));
         res.status(200).json({
           message: `Here's your todo`,
           todo: isFound
@@ -71,7 +64,6 @@ class TodoController {
     ;
     Todo.deleteOne({ _id: req.params.id })
       .then(deleted => {
-        console.log(deleted);
         res.status(200).json({
           message: `Success deleted`
         })
@@ -82,20 +74,15 @@ class TodoController {
         })
       })
   }
-  static update(req, res,) {
-    console.log(req.body, 'it should be here');
-    console.log('here?');
+  static update(req, res) {
     let change = {}
     for (let k in req.body) {
       change[k] = req.body[k]
     }
-    console.log(req.params, '<<<<<<<<<<<<<');
-    console.log(change, '<<');
     Todo.updateOne({
       _id: req.params.id
     }, change)
       .then(changed => {
-        console.log(changed);
         res.status(200).json({
           message: 'Success updated'
         })
@@ -106,7 +93,6 @@ class TodoController {
         })
       })
   }
-  
 }
 
 module.exports = TodoController

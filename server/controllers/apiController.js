@@ -1,32 +1,23 @@
-const axios = require('axios')
 const sgMail = require('@sendgrid/mail');
 const apiKey = process.env.SENDGRID_API_KEY
-sgMail.Apikey = apiKey
+sgMail.setApiKey(apiKey)
+
 
 class ApiController {
-  static sendEmail(req, res) {
-    console.log(sgMail);
+  static sendHtml(req, res) {
+    let to = req.decoded.email
+    let html = req.body.html
     const msg = {
-      to: 'ayusudi.abc@gmail.com',
-      from: 'ayusudi.abcd@gmail.com',
-      subject: 'Sending with SendGrid is Fun',
-      text: 'and easy to do anywhere, even with Node.js',
-      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+      to: to,
+      from: 'ayusudi.abc@gmail.com',
+      subject: 'Fancy Todo is reminding your Todo',
+      html: html,
     };
     sgMail.send(msg).then(data =>{
-      res.send(data)
+      res.status(200).json({
+        message : 'success'
+      })
     })
-  //  const message = { 
-  //   to : 'ayusudi.abc@gmail.com', 
-  //   from : { email : 'ayusudi.abc@gmail.com' , name: 'Name of user you want to  send email as'},
-  //   message : `Hi there, ayu`,
-  //   subject : "This is a test Email"
-  //   }
-  //   sgMail.send(message).then((sent) => {
-  //     res.send('oke')
-  //     console.log('her');
-  //     // Awesome Logic to check if mail was sent
-  //   })
    }
   
 }

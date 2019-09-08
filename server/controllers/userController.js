@@ -8,7 +8,6 @@ const defaultPas = process.env.DEFAULT_PS
 
 class UserController {
   static create(req, res) {
-    console.log('hei');
     const { name, email, password } = req.body
     User.create({
       name,
@@ -26,10 +25,7 @@ class UserController {
       })
   }
   static login(req, res, next) {
-    console.log('rawrrrr');
-    const { email, password } = req.body
-    console.log(password);
-    console.log('ada dsisi');
+    const { email, password } = req.body;
     if (!email || !password) {
       next({
         status: 400,
@@ -82,7 +78,6 @@ class UserController {
         // console.log(user);
         let password = defaultPas
         let { email, name } = user.payload
-        console.log(email, name);
         User.findOne({ email })
         .then(isFound => {
         //   // console.log(email);
@@ -99,26 +94,22 @@ class UserController {
                 password
               })
                 .then(newUser => {
-                  console.log('herreeee');
                   return newUser
                 })
             }
           })
           .then(userLogin => {
-            console.log(userLogin);
             let payload = {
               id: userLogin._id,
               email: userLogin.email
             }
             let token = getToken(payload)
-            console.log('dari login>>>>', userLogin);
             res.status(200).json({
               token
             })
           })
       })
       .catch(err => {
-        console.log('here');
         res.status(500).json({
           message: 'Error Internal Server'
         })
