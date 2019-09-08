@@ -78,12 +78,12 @@ class UserController {
             { $set : { password : req.body.password }},
             { runValidators: true }
         )
-        // .then( updated =>{ 
-        //     return User.findOneAndUpdate(
-        //         { email : req.decode.email } , 
-        //         { $set : { password : hash ( req.body.password ) }}
-        //     )
-        // })
+        .then( updated =>{ 
+            return User.findOneAndUpdate(
+                { email : req.decode.email } , 
+                { $set : { password : hash ( req.body.password ) }}
+            )
+        })
         .then ( finalUpdate => {
             res.status(200).json({ status: 200 , message : "Password Updated" })
         })
