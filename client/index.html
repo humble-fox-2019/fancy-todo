@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Google Signin  -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="734256907949-f1bqfflelim3tgf77up9nl71c1pbhrfb.apps.googleusercontent.com">
+
+    <!-- Jquery AJAX CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <title>Fancy Todos</title>
+</head>
+<body>
+
+    <div id="login-page" style="display: none">
+        <div class="container">
+            <div class="form shadow p-3 mb-5 bg-white rounded center-container">
+
+                <form id="login-form" style="padding: 20px">
+                    <div style="text-align: center;">
+                        <span style="font-size: 80px;" class="brand-color">
+                                <i class="fab fa-canadian-maple-leaf"></i>
+                        </span>
+                    </div>
+                    <h1 class="center">Login</h1>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control eclipse" id="login-email"  placeholder="Enter email" >
+                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control eclipse" id="login-password" placeholder="Password">
+                    </div>
+                    <div class="center">
+                        <button type="submit" id="login-btn"class="btn btn-primary eclipse" style="background-color: #341677">Login</button>
+                    </div>
+                </form>
+
+                <div class="gsignin-btn">
+                    <small>Didn't have account? Register <a href="#" id="redirect-register-btn">here</a></small><br>
+                    <small>Or, Sign in with :</small>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="register-page" style="display: none">
+        <div class="container">
+            <div class="form shadow p-3 mb-5 bg-white rounded center-container">
+
+                <form id="register-form" style="padding: 20px">
+                    <div style="text-align: center;">
+                        <span style="font-size: 80px;" class="brand-color">
+                                <i class="fab fa-canadian-maple-leaf"></i>
+                        </span>
+                    </div>
+                    <h1 class="center">Register</h1>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control eclipse"  placeholder="Enter email" id="register-email">
+                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control eclipse" placeholder="Password" id="register-password">
+                    </div>
+                    <div class="center">
+                        <button type="submit" id="register-btn" class="btn btn-primary eclipse" style="background-color: #341677">Register</button>
+                    </div>
+                </form>
+
+                <div class="gsignin-btn">
+                    <small>Already have account? Login <a href="#" id="redirect-login-btn">here</a></small><br>
+                    <small>Or, Sign in with :</small>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app" style="display: none">
+        <div id="myNav">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #341677">
+                <div class="container">
+                    <a class="navbar-brand" href="#" id="brand">
+                        <span class="brand-color">
+                            <i class="fab fa-canadian-maple-leaf"></i>
+                            <span>Fancy Todo</span>
+                        </span>
+                    </a>
+                    <div class="navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto" >
+                            <li class="nav-item brand-color">
+                                <a class="nav-link" href="#" onclick="signOut()" style="color: white;">Logout <i class="fas fa-sign-out-alt"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="container">
+            <div style="text-align: center">
+                <h3 id="email-desc" style="padding: 40px 0 20px 0;"></h3>
+                <h5 id="quotes"></h5>
+                <small id="quotes-author"></small>
+                <br><br>
+                <button class="btn btn-light" onclick="generateQuotes()">Generate Quotes For Me</button>
+                <button class="btn btn-warning" onclick="changePassword()">Change My Password</button>
+                <br><br>
+            </div>
+           
+            <div class="row" style="margin: 0 auto" id="mainpage">
+                <!-- Uncompleted Todo List -->
+                <div class="col-md-6 border">
+                    <div style="text-align: center">
+                        <h3 style="text-align: center; padding-top: 20px">Uncompleted Todo's List</h3>
+                        <button id="listType" class="btn btn-success" onclick="renderCompleted()">Show Completed</button>
+                    </div>
+                    <hr>
+                    <div class="scroll" id="todo-list" style="padding: 20px; margin-right: 20px">
+                        <div id="todo-list"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col" >
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">Create New Todo's</h5>
+                                <input class="form-control" type="text" name="title" id="insert-title" placeholder="Title"><br>
+                                <textarea rows="10" class="form-control" id="insert-description" placeholder="description"> </textarea> <br>
+                                <label for="">Due Date</label> <br>
+                                <input type="date" id="insert-duedate" name="dueDate" min="2016-01-01" max="3000-12-31" class="form-control datefield"><br>
+                                <button class="btn-primary" id="insert-todo">Insert</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col" id="update-todo-card">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin: 0 auto; display: none;" id="completed-todo">
+            <div class="col border">
+                <div style="text-align: center">
+                    <h3 style="text-align: center; padding-top: 20px">Completed Todo's List</h3>
+                    <button class="btn btn-success" onclick="loadApp()"> Go Back </button>
+                </div>
+                <div class="scroll" id="todo-list" style="padding: 20px; margin-right: 20px">
+                    
+                    <div id="todo-list-completed"></div>
+                </div>
+            </div>
+        </div>
+        
+
+
+    </div>
+    <div style="height: 50px"></div>
+
+    <footer id="sticky-footer" class="py-4 text-white-50" style="text-align: center">
+            <div class="container">
+              <small>Copyright &copy; Fancy Todo</small>
+            </div>
+    </footer>
+
+</body>
+
+<script src="./js/notification.js"></script>
+<script>
+    let serverURL = 'http://localhost:3000'
+    let token = localStorage.getItem('token')
+
+    $(document).ready(
+        readyDocument()
+    )
+    function readyDocument() {
+
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth()+1; //January is 0!
+        let yyyy = today.getFullYear();
+        if( dd < 10 ){
+            dd = '0' + dd
+        } 
+        if( mm < 10 ){
+            mm = '0' + mm
+        } 
+
+        today = yyyy+'-'+mm+'-'+dd;
+        $('.datefield').attr("min", today);
+        if ( !token ) {
+            renderLoginPage();
+        } else {
+            renderAppPage();
+        }
+    }
+    function convertDate ( date ) {
+        return `${new Date( date ).getDate()}-${new Date( date ).getMonth()+1}-${ new Date( date ).getFullYear()}`
+    }
+
+    function renderRegisterPage() {
+        $('input').val('')
+
+        $('#login-page').hide();
+        $('#register-page').show();
+    }
+    function renderLoginPage() {
+        $('input').val('')
+        $('#app').hide();
+
+        $('#login-page').show();
+        $('#register-page').hide();
+
+    }
+    function loadTodoList () {
+        generateQuotes();
+        const token = localStorage.getItem('token')
+        $.ajax({
+            method : "GET",
+            url : `${serverURL}/todos/status/false`,
+            headers: { token },
+            success : function ( response ) {
+                $('#todo-list').html( '' );
+                const { todos } = response;
+                if ( todos.length == 0 ) {
+                    $('#todo-list').append(`<h5 style='text-align:center'>No Todos</h5>`);
+                } else {
+                    todos.forEach(element => {
+                        const todoId = element._id;
+                        let completed = '<small style="color:red">Un-completed</small>'
+                        if ( element.completed ) {
+                            completed = '<small style="color:red">Complete</small>'
+                        }
+                        let todoCard = `<div class="card" style="width: 100%;">
+                                            <div class="card-body">
+                                                <h5 class="card-title"> Title : ${element.title}</h5>
+                                                <hr>
+                                                <div> Description :</div>
+                                                <p class="card-text">${element.description}</p>
+                                                <div>Status : ${completed}</div>
+                                                <div>Due Date : ${ convertDate(element.dueDate) }</div>
+                                                <div><i class="far fa-clock"></i> ${ convertRemaining( element.dueDate ) }day remaining</div>
+                                                <button class="btn-primary" onclick="updateTodoCard('${todoId}')">UPDATE</button>
+                                                <button class="btn-danger" onclick="deleteTodo('${todoId}')">DELETE</button>
+                                                <button class="btn-success" onclick="toggleStatus('${todoId}')">COMPLETE</button>
+                                            </div>
+                                        </div>`
+                        $('#todo-list').append( todoCard );
+                    });
+                }
+                
+            },
+            error : function (err ) {
+                showErrorMessage( err.message )
+            }
+        })
+    }
+
+    function renderAppPage() {
+        $('#login-page').hide();
+        $('#register-page').hide();
+        // Kalo token uda ada  baru boleh ke Home
+        let token = localStorage.getItem('token');
+        let email = localStorage.getItem('email');
+
+
+        if( token ) {
+            $('#app').show();
+            $('#email-desc').html( `${email}` )
+
+            
+            loadTodoList();
+        } else {
+            renderLoginPage();
+        }
+
+        
+    }
+    
+    function loadApp(){
+        $('#completed-todo').hide();
+        $('#mainpage').show();
+        renderAppPage();
+    }
+
+    $('#register-form').on( 'submit' , function ( e ) {
+        e.preventDefault();
+
+        const email = $('#register-email').val();
+        const password = $('#register-password').val();
+        
+        // Register New Account
+        $.ajax({
+            method: "POST",
+            url : `${serverURL}/signup`,
+            data: { email , password },
+            success : function ( response ) {
+                renderLoginPage();
+                showSuccessMessage( "User Registered Succesfuully" , "Please login to continue..." )
+            } , 
+            error : function ( err ) {
+                showErrorMessage( err.responseJSON.message );
+                renderRegisterPage();
+            }
+
+        })
+
+
+    })
+    $('#login-form').on( 'submit' ,function ( e ) {
+        e.preventDefault();
+        const email = $('#login-email').val();
+        const password = $('#login-password').val();
+
+        // Login Manual
+        $.ajax({
+            method : "POST",
+            url : `${serverURL}/signin`,
+            data : { email , password },
+            beforeSend : function () {
+                // Swal.showLoading()
+            },
+            success : function ( response ) { 
+                localStorage.setItem('token' , response.token );
+                localStorage.setItem('email' , email )
+                renderAppPage();
+                $('#mainpage').show();
+            },
+            error : function ( err ) {
+                showErrorMessage( err.responseJSON.message );
+            }
+        })
+    })
+    
+    $('#redirect-register-btn').on('click' , function () {
+        renderRegisterPage();
+    })
+    $('#redirect-login-btn').on('click' , function () {
+        renderLoginPage();
+    })
+    
+    
+    $('#brand').on('click' , function () {
+        $('#completed-todo').hide();
+        $('#mainpage').show();
+        renderAppPage();
+    })
+
+    // Insert Todo
+    $('#insert-todo').on('click' , function ( e ) {
+        e.preventDefault();
+        let token = localStorage.getItem('token')
+        Swal.fire({
+            title: 'Are you sure?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Insert it!'
+        }).then((result) => {
+            if (result.value) {
+                const title = $('#insert-title').val();
+                const description = $('#insert-description').val();
+                const dueDate = $('#insert-duedate').val();
+                const date = new Date( dueDate )
+                if ( !title ) {
+                    showErrorMessage( "Title must be filled" )
+                } else if( !dueDate ) {
+                    showErrorMessage( "DueDate must be filled" )
+                } else if ( date.getDate() < 1 || date.getMonth()+1 < 1|| date.getFullYear() < new Date().getFullYear() ) {
+                    showErrorMessage( "Invalid date format")
+                } else  {
+                    
+                    $.ajax({
+                        method: "POST",
+                        url: `${serverURL}/todos`,
+                        data: { title , description , dueDate },
+                        headers : { token },
+                        success : function ( response ) {
+                            $('#insert-description').val('');
+                            $('#insert-title').val('')
+                            loadTodoList();
+                            showSuccessMessage("Todo Created Successfully")
+                        },
+                        error : function ( err ) {
+                            showErrorMessage( err.responseJSON.message )
+                        }
+                    })
+                }
+            }
+        })
+    })
+
+    // Delete Todo 
+    function deleteTodo( todoId ) {
+        let token = localStorage.getItem('token')
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    method: "DELETE",
+                    url : `${serverURL}/todos`,
+                    headers : { token },
+                    data : { todoId },
+                    success : function ( response ) {
+                        loadTodoList();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    },
+                    error : function ( err ) {
+                        showErrorMessage( err.responseJSON.message )
+                    }
+                })
+                
+            }
+        })
+    }
+    
+    // Update Todo
+    function updateTodoCard( todoId ) {
+        $('#update-todo-card').html( ' ' )
+        let token = localStorage.getItem('token')
+
+        $.ajax({
+            method: "GET",
+            url: `${serverURL}/todos/${todoId}`,
+            headers: { token },
+            success : function ( response ) {
+                const { todo } = response;
+                const id = todo._id;
+                const title = todo.title;
+                const description = todo.description;
+                const date = new Date( todo.dueDate );
+
+                const day = (date.getDate() < 10 ) ? `0${date.getDate()}` : date.getDate() ;
+                const month = (date.getMonth() < 10 ) ? `0${date.getMonth()}` : date.getMonth() ;
+                const year = date.getFullYear();
+                let updateCard = `<div class="card" style="width: 100%;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Update Todo's</h5>
+                                        <input class="form-control" type="text" name="title" id="update-title" value='${title}'><br>
+                                        <textarea rows="4" class="form-control" id="update-description" >${description} </textarea> <br>
+                                        <input type="date" id="update-duedate" name="dueDate" min="1000-01-01" max="3000-12-31" class="form-control datefield" value='${year}-${month}-${day}'><br>
+                                        
+                                        <button class="btn-primary" onclick="updateTodo('${id}')" >Update</button>
+                                    </div>
+                                </div>`
+                $('#update-todo-card').append ( updateCard )
+            }, 
+            error : function ( err ) {
+                showErrorMessage( err.responseJSON.title );
+            }
+        })
+    }
+    function updateTodo( todoId ) {
+        let token = localStorage.getItem('token')
+
+        Swal.fire({
+            title: 'Are you sure?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!'
+        })
+        .then((result) => {
+            if (result.value) {
+                const title = $('#update-title').val();
+                const description = $('#update-description').val();
+                const dueDate = $('#update-duedate').val();
+                const date = new Date ( dueDate )
+                if ( !title ) {
+                    showErrorMessage( "Title must be filled" )
+                } else if( !dueDate ) {
+                    showErrorMessage( "DueDate must be filled" )
+                } else if  ( date.getDate() < 1 || date.getMonth()+1 < 1 || date.getFullYear() < new Date().getFullYear()  ) {
+                    showErrorMessage( "Invalid date format")
+                } else {
+                    $.ajax({
+                        method:"PUT",
+                        url: `${serverURL}/todos`,
+                        headers : { token },
+                        data : { title , description , dueDate , todoId },
+                        success: function ( response ) {
+                            loadTodoList();
+                            Swal.fire(
+                                'Updated!',
+                                'Your file has been updated.',
+                                'success'
+                            )
+                            $('update-todo-card').hide();
+                            $('#update-todo-card').html( '' )
+                        },
+                        error : function ( err) {
+                            showErrorMessage( err.responseJSON.message )
+                        }
+                    })
+                }       
+                
+            }
+        })
+    }
+
+    function loadTodoListCompleted () {
+        const token = localStorage.getItem('token')
+        $.ajax({
+            method : "GET",
+            url : `${serverURL}/todos/status/true`,
+            headers: { token },
+            success : function ( response ) {
+                $('#todo-list-completed').html( '' );
+                const { todos } = response;
+                if ( todos.length == 0 ) {
+                    $('#todo-list-completed').append(`<h5 style='text-align:center'>No Completed Todos </h5>`);
+                } else {
+                    todos.forEach(element => {
+                        const todoId = element._id;
+                        let completed = '<small style="color:red">Un-completed</small>'
+                        if ( element.completed ) {
+                            completed = '<small style="color:green">Completed</small>'
+                        }
+                        let todoCard = `<div class="card" style="width: 100%;">
+                                            <div class="card-body">
+                                                <h5 class="card-title"> Title : ${element.title}</h5>
+                                                <hr>
+                                                <div> Description :</div>
+                                                <p class="card-text">${element.description}</p>
+                                                <div>Status : ${completed}</div>
+                                                <div>Due Date : ${ convertDate(element.dueDate)  }</div>
+                                                <div><i class="far fa-clock"></i> ${ convertRemaining( element.dueDate ) }day remaining</div>
+                                                <button class="btn-warning" onclick="toggleStatus('${todoId}')">uncomplete</button>
+                                            </div>
+                                        </div>`
+                        $('#todo-list-completed').append( todoCard );
+                    });
+                }
+                
+            },
+            error : function (err ) {
+                showErrorMessage( err.message )
+            }
+        })
+    }
+    // Show Completed
+    function renderCompleted() {
+        $('#mainpage').hide();
+        $('#completed-todo').show();
+        loadTodoListCompleted();
+    }
+    function toggleStatus( todoId ) {
+        const token = localStorage.getItem('token');
+        $.ajax({
+            method: "PATCH",
+            url: `${serverURL}/todos`,
+            data : { todoId },
+            headers : { token },
+            success : function ( response ) {
+                loadTodoList();
+                loadTodoListCompleted();
+                showSuccessMessage("Success");
+                
+            },
+            error : function( err ) {
+                showErrorMessage( err.message );
+            }
+        })
+
+    }
+    function changePassword() {
+        const token = localStorage.getItem('token');
+        Swal.fire({
+            title: 'What is your new password?',
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Looks Good',
+            showLoaderOnConfirm: true,
+            preConfirm: ( password ) => {
+                $.ajax({
+                    method: "PATCH",
+                    url : `${serverURL}/update/password`,
+                    headers : { token },
+                    data : { password },
+                    success : function ( response ) {
+                        showSuccessMessage( "Password Changed!");
+                    },
+                    error : function ( err ) {
+                        showErrorMessage( "Min 5 Character" )
+                    }
+                })
+            },
+                allowOutsideClick: () => !Swal.isLoading()
+            })
+    }
+</script>
+
+<script src="./js/login-page.js"></script>
+
+</html>
