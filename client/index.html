@@ -52,6 +52,49 @@
     </div>
     <!-- END Pop In Modal -->
 
+    <!-- Add Task Modal -->
+    <div class="modal fade" id="modal-task" tabindex="-1" role="dialog" aria-labelledby="modal-task" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popin" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title"></h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter task name..">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" name="description"
+                                    placeholder="Enter task description.."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dueDate">Due Date</label>
+                                <input type="date" class="form-control" id="dueDate" name="dueDate"
+                                    placeholder="Enter task due date..">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-alt-primary" id="saveTaskButton">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Add Task Modal -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="./assets/js/codebase.core.min.js"></script>
