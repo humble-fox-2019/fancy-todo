@@ -5,6 +5,7 @@ const PORT = 3000
 const cors = require('cors')
 const mongoose = require('mongoose')
 const index = require('./routes')
+const errHandler = require('./middlewares/errorHandler')
 
 app.use(cors())
 app.use(express.json())
@@ -18,6 +19,16 @@ mongoose.connect('mongodb://localhost/fancy-TODO', {
   if(err) console.log(`server isn't connect to mongodb`);
   else console.log('Connected!');
 })
+
+// mongoose.connect('mongodb://ayusudi:ayu123@ds261277.mlab.com:61277/todo-fancy-ayu', { useNewUrlParser: true })
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   // we're connected!
+//   console.log(`Connected to todo db`);
+// });
+
+app.use(errHandler)
 
 app.listen(PORT, function(){
   console.log(`Hello from port ${PORT}`);

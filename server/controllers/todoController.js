@@ -1,7 +1,7 @@
 const Todo = require('../models/todo')
 
 class TodoController {
-  static create(req, res) {
+  static create(req, res, next) {
     const UserId = req.decoded._id
     const { name, description, dueDate } = req.body
     Todo.create({
@@ -17,18 +17,22 @@ class TodoController {
         })
       })
       .catch(err => {
-        res.status(500).json({
-          message: 'Error Internal Server'
-        })
+        console.log(err);
+        next(err)
       })
   }
   static getAll(req, res) {
     Todo.find({
       UserId: req.decoded._id
     })
-      .sort({ 'dueDate': -1 }).exec()
+      .sort({ 'dueDate': 1 }).exec()
       .then(todos => {
         if (todos) {
+          // todos.forEach(el =>{
+          //   let test = el.getDaysLeft()
+          //   console.log(test , '<<<<<<,');
+          //   console.log(el);
+          // })
           res.status(200).json({
             message: 'Here is your todo :',
             todos
@@ -50,6 +54,8 @@ class TodoController {
   static getOne(req, res) {
     Todo.findById(req.params.id)
       .then(isFound => {
+        console.log(isFound.dueDate);
+        // console.log(isFound.getDaysLeft(isFound.dueDate));
         res.status(200).json({
           message: `Here's your todo`,
           todo: isFound
@@ -76,15 +82,20 @@ class TodoController {
         })
       })
   }
-  static update(req, res) {
+  static update(req, res,) {
+    console.log(req.body, 'it should be here');
+    console.log('here?');
     let change = {}
     for (let k in req.body) {
       change[k] = req.body[k]
     }
-    Todo.updateOne(change, {
+    console.log(req.params, '<<<<<<<<<<<<<');
+    console.log(change, '<<');
+    Todo.updateOne({
       _id: req.params.id
-    })
+    }, change)
       .then(changed => {
+        console.log(changed);
         res.status(200).json({
           message: 'Success updated'
         })
@@ -95,6 +106,7 @@ class TodoController {
         })
       })
   }
+  
 }
 
 module.exports = TodoController
