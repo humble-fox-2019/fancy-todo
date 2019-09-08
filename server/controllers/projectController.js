@@ -150,7 +150,7 @@ class ProjectController {
     static storeTodo(req, res, next) {
         const { name, description, dueDate } = req.body;
         let createdBy = req.decode.id;
-        let project = req.params.todoId;
+        let project = req.params.id;
 
         Todo.create(
             { name, description, dueDate, createdBy, project }
