@@ -1,4 +1,4 @@
-# fancy-todo
+# Todotive (fancy-todo)
 
 ## Demo Link
 
@@ -7,8 +7,13 @@
 ## How to use
 ```
 npm install
-Edit .env file
+Make a new .env file
+
+Running server:
 npm run dev
+
+Running client:
+live-server --host=localhost
 ```
 
 **Note: Client must running using live server.**

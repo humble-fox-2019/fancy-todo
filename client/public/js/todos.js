@@ -82,14 +82,14 @@ function removeTodo(todoId) {
     });
 }
 
-function checkedTodo(todoId) {
+function checkedTodo(todoId, status = true) {
     $('#row' + todoId).addClass('animated fadeOutUp');
 
     $.ajax({
         type: "PATCH",
         url: baseUrl + '/todos/' + todoId,
         data: {
-            status: true
+            status: status
         },
         beforeSend: function (request) {
             request.setRequestHeader("token", localStorage.getItem('token'));
@@ -253,7 +253,8 @@ function getTodos(status = 'all') {
                         <div class="js-task-list">`;
 
                 $.each(el.todo, function (index2, el2) {
-                    templateTask += `<!-- Task -->
+                    if (location.hash === "#todos-active") {
+                        templateTask += `
                             <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="${el2._id}" id="row${el2._id}"
                                 data-task-completed="false" data-task-starred="false">
                                 <table class="table table-borderless table-vcenter mb-0">
@@ -261,7 +262,7 @@ function getTodos(status = 'all') {
                                         <td class="text-center" style="width: 50px;">
                                             <label
                                                 class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input" onclick="checkedTodo('${el2._id}')">
+                                                <input type="checkbox" class="css-control-input" onclick="checkedTodo('${el2._id}', true)">
                                                 <span class="css-control-indicator"></span>
                                             </label>
                                         </td>
@@ -278,11 +279,38 @@ function getTodos(status = 'all') {
                                         </td>
                                     </tr>
                                 </table>
-                            </div>
-                            <!-- END Task -->`;
+                            </div>`;
+                    }
+
+                    if (location.hash === "#todos-completed") {
+                        templateTask += `<div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="${el2._id}" id="row${el2._id}"
+                            data-task-completed="true" data-task-starred="false">
+                            <table class="table table-borderless table-vcenter bg-body-light mb-0">
+                                <tr>
+                                    <td class="text-center" style="width: 50px;">
+                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
+                                            <input type="checkbox" class="css-control-input" checked onclick="checkedTodo('${el2._id}', false)">
+                                            <span class="css-control-indicator"></span>
+                                        </label>
+                                    </td>
+                                    <td class="js-task-content font-w600">
+                                        <del>${el2.name}</del>
+                                    </td>
+                                    <td class="text-right" style="width: 100px;">
+                                        <button class="js-task-star btn btn-sm btn-alt-info" type="button" onclick="edit('${el2._id}')">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button class="js-task-remove btn btn-sm btn-alt-danger" type="button" onclick="removeTodo('${el2._id}')">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>`;
+                    }
                 })
 
-                templateTask += `</div>`;
+                templateTask += `</div > `;
             });
 
             $('#displayTask').html(templateTask);

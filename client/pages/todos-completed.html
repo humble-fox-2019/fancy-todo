@@ -15,7 +15,7 @@
 
                     <!-- Logo -->
                     <div class="content-header-item">
-                        <a class="link-effect font-w700" href="">
+                        <a class="link-effect font-w700" href="#">
                             <i class="si si-grid text-primary"></i>
                             <span class="font-size-xl text-dual-primary-dark">Todo</span><span
                                 class="font-size-xl text-primary">tive</span>
@@ -30,7 +30,7 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li>
-                        <a class="active" href="">
+                        <a class="active" href="#">
                             <i class="si si-cup"></i> My Todos
                         </a>
                     </li>
@@ -38,7 +38,7 @@
                         Heading
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="#signin">
                             <i class="si si-rocket"></i> Projects
                         </a>
                     </li>
@@ -58,7 +58,7 @@
             <div class="content-header-section">
                 <!-- Logo -->
                 <div class="content-header-item">
-                    <a class="link-effect font-w700 mr-5" href="">
+                    <a class="link-effect font-w700 mr-5" href="#">
                         <i class="si si-grid text-primary"></i>
                         <span class="font-size-xl text-dual-primary-dark">Todo</span><span
                             class="font-size-xl text-primary">tive</span>
@@ -80,7 +80,7 @@
                         Heading
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="#signin">
                             <i class="si si-rocket"></i> Projects
                         </a>
                     </li>
@@ -91,54 +91,64 @@
 
             <!-- Right Section -->
             <div class="content-header-section">
-                <!-- Toggle Sidebar -->
-                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none" data-toggle="layout"
-                    data-action="sidebar_toggle">
-                    <i class="fa fa-navicon"></i>
-                </button>
-                <!-- END Toggle Sidebar -->
-            </div>
-            <!-- END Right Section -->
-        </div>
-        <!-- END Header Content -->
+                <!-- User Dropdown -->
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="displayName"></span><i class="fa fa-angle-down ml-5"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right min-width-150"
+                        aria-labelledby="page-header-user-dropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="si si-user mr-5"></i> Profile
+                        </a>
 
-        <!-- Header Search -->
-        <div id="page-header-search" class="overlay-header">
-            <div class="content-header content-header-fullrow">
-                <form>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <!-- Close Search Section -->
-                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                            <button type="button" class="btn btn-secondary px-15" data-toggle="layout"
-                                data-action="header_search_off">
-                                <i class="fa fa-times"></i>
-                            </button>
-                            <!-- END Close Search Section -->
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search or hit ESC.."
-                            id="page-header-search-input" name="page-header-search-input">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary px-15">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" onclick="signout()">
+                            <i class="si si-logout mr-5"></i> Sign Out
+                        </a>
                     </div>
-                </form>
+                </div>
+                <!-- END Right Section -->
             </div>
-        </div>
-        <!-- END Header Search -->
+            <!-- END Header Content -->
 
-        <!-- Header Loader -->
-        <div id="page-header-loader" class="overlay-header bg-primary">
-            <div class="content-header content-header-fullrow text-center">
-                <div class="content-header-item">
-                    <i class="fa fa-sun-o fa-spin text-white"></i>
+            <!-- Header Search -->
+            <div id="page-header-search" class="overlay-header">
+                <div class="content-header content-header-fullrow">
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <!-- Close Search Section -->
+                                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                                <button type="button" class="btn btn-secondary px-15" data-toggle="layout"
+                                    data-action="header_search_off">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <!-- END Close Search Section -->
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search or hit ESC.."
+                                id="page-header-search-input" name="page-header-search-input">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary px-15">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
-        <!-- END Header Loader -->
+            <!-- END Header Search -->
+
+            <!-- Header Loader -->
+            <div id="page-header-loader" class="overlay-header bg-primary">
+                <div class="content-header content-header-fullrow text-center">
+                    <div class="content-header-item">
+                        <i class="fa fa-sun-o fa-spin text-white"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- END Header Loader -->
     </header>
     <!-- END Header -->
 
@@ -163,13 +173,12 @@
                             <div class="block-content">
                                 <div class="list-group push">
                                     <a href="#todos-active"
-                                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center "
+                                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
                                         href="javascript:void(0)">
                                         <span>
                                             <i class="fa fa-fw fa-tasks mr-5"></i>
                                             Active
                                         </span>
-                                        <span class="badge badge-pill badge-secondary">1</span>
                                     </a>
                                     <a href="#todos-completed"
                                         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center active"
@@ -178,7 +187,6 @@
                                             <i class="fa fa-fw fa-check mr-5"></i>
                                             Completed
                                         </span>
-                                        <span class="badge badge-pill badge-secondary">7</span>
                                     </a>
                                 </div>
                             </div>
@@ -190,98 +198,26 @@
 
                 <div class="col-md-7 col-xl-9">
                     <!-- Tasks -->
+                    <!-- Tasks functionality is initialized in js/pages/be_pages_generic_todo.min.js which was auto compiled from _es6/pages/be_pages_generic_todo.js -->
+                    <div class="js-tasks">
 
-                    <!-- Tasks List Completed -->
-                    <h2 class="content-heading mb-10">Completed</h2>
-                    <div class="js-task-list-completed">
-                        <!-- Completed Task -->
-                        <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3"
-                            data-task-completed="true" data-task-starred="false">
-                            <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                <tr>
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input" checked>
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content font-w600">
-                                        <del>Mobile wireframes</del>
-                                    </td>
-                                    <td class="text-right" style="width: 100px;">
-                                        <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!-- END Completed Task -->
+                        <!-- Tasks List -->
+                        <div id="displayTask"></div>
+                        <!-- END Tasks List -->
 
-                        <!-- Completed Task -->
-                        <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="2"
-                            data-task-completed="true" data-task-starred="false">
-                            <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                <tr>
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input" checked>
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content font-w600">
-                                        <del>Contract Signing</del>
-                                    </td>
-                                    <td class="text-right" style="width: 100px;">
-                                        <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!-- END Completed Task -->
-
-                        <!-- Completed Task -->
-                        <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="1"
-                            data-task-completed="true" data-task-starred="false">
-                            <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                <tr>
-                                    <td class="text-center" style="width: 50px;">
-                                        <label class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                            <input type="checkbox" class="css-control-input" checked>
-                                            <span class="css-control-indicator"></span>
-                                        </label>
-                                    </td>
-                                    <td class="js-task-content font-w600">
-                                        <del>Explore ideas</del>
-                                    </td>
-                                    <td class="text-right" style="width: 100px;">
-                                        <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!-- END Completed Task -->
                     </div>
-                    <!-- END Tasks List Completed -->
+                    <!-- END Tasks -->
                 </div>
-                <!-- END Tasks -->
             </div>
+            <!-- END Tasks Content -->
         </div>
-        <!-- END Tasks Content -->
+        <!-- END Page Content -->
 
     </main>
     <!-- END Main Container -->
 </div>
+
+<script src="./public/js/todos.js"></script>
+<script>
+    getTodos('completed');
+</script>
