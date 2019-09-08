@@ -30,13 +30,16 @@ class ProjectController {
     static findOne(req, res, next) {
         Project.findOne({
             _id: req.params.id
-        }).then(project => {
-            if (project) {
-                res.status(200).json(project);
-            } else {
-                next({ statusCode: 404 });
-            }
-        }).catch(next);
+        })
+            .populate('todos')
+            .populate('members')
+            .then(project => {
+                if (project) {
+                    res.status(200).json(project);
+                } else {
+                    next({ statusCode: 404 });
+                }
+            }).catch(next);
     }
 
     static update(req, res, next) {
@@ -51,9 +54,13 @@ class ProjectController {
     }
 
     static delete(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        Project.findByIdAndDelete(req.params.id)
+            .populate('todos')
+            .populate('members')
+            .then(data => {
+                res.status(200).json({ message: 'successfully deleted', data });
+            })
+            .catch(next);
     }
 
     static invite(req, res, next) {
