@@ -30,7 +30,7 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li>
-                        <a href="#todos-active" class="active">
+                        <a href="#todos-active">
                             <i class="si si-cup"></i> My Todos
                         </a>
                     </li>
@@ -38,7 +38,7 @@
                         Heading
                     </li>
                     <li>
-                        <a href="#projects">
+                        <a href="#projects" class="active">
                             <i class="si si-rocket"></i> Projects
                         </a>
                     </li>
@@ -72,7 +72,7 @@
             <div class="content-header-section d-none d-lg-block">
                 <ul class="nav-main-header">
                     <li>
-                        <a href="#todos-active" class="active">
+                        <a href="#todos-active">
                             <i class="si si-cup"></i> My Todos
                         </a>
                     </li>
@@ -80,7 +80,7 @@
                         Heading
                     </li>
                     <li>
-                        <a href="#projects">
+                        <a href="#projects" class="active">
                             <i class="si si-rocket"></i> Projects
                         </a>
                     </li>
@@ -153,71 +153,9 @@
     <!-- END Header -->
 
     <!-- Main Container -->
-    <main id="main-container">
 
-        <!-- Page Content -->
-        <div class="content">
-            <!-- Tasks Content -->
-            <div class="row">
-                <div class="col-md-5 col-xl-3">
-                    <!-- Toggle Tasks Navigation on mobile -->
-                    <button type="button" class="btn btn-block btn-primary d-md-none mb-10" data-toggle="class-toggle"
-                        data-target=".js-tasks-nav" data-class="d-none d-md-block">Menu</button>
-
-                    <!-- Collapsible Tasks Navigation -->
-                    <div class="js-tasks-nav d-none d-md-block">
-                        <div class="block">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">Task</h3>
-                            </div>
-                            <div class="block-content">
-                                <div class="list-group push">
-                                    <a href="#todos-active"
-                                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                        href="javascript:void(0)">
-                                        <span>
-                                            <i class="fa fa-fw fa-tasks mr-5"></i>
-                                            Active
-                                        </span>
-                                    </a>
-                                    <a href="#todos-completed"
-                                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center active"
-                                        href="javascript:void(0)">
-                                        <span>
-                                            <i class="fa fa-fw fa-check mr-5"></i>
-                                            Completed
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Collapsible Tasks Navigation -->
-
-                </div>
-
-                <div class="col-md-7 col-xl-9">
-                    <!-- Tasks -->
-                    <!-- Tasks functionality is initialized in js/pages/be_pages_generic_todo.min.js which was auto compiled from _es6/pages/be_pages_generic_todo.js -->
-                    <div class="js-tasks">
-
-                        <!-- Tasks List -->
-                        <div id="displayTask"></div>
-                        <!-- END Tasks List -->
-
-                    </div>
-                    <!-- END Tasks -->
-                </div>
-            </div>
-            <!-- END Tasks Content -->
-        </div>
-        <!-- END Page Content -->
-
-    </main>
     <!-- END Main Container -->
 </div>
+
 <script src="./public/js/all.js"></script>
-<script src="./public/js/todos.js"></script>
-<script>
-    getTodos('completed');
-</script>
+<script src="./public/js/projects.js"></script>
