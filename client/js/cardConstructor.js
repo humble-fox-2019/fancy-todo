@@ -12,7 +12,7 @@ function cardConstructor({ _id, name, description, createdAt, updatedAt, dueDate
                             <div class="card-footer">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-6 change-color clickable" onclick="editTodo('${_id}')">
+                                        <div class="col-6 change-color clickable" onclick="showEditTodo('${_id}')">
                                             <small class="text-muted text-align:center">Edit</small>
                                         </div>
                                         <div class="col-6 change-color clickable" onclick="deleteTodo('${_id}')">

@@ -31,18 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link clickable" onclick="showCreateTodo()">Create New</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle clickable" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link clickable" id="logout" onclick="logout()" tabindex="-1"><i
                             class="fa fa-logout"></i> Logout</a>
@@ -135,7 +124,7 @@
                                 <label for="dueDate" class="col-form-label">Due Date</label>
                                 <input type="date" name="dueDate" id="dueDate">
                             </div>
-                            <button type="button" onclick="createTodo()" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>
@@ -170,7 +159,7 @@
                                 <label for="editDue" class="col-form-label">Due Date</label>
                                 <input type="date" name="editDue" id="editDue">
                             </div>
-                            <button type="button" onclick="editTodo()" class="btn btn-primary">Edit</button>
+                            <button type="button" id="editButton" class="btn btn-primary">Edit</button>
                         </form>
                     </div>
                 </div>
@@ -191,12 +180,11 @@
     <script src="js/cardConstructor.js"></script>
     <script src="js/cards.js"></script>
     <script src="js/createTodo.js"></script>
+    <script src="js/todoCrud.js"></script>
     <script>
 
 
-        function editTodo(id) {
 
-        }
     </script>
 </body>
 

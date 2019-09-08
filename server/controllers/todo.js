@@ -52,6 +52,27 @@ class TodoController {
             .catch(next);
     };
 
+    static findOne(req, res, next) {
+        const { todoId } = req.params
+        Todo.findById(todoId)
+            .then((result) => {
+                res.status(200).json(result)
+            }).catch(next);
+    }
+
+    static filter(req, res, next) {
+        const { userId } = req.decode
+        const { q } = req.query
+        const like = new RegExp(q, 'i')
+        Todo.find({
+            $or: { name: like, description: like },
+            _id: userId
+        })
+            .then((result) => {
+                res.status(200).json(result)
+            }).catch(next);
+    }
+
 }
 
 module.exports = TodoController
