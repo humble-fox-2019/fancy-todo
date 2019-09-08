@@ -7,6 +7,8 @@ router.use(authentication);
 
 router.get('/', TodoController.findAll);
 
+router.get('/:id', isOwner, TodoController.findOne);
+
 router.post('/', TodoController.create);
 
 router.put('/:id', isOwner, TodoController.update);

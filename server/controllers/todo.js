@@ -10,6 +10,15 @@ class TodoController {
             .catch(next);
     }
 
+    static findOne(req, res, next) {
+        const _id = req.params.id;
+        Todo.findOne({_id})
+            .then(todo => {
+                res.status(200).json(todo);
+            })
+            .catch(next);
+    }
+
     static create(req, res, next) {
         const { name, description, status, due_date } = req.body;
         const { UserId } = req.decoded;

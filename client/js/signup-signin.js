@@ -1,5 +1,5 @@
 function createSignUpForm() {
-    $('.content').empty();
+    $('.content').html('');
     let signUp = `
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="1075139297559-k7it3o7qfuvahtvn1n8vd0vbpabvpufg.apps.googleusercontent.com">
@@ -100,8 +100,8 @@ function signIn() {
     })
     .then(response => {
         console.log(response);
-        const {id, name, token } = response;
-        localStorage.setItem('id', id);
+        const {UserId, name, token } = response;
+        localStorage.setItem('UserId', UserId);
         localStorage.setItem('name', name);
         localStorage.setItem('token', token);
     })

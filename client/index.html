@@ -21,19 +21,44 @@
 <body>
     <!-- untuk bantuan supaya button logout bisa dipencet -->
     <div class="g-signin2" data-onsuccess="onSignIn" style="display: none"></div>  
-    <a class="btn btn-danger btn-lg text-white" onclick="signOut()" ><i class="fa fa-sign-out"></i> Sign Out</a>
-   
+    
+    <!-- Nav bar     -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Fancy Todo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form class="form-inline">
+                <div class="input-group mt-1 mb-1">
+                    <input class="form-control" type="search" placeholder="Search event ..." id="searchByEventName">
+                </div>
+            </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2">
+                    <li class="nav-item ml-4">
+                        <h5 class="nav-link active" id="userLoggedIn" style="display: none"></h5>
+                    </li>
+                    <li class="nav-item ml-2 mt-2">
+                        <a class="btn btn-sm btn-danger btn-lg text-white" id="btnLogout" onclick="signOut()"  style="cursor: pointer; display: none;"><i class="fa fa-sign-out"></i> Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
     <div class="content">
         
     </div>
-
-   
+    
+    
     <script src="./js/script.js"></script>
+    <script src="./js/todoList.js"></script>
     <script src="./js/signup-signin.js"></script>
     <script src="./js/googleSignIn.js"></script>
     <script>
-       
+        
     </script>
-
+    
 </body>
 </html>                            
