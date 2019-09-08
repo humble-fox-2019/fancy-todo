@@ -6,18 +6,22 @@ const projectSchema = new Schema({
         type: String,
         required: [true, 'Project name is required']
     },
+    description: {
+        type: String,
+        required: [true, 'Project description is required']
+    },
     members: [
         {
             type: Schema.Types.ObjectId,
             ref: 'User'
         }
     ],
-    pendings: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
+    // pendings: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     }
+    // ],
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'

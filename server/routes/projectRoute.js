@@ -1,16 +1,20 @@
 const express = require('express');
 const ProjectController = require('../controllers/projectController');
+const { isMember } = require('../middlewares/authorization');
 
 const router = express.Router();
 
-router.get('/', ProjectController.findAll);
-router.get('/:id', ProjectController.findOne);
+router.get('/user', ProjectController.getUserProject);
 router.post('/', ProjectController.store);
-router.patch('/:id', ProjectController.update);
-router.delete('/:id', ProjectController.delete);
-router.post('/:id/invite', ProjectController.invite);
-router.post('/:id/accept', ProjectController.accept);
-router.post('/:id/decline', ProjectController.decline);
-router.post('/:id/leave', ProjectController.leave);
+
+// router.use("/:id", isMember);
+router.get('/:id', isMember, ProjectController.findOne);
+router.patch('/:id', isMember, ProjectController.update);
+router.delete('/:id', isMember, ProjectController.delete);
+
+router.post('/invite/:id', isMember, ProjectController.invite);
+// router.post('/accept/:id', isMember, ProjectController.accept);
+// router.post('/decline/:id', isMember, ProjectController.decline);
+router.post('/leave/:id', isMember, ProjectController.leave);
 
 module.exports = router;

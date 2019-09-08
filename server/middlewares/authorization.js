@@ -1,5 +1,5 @@
-const { jwt } = require('../helpers');
 const Todo = require('../models/todo');
+const Project = require('../models/project');
 
 module.exports = {
     todoAuthorization: (req, res, next) => {
@@ -16,5 +16,9 @@ module.exports = {
         }).catch((err) => {
             next(err)
         });
+    },
+
+    isMember: (req, res, next) => {
+        next();
     }
 };

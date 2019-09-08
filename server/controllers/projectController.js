@@ -1,19 +1,28 @@
 const Project = require('../models/project');
 
 class ProjectController {
-    static findAll(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
-
-    static findOne(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+    static getUserProject(req, res, next) {
+        Project.find({})
+            .then(projects => {
+                res.status(200).json(projects)
+            })
+            .catch(err => {
+                res.status(500).json(err)
+            });
     }
 
     static store(req, res, next) {
+        const { name, description } = req.body;
+        let members = [req.decode.id];
+        let createdBy = req.decode.id;
+        Project.create(
+            { name, description, members, createdBy }
+        ).then(project => {
+            res.status(201).json(project)
+        }).catch(next);
+    }
+
+    static findOne(req, res, next) {
         res.status(200).json({
             "message": 'ok'
         });
