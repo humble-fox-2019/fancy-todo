@@ -15,7 +15,10 @@ router.delete('/:id', isMember, ProjectController.delete);
 router.post('/invite/:id', isMember, ProjectController.invite);
 router.delete('/leave/:id', isMember, ProjectController.leave);
 
-// router.post('/accept/:id', isMember, ProjectController.accept);
-// router.post('/decline/:id', isMember, ProjectController.decline);
+router.post('/todos/:id', isMember, ProjectController.storeTodo);
+router.get('/todos/user/:status/:id', isMember, ProjectController.getUserTodo);
+router.get('/todos/:id/:todoId', isMember, ProjectController.findOneTodo);
+router.patch('/todos/:id/:todoId', isMember, ProjectController.updateTodo);
+router.delete('/todos/:id/:todoId', isMember, ProjectController.deleteTodo);
 
 module.exports = router;

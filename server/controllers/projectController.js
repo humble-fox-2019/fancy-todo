@@ -1,5 +1,6 @@
 const Project = require('../models/project');
 const User = require('../models/user');
+const Todo = require('../models/todo');
 
 class ProjectController {
     static getUserProject(req, res, next) {
@@ -104,6 +105,77 @@ class ProjectController {
         }).then((info) => {
             res.status(200).json({ message: 'successfully leave project', data: info });
         }).catch(next);
+    }
+
+    // TODO
+    static getUserTodo(req, res, next) {
+        let where = {
+            project: req.params.id
+        };
+
+        let status = req.params.status;
+
+        if (status === 'active') {
+            where['status'] = false;
+        } else if (status === 'completed') {
+            where['status'] = true;
+        } else if (status === 'all') {
+
+        } else {
+            return next({ statusCode: 400, msg: 'Status must be active, completed or all' })
+        }
+
+        Todo.find(where).sort({ dueDate: -1 })
+            .then(todos => {
+                if (todos != null) {
+                    res.status(200).json(todos);
+                } else {
+                    next({ statusCode: 404 });
+                }
+            }).catch(next);
+    }
+
+    static findOneTodo(req, res, next) {
+        Todo.findOne({
+            _id: req.params.todoId
+        }).then(todo => {
+            if (todo) {
+                res.status(200).json(todo);
+            } else {
+                next({ statusCode: 404 });
+            }
+        }).catch(next);
+    }
+
+    static storeTodo(req, res, next) {
+        const { name, description, dueDate } = req.body;
+        let createdBy = req.decode.id;
+        let project = req.params.todoId;
+
+        Todo.create(
+            { name, description, dueDate, createdBy, project }
+        ).then(todo => {
+            res.status(201).json(todo)
+        }).catch(next);
+    }
+
+    static updateTodo(req, res, next) {
+        const { name, description, status, dueDate } = req.body;
+        const data = { name, description, status, dueDate };
+
+        Todo.updateOne({ _id: req.params.todoId }, data, { omitUndefined: true })
+            .then((info) => {
+                res.status(201).json({ message: 'successfully updated', data: info });
+            })
+            .catch(next)
+    }
+
+    static deleteTodo(req, res, next) {
+        Todo.findByIdAndDelete(req.params.todoId)
+            .then(data => {
+                res.status(200).json({ message: 'successfully deleted', data });
+            })
+            .catch(next);
     }
 }
 
