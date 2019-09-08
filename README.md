@@ -6,6 +6,12 @@
 
 ## How to use
 ```
-Client harus dijalankan menggunakan live server.
+npm install
+Edit .env file
+npm run dev
 ```
+
+**Note: Client must running using live server.**
+
 ## Documentation
+https://documenter.getpostman.com/view/6276500/SVfWMkzF

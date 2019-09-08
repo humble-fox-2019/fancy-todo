@@ -179,7 +179,6 @@
                                             <i class="fa fa-fw fa-tasks mr-5"></i>
                                             Active
                                         </span>
-                                        <span class="badge badge-pill badge-secondary">1</span>
                                     </a>
                                     <a href="#todos-completed"
                                         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
@@ -188,7 +187,6 @@
                                             <i class="fa fa-fw fa-check mr-5"></i>
                                             Completed
                                         </span>
-                                        <span class="badge badge-pill badge-secondary">7</span>
                                     </a>
                                 </div>
                             </div>
@@ -207,271 +205,9 @@
                         <!-- END Add task -->
 
                         <!-- Tasks List -->
-                        <h2 class="content-heading mb-10">Today</h2>
-                        <div class="js-task-list">
-                            <!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9"
-                                data-task-completed="false" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            Implement the main layout
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Task -->
-
-                            <!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="8"
-                                data-task-completed="false" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            Create new pages
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Task -->
-
-                            <!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="7"
-                                data-task-completed="false" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            Fix mobile Safari
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Task -->
-
-                            <!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="6"
-                                data-task-completed="false" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            Design the logo
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Task -->
-                        </div>
+                        <div id="displayTask"></div>
                         <!-- END Tasks List -->
 
-                        <!-- Starred Tasks List -->
-                        <h2 class="content-heading mb-10">7 sep 2019</h2>
-                        <div class="js-task-list-starred">
-                            <!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="5"
-                                data-task-completed="false" data-task-starred="true">
-                                <table class="table table-borderless table-vcenter mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            UX design and implementation
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Task -->
-
-                            <!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="4"
-                                data-task-completed="false" data-task-starred="true">
-                                <table class="table table-borderless table-vcenter mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            On-board processing
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Task -->
-                        </div>
-                        <!-- END Starred Tasks List -->
-
-                        <!-- Tasks List Completed -->
-                        <h2 class="content-heading mb-10">Completed</h2>
-                        <div class="js-task-list-completed">
-                            <!-- Completed Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="3"
-                                data-task-completed="true" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input" checked>
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            <del>Mobile wireframes</del>
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Completed Task -->
-
-                            <!-- Completed Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="2"
-                                data-task-completed="true" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input" checked>
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            <del>Contract Signing</del>
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Completed Task -->
-
-                            <!-- Completed Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="1"
-                                data-task-completed="true" data-task-starred="false">
-                                <table class="table table-borderless table-vcenter bg-body-light mb-0">
-                                    <tr>
-                                        <td class="text-center" style="width: 50px;">
-                                            <label
-                                                class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input" checked>
-                                                <span class="css-control-indicator"></span>
-                                            </label>
-                                        </td>
-                                        <td class="js-task-content font-w600">
-                                            <del>Explore ideas</del>
-                                        </td>
-                                        <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- END Completed Task -->
-                        </div>
-                        <!-- END Tasks List Completed -->
                     </div>
                     <!-- END Tasks -->
                 </div>
@@ -485,3 +221,6 @@
 </div>
 
 <script src="./public/js/todos.js"></script>
+<script>
+    getTodos('active');
+</script>

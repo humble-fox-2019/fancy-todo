@@ -5,7 +5,7 @@ const { todoAuthorization } = require('../middlewares/authorization');
 const router = express.Router();
 
 router.post('/', TodoController.store);
-router.get('/user/:createdBy', TodoController.getUserTodo);
+router.get('/user/:status', TodoController.getUserTodo);
 
 router.use("/:id", todoAuthorization);
 router.get('/:id', TodoController.findOne);
