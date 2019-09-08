@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/style.css">
+  <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+  <title>.todo</title>
+</head>
+
+<body>
+  <div class="grid-container">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="" id="logo">.todo</a></li>
+          <li><a href="" id="login-btn">Login</a></li>
+          <li><a href="" id="logout-btn">Logout</a></li>
+          <li><a href="" id="register-btn">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="main-page">
+      <h1>Just do it.</h1>
+    </section>
+
+    <section class="login-page">
+      <form action="/">
+        <label>
+          Email:
+          <br>
+          <input type="text" id="email">
+        </label>
+        <br>
+        <label>
+          Password:
+          <br>
+          <input type="password" id="password">
+        </label>
+        <br>
+        <button>Login</button>
+      </form>
+    </section>
+
+    <section class="registration-page">
+      <form action="/">
+        <label>
+          Email:
+          <br>
+          <input type="text" id="email-reg">
+        </label>
+        <br>
+        <label>
+          Password:
+          <br>
+          <input type="password" id="password-reg">
+        </label>
+        <br>
+        <button>Register</button>
+      </form>
+    </section>
+
+    <section class="todo-page">
+      <div class="todo-tag">
+        <h2>Todo List</h2>
+        <form action="/">
+          <input type="text" id="todo-name">
+          <!-- <br> -->
+          <button>add todo</button>
+        </form>
+      </div>
+
+      <div class="todo-container">
+        <table>
+          <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="todoOne-page">
+      <!-- {description: "", status: false, _id: "5d74a833ce16b4529f083507", name: "2", userId: "5d74a17e9d5335503d9e3009", …} -->
+      <div>
+        <h1>Todo Detail</h1>
+        <br>
+        <form action="/">
+          <label>
+            Title:
+            <br>
+            <input type="text" id="todoOne-title" value="">
+          </label>
+          <br>
+          <label>
+            Description:
+            <br>
+            <input type="text" id="todoOne-description">
+          </label>
+          <br>
+          <button>Update</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      Portfolio by William Heryanto
+    </footer>
+  </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script> -->
+<script src="./scripts/index.js"></script>
+
+</html>

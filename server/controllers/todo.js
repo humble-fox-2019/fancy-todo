@@ -22,9 +22,10 @@ class TodoController {
 
   static create(req, res, next) {
     const { _id } = req.decode
-    const { name, description, due_date } = req.body
-    const dueDate = new Date(due_date)
-    Todo.create({ name, description, due_date: dueDate, userId: _id })
+    // const { name, description, due_date } = req.body
+    // const dueDate = new Date(due_date)
+    const { name } = req.body
+    Todo.create({ name, userId: _id })
       .then(created => {
         return User.findByIdAndUpdate(_id, { $push: { todos: created._id } })
       })
@@ -38,7 +39,7 @@ class TodoController {
     const { id } = req.params // todo ID
     const { name, description, due_date } = req.body
     const dueDate = new Date(due_date)
-    Todo.findByIdAndUpdate(id, { name, description, due_date: dueDate })
+    Todo.findByIdAndUpdate(id, { name, description })
       .then(updated => {
         res.status(200).json(updated)
       })
@@ -47,7 +48,8 @@ class TodoController {
 
   static updateStatus(req, res, next) {
     const { id } = req.params // todo ID
-    const { status } = req.body
+    // const { status } = req.body
+    const status = true
     Todo.findByIdAndUpdate(id, { status })
       .then(updated => {
         res.status(200).json(updated)
@@ -57,9 +59,13 @@ class TodoController {
 
   static delete(req, res, next) {
     const { id } = req.params // todo ID
+    const { _id } = req.decode
     Todo.findByIdAndDelete(id)
       .then(updated => {
-        res.status(200).json(updated)
+        return User.findByIdAndUpdate(_id, { $pull: { todos: id } })
+      })
+      .then(_ => {
+        res.status(200).json(_)
       })
       .catch(next)
   }

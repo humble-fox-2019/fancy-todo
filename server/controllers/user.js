@@ -7,7 +7,7 @@ class UserController {
     const { email, password } = req.body
     User.create({ email, password })
       .then(created => {
-        res.status(201).json(created)
+        res.status(201).json({ token: generateToken({ _id: created._id, email: created.email }), created })
       })
       .catch(next)
   }
@@ -19,7 +19,7 @@ class UserController {
         if (user) {
           const { _id, email } = user
           if (compareHash(password, user.password)) {
-            res.status(200).json({ user, token: generateToken({ _id, email }) })
+            res.status(200).json({ token: generateToken({ _id, email }) })
           } else {
             next({ status: 400, message: 'invalid email / password' })
           }

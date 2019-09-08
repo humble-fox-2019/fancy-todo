@@ -16,7 +16,6 @@ const todoSchema = new Schema({
   },
   due_date: {
     type: Date,
-    default: ''
     // required: true
   },
   userId: {

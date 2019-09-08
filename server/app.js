@@ -4,6 +4,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const router = require('./routes')
 
@@ -23,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/todo-portfolio', { useNewUrlParser: 
     console.log('MongoDB: failed to connect')
   })
 
+app.use(cors())
 app.use('/', router)
 app.use(errorHandler)
 
