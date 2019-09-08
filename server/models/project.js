@@ -13,10 +13,7 @@ const Project = new Schema({
         required: [true, "user ID must be given"],
         ref: "User"
     },
-    projectMembers: [{
-        type: ObjectId,
-        ref: "User"
-    }]
+    projectMembers: [{ type: ObjectId, ref: "User" }]
 })
 
 module.exports = mongoose.model('Project', Project)

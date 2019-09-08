@@ -33,9 +33,6 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', function (next) {
-    console.log(this)
-    console.log('============  Masuk ============');
-    console.log(this.password)
     this.password = hash(this.password);
     next();
 })

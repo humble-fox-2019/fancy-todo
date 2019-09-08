@@ -2,7 +2,8 @@ const { todo: Todo } = require('../models');
 
 class TodoController {
     static read(req, res, next) {
-        Todo.find({})
+        const { }
+        Todo.find({ owner }).populate("User").populate("Project")
             .then((Todos) => {
                 res.status(200).json(Todos)
             })

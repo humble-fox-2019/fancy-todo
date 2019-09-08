@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const Todo = new Schema({
     name: {
         type: String,
@@ -8,7 +10,14 @@ const Todo = new Schema({
     },
     description: {
         type: String
-    }
+    },
+    status: {
+        type: Boolean,
+        default: false
+    },
+    dueDate: Date,
+    owner: { type: ObjectId, ref: "User" },
+    inProject: { type: ObjectId, ref: "Project" }
 })
 
 module.exports = mongoose.model('Todo', Todo)
