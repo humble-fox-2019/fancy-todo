@@ -65,12 +65,14 @@ class ProjectController {
     }
 
     static invite(req, res, next) {
-
         Project.findOne(
-            { 'members': req.body.userId }
+            {
+                _id: req.params.id,
+                'members': req.body.userId
+            }
         ).then(member => {
             if (member) {
-                throw next({ statusCode: 401, msg: 'The user has been join this project' });
+                throw next({ statusCode: 401, msg: 'The user has been join this project.' });
             } else {
                 return User.findOne({
                     _id: req.body.userId
@@ -88,9 +90,7 @@ class ProjectController {
     }
 
     static leave(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+
     }
 
     // static accept(req, res, next) {
