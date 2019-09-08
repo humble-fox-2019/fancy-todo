@@ -129,6 +129,7 @@ function add() {
 
 function edit(todoId) {
     action = 'edit';
+    $('#modal-task .block-title').text('Update task');
 
     $.ajax({
         type: "GET",
