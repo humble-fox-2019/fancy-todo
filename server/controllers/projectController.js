@@ -85,12 +85,25 @@ class ProjectController {
                 throw next({ statusCode: 404, msg: 'The user no longer exists.' });
             }
         }).then((info) => {
-            res.status(201).json({ message: 'successfully updated', data: info });
+            res.status(201).json({ message: 'User has been invited', data: info });
         }).catch(next);
     }
 
     static leave(req, res, next) {
-
+        Project.findOne(
+            {
+                _id: req.params.id,
+                'members': req.body.userId
+            }
+        ).then(member => {
+            if (member) {
+                return Project.updateOne({ _id: req.params.id }, { $pull: { members: req.body.userId } }, { omitUndefined: true });
+            } else {
+                throw next({ statusCode: 401, msg: 'The user not in this project' });
+            }
+        }).then((info) => {
+            res.status(200).json({ message: 'successfully leave project', data: info });
+        }).catch(next);
     }
 
     // static accept(req, res, next) {
