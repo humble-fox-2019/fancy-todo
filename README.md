@@ -73,9 +73,6 @@ Success Response | Error Response
 --- | ---
 Status: `200` <br> Content: `object of todo` | Status: `404` <br> Content: `{"message": "todo's not found"}`
 
-
-DARI SINI
-
 - **/user/todo/:id**
 Update todo's `name` and `description`.
 
