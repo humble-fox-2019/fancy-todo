@@ -8,12 +8,7 @@ class UserController {
         const { username, email, password } = req.body
         User.create({ username, email, password })
             .then((newUser) => {
-                let token = tokenize({
-                    userId: newUser._id,
-                    username: newUser.username,
-                    email: newUser.email,
-                    password: newUser.password,
-                })
+                let token = tokenize({ userId: newUser._id, })
                 res.status(201).json({ username: newUser.username, token })
             })
             .catch(next);
@@ -50,7 +45,7 @@ class UserController {
                     next(err)
                 } else {
                     if (compare(password, user.password)) {
-                        let token = tokenize({ userId: user._id, })
+                        let token = tokenize({ userId: user._id })
                         res.status(200).json({ username: user.username, token })
                     } else {
                         let err = new Error('Wrong Username / Password')

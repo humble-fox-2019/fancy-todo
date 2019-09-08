@@ -8,10 +8,13 @@ const port = process.env.PORT || 3000
 const routes = require('./routes')
 const { errorHandler } = require('./middleware')
 const mongoose = require("mongoose")
+const cors = require('cors')
+
 mongoose.connect("mongodb://localhost:27017/fancy-todo", { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB: fancy-todo'))
     .catch((err) => console.log(err))
 
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/', routes)

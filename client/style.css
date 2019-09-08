@@ -1,3 +1,12 @@
-.sidenav {
-    transform: translateX(0%) !important;
+body {
+    background-color: #eeeeee
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.change-color:hover {
+    background-color: lightsalmon;
+    color: whitesmoke;
 }

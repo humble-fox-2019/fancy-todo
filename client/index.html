@@ -5,58 +5,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Document</title>
+    <title>Fancy Todo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="417238623360-f5h86bb673n3b2vavtfqmedug2v89leg.apps.googleusercontent.com">
 </head>
 
 <body>
-    <!-- <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a>Sass</a></li>
-                <li><a>Components</a></li>
-                <li><a>JavaScript</a></li>
-            </ul>
-        </div>
-    </nav> -->
-    <section id="side-nav">
-        <ul id="slide-out" class="side-nav fixed">
-            <li>
-                <div class="userView">
-                    <img class="responsive-img" src="http://placehold.it/350x150">
-                    <!-- <a href="#!user"><img class="circle" src="http://placehold.it/350x300"></a> -->
-                    <a href="#!name"><span class="white-text name">John Doe</span></a>
-                    <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-                </div>
-            </li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-        </ul>
-    </section>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fancy Todo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link clickable" id="listTodos">My Todos</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link clickable" onclick="showCreateTodo()">Create New</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle clickable" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link clickable" id="logout" onclick="logout()" tabindex="-1"><i
+                            class="fa fa-logout"></i> Logout</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <br>
     <section id="dashboard">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">aaa</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-columns">
+                </div>
             </div>
         </div>
     </section>
 
 
+    <section id="modal">
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="loginModal">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="identifier" class="col-form-label">Username/Email</label>
+                                <input type="text" class="form-control" id="identifier" name="identifier"
+                                    placeholder="Enter your username or email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Enter your password" required>
+                            </div>
+                        </form>
+                        <button type="button" id="loginSubmit" onclick="login()" class="btn btn-primary">Login</button>
+                        <p>Or login via</p>
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                    <div class="modal-footer align-middle text-left">
+                        <div class="row">
+                            <div class="col-6" style="text-align: center">
+                                <span class="text-align: center">Not a user?</span>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" id="showRegister" class="btn btn-primary">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="create-Modal">
+        <div class="modal fade" id="createModal" tabindex="-2" role="dialog" aria-labelledby="createModal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Create Todo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createTodo">
+                            <div class="form-group">
+                                <label for="todoName" class="col-form-label">Todo Name</label>
+                                <input type="text" class="form-control" id="todoName" name="todoName"
+                                    placeholder="Enter todo name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description"
+                                    placeholder="Grocery at shopping mall avenue"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dueDate" class="col-form-label">Due Date</label>
+                                <input type="date" name="dueDate" id="dueDate">
+                            </div>
+                            <button type="button" onclick="createTodo()" class="btn btn-primary">Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="edit-modal">
+        <div class="modal fade" id="editModal" tabindex="-2" role="dialog" aria-labelledby="editModal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Edit Todo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createTodo">
+                            <div class="form-group">
+                                <label for="editName" class="col-form-label">Todo Name</label>
+                                <input type="text" class="form-control" id="editName" name="editName"
+                                    placeholder="Enter todo name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDesc" class="col-form-label">Description</label>
+                                <textarea class="form-control" id="editDesc" name="editDesc"
+                                    placeholder="Grocery at shopping mall avenue"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDue" class="col-form-label">Due Date</label>
+                                <input type="date" name="editDue" id="editDue">
+                            </div>
+                            <button type="button" onclick="editTodo()" class="btn btn-primary">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="js/timeago.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/cardConstructor.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/createTodo.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.side-nav').sidenav();
-        });
+
+
+        function editTodo(id) {
+
+        }
     </script>
 </body>
 

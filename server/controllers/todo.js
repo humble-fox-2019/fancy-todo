@@ -3,7 +3,9 @@ const { todo: Todo } = require('../models');
 class TodoController {
     static read(req, res, next) {
         const { userId } = req.decode
-        Todo.find({ owner: userId }).populate("owner").populate("inProject")
+        Todo.find({ owner: userId })
+            .sort([['dueDate', -1], ['updatedAt', -1]])
+            .populate("owner").populate("inProject")
             .then((Todos) => {
                 res.status(200).json(Todos)
             })
@@ -32,8 +34,9 @@ class TodoController {
     };
 
     static update(req, res, next) {
-        const { fields, id } = req.body
-        Todo.updateOne({ _id: id }, { fields }, { runValidators: true })
+        const { todoId } = req.params
+        const { name, description, dueDate } = req.body
+        Todo.updateOne({ _id: todoId }, { $set: { name, description, dueDate } }, { runValidators: true })
             .then((updatedTodo) => {
                 res.status(200).json(updatedTodo)
             })
@@ -41,10 +44,8 @@ class TodoController {
     };
 
     static delete(req, res, next) {
-        const { id } = req.body
-        Todo.delete({
-            _id: id
-        })
+        const { todoId } = req.params
+        Todo.deleteOne({ _id: todoId })
             .then((deletedTodo) => {
                 res.status(200).json(deletedTodo)
             })

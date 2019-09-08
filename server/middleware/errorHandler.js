@@ -16,9 +16,17 @@ module.exports = (err, req, res, next) => {
             status = 401
             message = err.message
             break;
+        case 'AuthorizationError':
+            status = 403
+            message = err.message
+            break;
         case 'JsonWebTokenError':
             status = 401
             message = "You are not logged in."
+            break;
+        case 'NotFound':
+            status = 404
+            message = err.message
             break;
         default:
             status = err.status || 500

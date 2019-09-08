@@ -18,6 +18,6 @@ const Todo = new Schema({
     dueDate: Date,
     owner: { type: ObjectId, ref: "User" },
     inProject: { type: ObjectId, ref: "Project" }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Todo', Todo)
