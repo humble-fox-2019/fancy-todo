@@ -1,0 +1,12 @@
+body {
+    background-color: #eeeeee
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.change-color:hover {
+    background-color: lightsalmon;
+    color: whitesmoke;
+}
