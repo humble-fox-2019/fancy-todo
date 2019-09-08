@@ -7,18 +7,27 @@ module.exports = {
             _id: req.params.id,
             createdBy: req.decode.id
         }).then((todo) => {
-            console.log(req.params);
+            // console.log(req.params);
             if (!todo) {
                 next({ statusCode: 401, msg: `Invalid authorization` })
             } else {
                 next();
             }
-        }).catch((err) => {
-            next(err)
-        });
+        }).catch(next);
     },
 
     isMember: (req, res, next) => {
-        next();
+        Project.findOne(
+            {
+                _id: req.params.id,
+                'members': req.decode.id
+            }
+        ).then(project => {
+            if (!project) {
+                next({ statusCode: 401, msg: `Invalid authorization` })
+            } else {
+                next();
+            }
+        }).catch(next);
     }
 };

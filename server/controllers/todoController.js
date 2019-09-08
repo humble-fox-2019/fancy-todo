@@ -33,7 +33,7 @@ class TodoController {
         Todo.findOne({
             _id: req.params.id
         }).then(todo => {
-            if (todo != null) {
+            if (todo) {
                 res.status(200).json(todo);
             } else {
                 next({ statusCode: 404 });

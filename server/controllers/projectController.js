@@ -2,11 +2,14 @@ const Project = require('../models/project');
 
 class ProjectController {
     static getUserProject(req, res, next) {
-        Project.find({})
+        Project.find(
+            { 'members': req.decode.id }
+        )
+            .populate('todos')
+            .populate('members')
             .then(projects => {
                 res.status(200).json(projects)
-            })
-            .catch(err => {
+            }).catch(err => {
                 res.status(500).json(err)
             });
     }
@@ -23,9 +26,15 @@ class ProjectController {
     }
 
     static findOne(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        Project.findOne({
+            _id: req.params.id
+        }).then(project => {
+            if (project) {
+                res.status(200).json(project);
+            } else {
+                next({ statusCode: 404 });
+            }
+        }).catch(next);
     }
 
     static update(req, res, next) {
