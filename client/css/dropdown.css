@@ -1,0 +1,40 @@
+.select-drop {
+    background-color: blue;
+    border: none;
+    border-radius: 0.3rem;
+    width: 160px;
+    height: 30px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.option-style {
+    width: 5000px;
+    height: 5000px;
+}
+
+.confirm-list {
+    border-bottom-color: black;
+}
+
+.confirm-left {
+    padding-right: 100px;
+}
+
+.button-confirm {
+    height: 30px; width: 80px; font-size: 17px;
+    background-color: pink;
+    color: black;
+    border: none;
+    border-radius: 0.3rem;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.button-confirm-delete {
+    height: 30px; width: 80px; font-size: 17px;
+    background-color: red;
+    color: black;
+    border: none;
+    border-radius: 0.3rem;
+    font-family: 'Kaushan Script', cursive;
+}

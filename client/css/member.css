@@ -1,0 +1,16 @@
+.list-members-user {
+    background-color : white; 
+    opacity: 2.0; 
+    height: 25px;  
+    position: -webkit-sticky; 
+    position: sticky;
+    bottom: 0; 
+    border: none;
+}
+
+.detail-user-input {
+    background: #e9ebee;
+    border: 1px solid #9cb4d8;
+    border-radius: 2px;
+    color: #162643;
+}

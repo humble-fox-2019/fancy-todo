@@ -1,0 +1,68 @@
+
+.navbar {
+    overflow: hidden;
+    background-color: #343a40;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    height: 70px;
+}
+
+.left-navbar a {
+    color: #ffffff;
+    /* font: bold 14px/14px "Maison Neue", sans-serif; */
+}
+
+.right-navbar a {
+    color: #ffffff;
+    /* font: bold 14px/14px "Maison Neue", sans-serif; */
+}
+
+
+
+.logo-1 {
+    width: 10%;
+    height: 10%;
+}
+
+
+
+
+
+.search {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: #ff3366;
+
+}
+
+
+
+.dalam2 {
+    width: 700px;
+    background-color: #e5eb7c;
+    margin-top: 100px;
+    border-radius: 0.00001rem;
+    cursor: pointer;
+    opacity: 0.70;
+    height: 600px;
+    color: #3c79d6;
+    overflow: scroll;
+    scrollbar-color: pink;
+    font: bold 14px/14px "Maison Neue", sans-serif;
+}
+
+.dalam3 {
+    width: 700px;
+    background-color: #17191D;
+    margin-top: 100px;
+    border-radius: 1.1rem;
+    cursor: pointer;
+    opacity: 0.10;
+    height: 600px;
+}
+
+#project {
+    margin-top: 95px; 
+}
