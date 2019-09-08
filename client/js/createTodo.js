@@ -3,6 +3,7 @@ function showCreateTodo() {
 }
 
 function createTodo() {
+    removeErrors()
     $.ajax({
         type: 'POST',
         url: "http://localhost:3000/todos/user",
@@ -23,8 +24,13 @@ function createTodo() {
             }, 500);
         })
         .fail(err => {
-            console.log(err)
-            // do something else
+            let error = err.responseJSON.join('\n')
+            $('#create-Modal .modal-body').prepend(
+                `<div class="alert alert-danger" role = "alert" >
+                        ${error}
+                    </div >`
+            )
+
         })
         .always(() => console.log("Ajax process done"));
 }

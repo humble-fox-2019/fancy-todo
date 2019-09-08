@@ -63,10 +63,11 @@ class TodoController {
     static filter(req, res, next) {
         const { userId } = req.decode
         const { q } = req.query
+        console.log(`============ ${q} ============`, 'q');
         const like = new RegExp(q, 'i')
         Todo.find({
-            $or: { name: like, description: like },
-            _id: userId
+            $or: [{ name: like }, { description: like }],
+            owner: userId
         })
             .then((result) => {
                 res.status(200).json(result)

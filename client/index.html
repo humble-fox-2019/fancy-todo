@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link clickable" id="listTodos">My Todos</span></a>
+                    <a class="nav-link clickable" onclick="generateCards()" id="listTodos">My Todos</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link clickable" onclick="showCreateTodo()">Create New</a>
@@ -37,8 +37,9 @@
                             class="fa fa-logout"></i> Logout</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" id="searchForm">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                    id="searchSubmit">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -109,7 +110,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="createTodo">
+
+                        <form id="create-Todo">
                             <div class="form-group">
                                 <label for="todoName" class="col-form-label">Todo Name</label>
                                 <input type="text" class="form-control" id="todoName" name="todoName"
@@ -124,7 +126,7 @@
                                 <label for="dueDate" class="col-form-label">Due Date</label>
                                 <input type="date" name="dueDate" id="dueDate">
                             </div>
-                            <button type="button" class="btn btn-primary">Create</button>
+                            <button type="button" onclick="createTodo()" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>
@@ -182,9 +184,32 @@
     <script src="js/createTodo.js"></script>
     <script src="js/todoCrud.js"></script>
     <script>
+        $(document).ready(() => {
+            $('#searchForm').submit((e) => {
+                e.preventDefault()
+                console.log($('#searchSubmit').val())
+                $.ajax({
+                    type: 'GET',
+                    url: "http://localhost:3000/todos/filter?q=" + $('#searchSubmit').val(),
+                    headers: { "token": localStorage.getItem('token') }
+                })
+                    .done((todos) => {
+                        clearEverything()
+                        console.log("Success Search")
+                        $.each(todos, (index, value) => {
+                            $('.card-columns').append(cardConstructor(value))
+                        })
+                    })
+                    .fail(err => {
+                        console.log(err)
+                    })
+                    .always(() => console.log("Ajax process done"));
+            })
+        })
 
-
-
+        function removeErrors() {
+            $('.alert').remove()
+        }
     </script>
 </body>
 

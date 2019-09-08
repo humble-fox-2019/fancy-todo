@@ -1,4 +1,5 @@
 function showEditTodo(id) {
+    removeErrors()
     $.ajax({
         type: 'GET',
         url: "http://localhost:3000/todos/" + id,
@@ -15,7 +16,6 @@ function showEditTodo(id) {
         })
         .fail(err => {
             console.log(err)
-            // do something else
         })
         .always(() => console.log("Ajax process done"));
 }
@@ -32,14 +32,17 @@ function editTodo(id) {
         headers: { "token": localStorage.getItem('token') }
     })
         .done(() => {
-            console.log("Success message")
-            // do something else
             $('#editModal').modal('hide')
+            removeErrors()
             generateCards()
         })
         .fail(err => {
-            console.log(err)
-            // do something else
+            let error = err.responseJSON.join('\n')
+            $('#edit-modal .modal-body').prepend(
+                `<div class="alert alert-danger" role = "alert" >
+                        ${error}
+                    </div >`
+            )
         })
         .always(() => console.log("Ajax process done"));
 }
