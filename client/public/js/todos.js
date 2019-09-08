@@ -23,50 +23,7 @@ var baseUrl = "http://localhost:3000";
     }
 
     isSignin();
-
-    $("#addTaskButton").bind("click", function () {
-        $('#modal-task').modal('show');
-        $('#modal-task .block-title').text('Add a new task');
-        $('#modal-task form')[0].reset();
-    });
 })();
-
-function save() {
-    $('#modal-task').modal('hide');
-    Swal.showLoading();
-
-    $.ajax({
-        type: "POST",
-        url: baseUrl + '/todos',
-        data: $("#modal-task form").serialize(),
-        beforeSend: function (request) {
-            request.setRequestHeader("token", localStorage.getItem('token'));
-        },
-        success: function (response) {
-            Swal.fire({
-                position: 'top-center',
-                type: 'success',
-                title: response.message,
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            getTodos();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            let data = jqXHR.responseJSON;
-            Swal.close();
-
-            Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: data.message
-            }).then((result) => {
-                $('#modal-task').modal('show');
-            })
-        }
-    });
-}
 
 function formatDate(date) {
     let monthNames = ['',
@@ -161,6 +118,87 @@ function checkedTodo(todoId) {
     });
 }
 
+var action = '';
+function add() {
+    action = 'add';
+
+    $('#modal-task').modal('show');
+    $('#modal-task .block-title').text('Add a new task');
+    $('#modal-task form')[0].reset();
+}
+
+function edit(todoId) {
+    action = 'edit';
+
+    $.ajax({
+        type: "GET",
+        url: baseUrl + '/todos/' + todoId,
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            $('#todoId').val(response._id);
+            $('#name').val(response.name);
+            $('#description').val(response.description);
+            $('#dueDate').val(response.dueDate.slice(0, 10));
+            $('#modal-task').modal('show');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
+            })
+        }
+    });
+}
+
+function save() {
+    $('#modal-task').modal('hide');
+    Swal.showLoading();
+    let url;
+    if (action == 'add') {
+        url = baseUrl + '/todos';
+        type = 'POST';
+    } else {
+        url = baseUrl + '/todos/' + $('#todoId').val();
+        type = 'PATCH';
+    }
+
+    $.ajax({
+        type,
+        url,
+        data: $("#modal-task form").serialize(),
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            Swal.fire({
+                position: 'top-center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            getTodos();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.close();
+
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
+            }).then((result) => {
+                $('#modal-task').modal('show');
+            })
+        }
+    });
+}
+
 function getTodos(status = 'all') {
 
     if (location.hash === "#todos-active") {
@@ -231,7 +269,7 @@ function getTodos(status = 'all') {
                                             ${el2.name}
                                         </td>
                                         <td class="text-right" style="width: 100px;">
-                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button">
+                                            <button class="js-task-star btn btn-sm btn-alt-info" type="button" onclick="edit('${el2._id}')">
                                                 <i class="fa fa-pencil"></i>
                                             </button>
                                             <button class="js-task-remove btn btn-sm btn-alt-danger" type="button" onclick="removeTodo('${el2._id}')">
