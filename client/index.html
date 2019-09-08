@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Sign up Form with Rounded Social Buttons</title>
+    <title>Fancy Todo</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="./css/style.css">;
-    <link rel="stylesheet" href="./css/login.css">;
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -19,79 +19,21 @@
     <meta name="google-signin-client_id" content="1075139297559-k7it3o7qfuvahtvn1n8vd0vbpabvpufg.apps.googleusercontent.com">
 </head>
 <body>
-    <div class="signup-form">
-        <form action="http://localhost:3000/users/signup" method="POST">
-            <h2>Create an Account</h2>
-            <p class="hint-text">Sign up with your social media account or email address</p>
-            <div class="social-btn text-center">
-                <!-- <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
-                    <a href="#" class="btn btn-info btn-lg"><i class="fa fa-twitter"></i> Twitter</a>
-                -->
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                <a class="btn btn-danger btn-lg text-white" onclick="signOut()" ><i class="fa fa-sign-out"></i> Sign Out</a>
-            </div>
-            <div class="or-seperator"><b>or</b></div>
-            <div class="form-group">
-                <input type="text" class="form-control input-lg" name="username" placeholder="Full name" required="required">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control input-lg" name="email" placeholder="Email Address" required="required">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="required">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg btn-block signup-btn" id="btnSignUp" onclick="signUp()">Sign Up</button>
-            </div>
-        </form>
-        <div class="text-center">Already have an account? <a href="#">Login here</a></div>
+    <!-- untuk bantuan supaya button logout bisa dipencet -->
+    <div class="g-signin2" data-onsuccess="onSignIn" style="display: none"></div>  
+    <a class="btn btn-danger btn-lg text-white" onclick="signOut()" ><i class="fa fa-sign-out"></i> Sign Out</a>
+   
+    <div class="content">
+        
     </div>
-    
-    <script>
-        function onSignIn(googleUser) {
-            const id_token = googleUser.getAuthResponse().id_token;
-            console.log(id_token)
-            $.ajax({
-                url: 'http://localhost:3000/users/signup/google',
-                method: 'POST',
-                data: {
-                    id_token
-                }
-            })
-                .then(ok => {
-                    console.log(ok);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        }
-        
-        
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
 
-        function signUp() {
-            $.ajax({
-                url: 'http://localhost:3000/users/signup',
-                method: 'POST',
-                data: {
-                    name: "kusuma",
-                    email: 'kusuma@gmail.com',
-                    password: 'kusuma'
-                }
-            })
-                .then(ok => {
-                    console.log(ok);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        }
-        
+   
+    <script src="./js/script.js"></script>
+    <script src="./js/signup-signin.js"></script>
+    <script src="./js/googleSignIn.js"></script>
+    <script>
+       
     </script>
+
 </body>
 </html>                            
