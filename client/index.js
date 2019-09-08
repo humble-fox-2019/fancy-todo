@@ -598,6 +598,7 @@ function search() {
                 }
             })
             .done(data => {
+                console.log(data)
                 // console.log(data)
                 // console.log('masuk dan berhasil')
                 $('.table-body').empty()

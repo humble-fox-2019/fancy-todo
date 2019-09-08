@@ -110,3 +110,143 @@ http://localhost:3000
     }
     ```
 
+    + ### create Todo
+  method: `POST`<br>
+  endpoint: `/todo`
+  
+  #### _Request_ :
+  * body: 
+    ```javascript
+    todo: 'halooo',
+    description: 'asfqwreqwr',
+    dueDate: '2019-09-10'
+  ```
+    
+  #### _Response_ :
+  - 201
+    ```javascript
+    createdAt: "2019-09-08T23:21:52.329Z"
+description: "asfqwreqwr"
+dueDate: "2019-09-10T00:00:00.000Z"
+status: false
+todo: "halooo"
+updatedAt: "2019-09-08T23:21:52.329Z"
+userId: "5d757585076a72e08de1817b"
+_id: "5d758d10a528cb008eb62228"
+    ```
+  - 400
+    ```javascript
+    {
+      "code": 401
+    }
+    ```
++ ### create Todo
+  method: `POST`<br>
+  endpoint: `/todo`
+  
+  #### _Request_ :
+  * body: 
+    ```javascript
+    todo: 'halooo',
+    description: 'asfqwreqwr',
+    dueDate: '2019-09-10'
+  ```
+    
+  #### _Response_ :
+  - 201
+    ```javascript
+    createdAt: "2019-09-08T23:21:52.329Z"
+    description: "asfqwreqwr"
+    dueDate: "2019-09-10T00:00:00.000Z"
+    status: false
+    todo: "halooo"
+    updatedAt: "2019-09-08T23:21:52.329Z"
+    userId: "5d757585076a72e08de1817b"
+    _id: "5d758d10a528cb008eb62228"
+    ```
+  - 400
+    ```javascript
+    {
+      "code": 401
+    }
+    ```
++ ### search Todo
+  method: `GET`<br>
+  endpoint: `/todo/search`
+  
+  #### _Request_ :
+  * body: 
+    ```javascript
+    {todo: todo}
+  ```
+    
+  #### _Response_ :
+  - 201
+    ```javascript
+    createdAt: "2019-09-08T23:12:41.959Z"
+    description: "suryaaa"
+    dueDate: "2019-09-23T00:00:00.000Z"
+    status: false
+    todo: "fadhil"
+    updatedAt: "2019-09-08T23:12:41.959Z"
+    userId: "5d757585076a72e08de1817b"
+    _id: "5d758ae9560c27fb8b3141e0"
+    ```
+  - 403
+    ```javascript
+    {
+      "code": 403
+    }
+    ```
+
+  + ### update Todo
+  method: `PUT`<br>
+  endpoint: `/todo/:id`
+  
+  #### _Request_ :
+  * body: 
+    ```javascript
+    {id: todoId}
+  ```
+    
+  #### _Response_ :
+  - 201
+    ```javascript
+    n: 1
+    nModified: 1
+    ok: 1
+    ```
+  - 403
+    ```javascript
+    {
+      "code": 401
+    }
+    ```
+  + ### delete Todo
+  method: `DELETE`<br>
+  endpoint: `/todo/:id`
+  
+  #### _Request_ :
+  * body: 
+    ```javascript
+    {id: todoId}
+  ```
+    
+  #### _Response_ :
+  - 201
+    ```javascript
+    n: 1
+    nModified: 1
+    ok: 1
+    ```
+  - 403
+    ```javascript
+    {
+      "code": 401
+    }
+    ```
+
+
+
+
+

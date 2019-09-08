@@ -4,6 +4,7 @@ class Todo {
 
     static create(req, res, next) {
         // console.log('masuk ke create di server')
+        console.log(req.body, ' <<<<< ini masukkkkk')
         const {
             todo,
             description,
@@ -73,9 +74,11 @@ class Todo {
             .catch(next)
     }
     static search(req, res, next) {
+        console.log(req, 'ini bagian request')
         console.log('goooooo ini search')
         todosModel.find()
             .then(data => {
+                console.log(data, '<<<< bagian search')
                 console.log(req.query.todo, '<<<< Ini Searchnyaaa looh')
                 let searched = data.filter(data1 => {
                     let regex = new RegExp(`${req.query.todo}`, 'i')
