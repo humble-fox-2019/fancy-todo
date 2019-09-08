@@ -103,6 +103,8 @@ function deleteProject(id) {
                 .done(data => {
                     // console.log(data)
                     Swal.close()
+                    $("#Projectmembers").empty()
+                    $("#todoProjectList").empty()
                     Swal.fire({
                         type : "success",
                         title : "you have successfully delete the project",

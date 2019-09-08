@@ -1,4 +1,4 @@
-const server_url = "http://localhost:3000"
+const server_url = "http://35.240.188.102"
 
 function createTodo() {
     // console.log("masuk ke create todo")
@@ -72,7 +72,10 @@ function deleteTodo(todoId) {
                     if (deletedTodo.ProjectId) {
                         getProjectTodo(deletedTodo.ProjectId)
                     }
-                    getAlltodo()
+                    else {
+                        getAlltodo()
+                    }
+                    
                     Swal.close()
                     Swal.fire(
                         'Deleted!',
