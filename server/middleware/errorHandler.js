@@ -16,20 +16,14 @@ module.exports = (err, req, res, next) => {
             status = 401
             message = err.message
             break;
+        case 'JsonWebTokenError':
+            status = 401
+            message = "You are not logged in."
+            break;
         default:
-
-    }
-    if (err.name === 'ValidationError') {
-        status = 400
-        let arr = []
-        for (const key in err.errors) {
-            arr.push(err.errors[key].message)
-        }
-        message = arr
-
-    } else {
-        status = err.status || 500
-        message = err.message || 'Internal Server Error'
+            status = err.status || 500
+            message = err.message || 'Internal Server Error'
+            break;
     }
     res.status(status).json(message)
 }

@@ -1,8 +1,8 @@
-const { user: User } = require('../models')
+const { todo: Todo } = require('../models')
 
 module.exports = (req, res, next) => {
     const todoId = req.params.todoId
-    User.findOne({ _id: req.decode._id }).populate('Todo')
+    Todo.findOne({ _id: req.decode.todoId }).populate('User')
         .then((user) => {
             if (user) {
                 next()
