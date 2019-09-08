@@ -29,44 +29,44 @@ var baseUrl = "http://localhost:3000";
         $('#modal-task .block-title').text('Add a new task');
         $('#modal-task form')[0].reset();
     });
-
-    $("#saveTaskButton").bind("click", function () {
-        $('#modal-task').modal('hide');
-        Swal.showLoading();
-
-        $.ajax({
-            type: "POST",
-            url: baseUrl + '/todos',
-            data: $("#modal-task form").serialize(),
-            beforeSend: function (request) {
-                request.setRequestHeader("token", localStorage.getItem('token'));
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: 'top-center',
-                    type: 'success',
-                    title: response.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-
-                getTodos();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                let data = jqXHR.responseJSON;
-                Swal.close();
-
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: data.message
-                }).then((result) => {
-                    $('#modal-task').modal('show');
-                })
-            }
-        });
-    });
 })();
+
+function save() {
+    $('#modal-task').modal('hide');
+    Swal.showLoading();
+
+    $.ajax({
+        type: "POST",
+        url: baseUrl + '/todos',
+        data: $("#modal-task form").serialize(),
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            Swal.fire({
+                position: 'top-center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            getTodos();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.close();
+
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
+            }).then((result) => {
+                $('#modal-task').modal('show');
+            })
+        }
+    });
+}
 
 function formatDate(date) {
     let monthNames = ['',
@@ -75,15 +75,102 @@ function formatDate(date) {
         "August", "September", "October",
         "November", "December"
     ];
-    date = date.split('-');
+    newDate = date.split('-');
 
-    let day = date[2];
-    let year = date[0];
+    let day = newDate[2];
+    let year = newDate[0];
 
-    return day + ' ' + monthNames[Number(date[1])] + ' ' + year;
+    return (date === getToday()) ? 'Today' : day + ' ' + monthNames[Number(newDate[1])] + ' ' + year;
+}
+
+function getToday() {
+    const today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    return yyyy + '-' + mm + '-' + dd;
+}
+
+function removeTodo(todoId) {
+    $('#row' + todoId).addClass('animated fadeOutLeft');
+
+    $.ajax({
+        type: "DELETE",
+        url: baseUrl + '/todos/' + todoId,
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            Swal.fire({
+                position: 'top-center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            getTodos();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.close();
+
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
+            })
+        }
+    });
+}
+
+function checkedTodo(todoId) {
+    $('#row' + todoId).addClass('animated fadeOutUp');
+
+    $.ajax({
+        type: "PATCH",
+        url: baseUrl + '/todos/' + todoId,
+        data: {
+            status: true
+        },
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            Swal.fire({
+                position: 'top-center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            getTodos();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.close();
+
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
+            })
+        }
+    });
 }
 
 function getTodos(status = 'all') {
+
+    if (location.hash === "#todos-active") {
+        status = "active";
+    }
+
+    if (location.hash === "#todos-completed") {
+        status = "completed";
+    }
+
     $.ajax({
         type: "GET",
         url: baseUrl + '/todos/user/' + status,
@@ -129,14 +216,14 @@ function getTodos(status = 'all') {
 
                 $.each(el.todo, function (index2, el2) {
                     templateTask += `<!-- Task -->
-                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="9"
+                            <div class="js-task block block-rounded mb-5 animated fadeIn" data-task-id="${el2._id}" id="row${el2._id}"
                                 data-task-completed="false" data-task-starred="false">
                                 <table class="table table-borderless table-vcenter mb-0">
                                     <tr>
                                         <td class="text-center" style="width: 50px;">
                                             <label
                                                 class="js-task-status css-control css-control-primary css-checkbox py-0">
-                                                <input type="checkbox" class="css-control-input">
+                                                <input type="checkbox" class="css-control-input" onclick="checkedTodo('${el2._id}')">
                                                 <span class="css-control-indicator"></span>
                                             </label>
                                         </td>
@@ -145,9 +232,9 @@ function getTodos(status = 'all') {
                                         </td>
                                         <td class="text-right" style="width: 100px;">
                                             <button class="js-task-star btn btn-sm btn-alt-info" type="button">
-                                                <i class="fa fa-eye"></i>
+                                                <i class="fa fa-pencil"></i>
                                             </button>
-                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button">
+                                            <button class="js-task-remove btn btn-sm btn-alt-danger" type="button" onclick="removeTodo('${el2._id}')">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         </td>
