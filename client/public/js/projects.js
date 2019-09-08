@@ -12,7 +12,7 @@ function getProjects() {
                             <td>${el.name}</td>
                             <td>${el.description}</td>
                             <td>
-                                <button class="btn btn-primary btn-sm p-1">open</button>
+                                <button class="btn btn-primary btn-sm p-1" onclick="openProject('${el._id}')">open</button>
                                 <button class="btn btn-info btn-sm p-1" onclick="editProject('${el._id}')">Edit</button>
                                 <button class="btn btn-danger btn-sm p-1" onclick="leave('${el._id}')">leave</button>
                             </td>
@@ -142,4 +142,9 @@ function leave(projectId) {
             })
         }
     });
+}
+
+function openProject(projectId) {
+    localStorage.setItem('projectId', projectId);
+    window.location.href = "#projects-active"
 }
