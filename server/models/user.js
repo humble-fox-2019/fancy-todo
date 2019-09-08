@@ -10,7 +10,7 @@ const userSchema = new Schema({
         required: [true, 'Username cannot be empty.'],
         validate: {
             validator: (username) => User.findOne({ username }).then(result => result ? false : true),
-            message: "username is already taken."
+            message: "Username is already taken."
         }
     },
     email: {
@@ -25,6 +25,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
+        required: [true, 'Password cannot be empty'],
         min: [8, 'Minimum password length is 8 characters.']
     },
     todo: [{ type: ObjectId, ref: "Todo" }],

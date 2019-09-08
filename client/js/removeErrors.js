@@ -1,0 +1,3 @@
+function removeErrors() {
+    $('.alert').remove()
+}
