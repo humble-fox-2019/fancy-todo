@@ -53,12 +53,13 @@
                 let data = jqXHR.responseJSON;
                 Swal.close();
 
-                $('#modal-task').modal('show');
                 Swal.fire({
                     type: 'error',
                     title: 'Oops...',
                     text: data.message
-                });
+                }).then((result) => {
+                    $('#modal-task').modal('show');
+                })
             }
         });
     });
