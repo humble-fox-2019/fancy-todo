@@ -114,7 +114,7 @@ function insertList(todos) {
         let list = `
         <li>
             <input type="checkbox" id="${todo._id}" onclick="toggleTodo(this)" data-index="${index}" ${todo.status ? "checked" : ""}/>
-            <label id="${todo._id}" onclick="getDetail(this)"> ${todo.name}</label>
+            <label id="${todo._id}" onclick="getDetail(this)" style="cursor: pointer"> ${todo.name}</label>
             <i class="fa fa-times" aria-hidden="true" id="${todo._id}" style="cursor: pointer" onclick="deleteTodo(this)"></i>
         </li>
         `
@@ -146,6 +146,7 @@ function toggleTodo(todo) {
     .then(response => {
         console.log(response);
         showList();
+        getDetail(todo);
     })
     .catch(err => {
         console.log(err);

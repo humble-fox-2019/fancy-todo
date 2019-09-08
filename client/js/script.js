@@ -41,6 +41,23 @@ $(document).ready(function() {
         updateTodo();
     })
 
+    $('.content').on('click', '#btnAddToCalendar', function(event) {
+        event.preventDefault();
+        console.log('add to calendar di klikkkk')
+        // handleAuthClick()
+        // handleClientLoad();
+        createEvent();
+    })
+
+    $('.content').on('click', '#btnAuthorize', function(event) {
+        event.preventDefault();
+        console.log('authorize calendar di klikkkk')
+        handleAuthClick()
+        // handleClientLoad();
+        // createEvent();
+    })
+
+
 })
 
 function succesLogin() {
@@ -70,7 +87,6 @@ function createFancyTodo() {
                 <div class="todolist">
                     <h1>Todos</h1>
                     <input type="text" class="form-control" id="add-todo" placeholder="Add todo ...">
-                    <button id="checkAll" class="btn btn-sm btn-success">Mark all as done</button>
                     
                     <hr>
                     <ul id="list" class="list-unstyled">
@@ -102,6 +118,9 @@ function createTodoDetail(todo) {
     }
     console.log(formatedDate);
     let html = `
+        <script async defer src="https://apis.google.com/js/api.js"
+                        onload="this.onload=function(){};handleClientLoad()"
+                        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
         <div class="col-md-6" id="todoDetail">
             <div class="todolist">
                 <h1> Todo Detail </h1>
@@ -130,12 +149,18 @@ function createTodoDetail(todo) {
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-success" id="btnUpdate">Save</button>
+                   <div class='todo-footer'>
+                        <button type="submit" class="btn btn-success" id="btnUpdate">Save</button>
+                        <button type="submit" class="btn btn-success" id="btnAddToCalendar">Add to Google Calendar</button>
+                        <button type="submit" class="btn btn-success" id="btnAuthorize" style="display: none">Authorize Google Calendar</button>
+                        <button type="submit" class="btn btn-success" id="btnSignOut" style="display: none">SignOut</button>
+                   </div>
                 </form>                
             </div>
         </div>
     `
     $('#todo-page').append(html);
+    handleClientLoad();
 }
 
 function toggleChecked() {
@@ -143,3 +168,10 @@ function toggleChecked() {
     $('#status').attr('checked') ? $('#status').attr('checked', false) : $('#status').attr('checked', true);
     console.log( $('#status').attr('checked'))
 }
+
+function promptMessage(message) {
+    let modalBody =  $('#messagePrompt').find('.modal-body')
+    modalBody.append(message)
+    
+    $('#messagePrompt').modal();
+ }
