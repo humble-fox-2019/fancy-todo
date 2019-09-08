@@ -1,0 +1,14 @@
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+thead {
+    background-color: grey;
+}   
