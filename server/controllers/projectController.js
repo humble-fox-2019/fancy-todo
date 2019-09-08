@@ -8,10 +8,12 @@ class ProjectController {
             .populate('todos')
             .populate('members')
             .then(projects => {
-                res.status(200).json(projects)
-            }).catch(err => {
-                res.status(500).json(err)
-            });
+                if (projects.length > 0) {
+                    res.status(200).json(projects);
+                } else {
+                    next({ statusCode: 404 });
+                }
+            }).catch(next);
     }
 
     static store(req, res, next) {
@@ -38,9 +40,14 @@ class ProjectController {
     }
 
     static update(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        const { name, description } = req.body;
+        const data = { name, description };
+
+        Project.updateOne({ _id: req.params.id }, data, { omitUndefined: true })
+            .then((info) => {
+                res.status(201).json({ message: 'successfully updated', data: info });
+            })
+            .catch(next)
     }
 
     static delete(req, res, next) {
