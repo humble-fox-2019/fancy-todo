@@ -5,64 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="google-signin-client_id" content="385113193051-gfufptka9sfsktifdcqbqsiq6kd5r9e4.apps.googleusercontent.com">
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="https://kit.fontawesome.com/5cd1e1d933.js"></script>
     <title>Famcy TODO</title>
 </head>
 <body>
-    
+    <!-- Navigasi -->
     <nav>
-        <a href="#" class="sign-out" onclick="signOut();">Sign out</a>
+        <button class="newList">New List</button>
+        <button class="back">Back</button>
+        
+        <div class="rigth-nav">
+            <ul>
+                <li>
+                    <form action="">
+                        <input type="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
+                <li>
+                    <i class="fas fa-bars" onclick="openNav()"></i>
+                </li>
+            </ul>
+        </div>
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Edit Profile</a>
+            <a href="#">Change Password</a>
+            <a href="#" class="sign-out" onclick="signOut();">Sign out</a>
+        </div>
     </nav>
+    <!-- Akhir Navigasi -->
     
-    <main>
-        <div class="regis">
-            <h3>Register New Account</h3>
-            <form action="" method="POST">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Input your Fullname Here">
-                <br>
-                <label for="usernameRegis">Username</label>
-                <input type="text" id="usernameRegis" name="username" placeholder="Input your Username Here">
-                <br>
-                <label for="passwordRegis">Password</label>
-                <input type="password" id="passwordRegis" name="password" placeholder="Input your Password Here">
-                <br>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Input your Email Here">
-                <br>
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" name="phone" placeholder="Input your Phone Here">
-                <br>
-                <button class="btn btn-register">Register</button>
-            </form>
-        </div>
+    <!-- Register -->
+    <section class="box-regis" style="display: none">
+        <h3>Fancy todos</h3>
+        <h3>Register New Account</h3>
+        <form action="" method="POST">
+            <div class="txtb">
+                <input type="text" id="name" name="name">
+                <span data-placeholder="Name"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="usernameRegis" name="username">
+                <span data-placeholder="Username"></span>
+            </div>
 
-        <div class="login">
-            <h3>Sign In</h3>
-            <form action="" method="POST">
-                <label for="usernameLogin">Username</label>
-                <input type="text" id="usernameLogin" name="username" placeholder="Input your Username Here" value="candrabae">
-                <br>
-                <label for="passwordLogin">Password</label>
-                <input type="password" id="passwordLogin" name="password" placeholder="Input your Password Here" value="Candrabae123">
-                <br>
-                <button class="btn btn-login">Login</button>
-            </form>
+            <div class="txtb">
+                <input type="password" id="passwordRegis" name="password">
+                <span data-placeholder="Password"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="email" id="email" name="email">
+                <span data-placeholder="Email"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="phone" name="phone" >
+                <span data-placeholder="Phone Number"></span>
+            </div>
+            
+            <button class="btn btn-register">Register</button>
+            <div class="btn-text">
+                Have account? <a href="#">Sign In</a>
+            </div>
+        </form>
+    </section>
+    <!-- Akhir Regster -->
+
+    <!-- login -->
+    <section class="box-login" style="display: none">
+        <h3>Fancy Todos</h3> 
+        <h3>Sign In</h3>
+        <form action="" method="POST">
+            <div class="txtb">
+                <input type="text" id="emailLogin" name="email">
+                <span data-placeholder="Email"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="password" id="passwordLogin" name="password">
+                <span data-placeholder="Password"></span>
+            </div>
+            
+            <button class="btn btn-login">Login</button>
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        </div>
+            <div class="btn-text">
+                Don't have account? <a href="#">Sign Up</a>
+            </div>
+        </form>
+    </section>
+    <!-- Akhir Login -->
 
-        <div class="cardList">
-            <nav>
-                <button class="newList">New List</button>
-                <form action="">
-                    <input type="search">
-                </form>
-            </nav>
-        </div>
+    <!-- Edit Profile -->
+    <section class="box-edit-profile" style="display: none">
+        <form action="">
+            <div class="txtb">
+                <input type="text" id="name" name="name">
+                <span data-placeholder="Name"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="usernameRegis" name="username">
+                <span data-placeholder="Username"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="email" id="email" name="email">
+                <span data-placeholder="Email"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="phone" name="phone" >
+                <span data-placeholder="Phone Number"></span>
+            </div>
+            
+            <button class="btn btn-update">Save</button>
+        </form>
+    </section>
+    <!-- Akhir Edit Profile -->
 
-        <div class="todos">
+    <!-- Change Password -->
+        <section class="box-password" style="display: none">
 
-        </div>
-    </main>
+        </section>
+    <!-- Akhir Change Password -->
+
+    <!-- list task -->
+    <section class="box-cardList" style="display: none">
+        <table>
+
+        </table>
+    </section>
+    <!-- akhir list task -->
+
+    <!-- todos -->
+    <section class="box-todos" style="display: none">
+        
+    </section>
+    <!-- Akhir Todos -->
     
     <footer>
 
@@ -78,7 +162,22 @@
     <script src="./script/loginGoogle.js"></script>
     <script src="./script/logout.js"></script>
     <script>
-        
+        $('.txtb input').on("focus", function(){
+            $(this).addClass("focus")
+        })
+
+        $('.txtb input').on("blur", function(){
+            if($(this).val() == "")
+            $(this).removeClass("focus")
+        })
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
     </script>
 </body>
 </html>
