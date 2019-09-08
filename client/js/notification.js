@@ -42,6 +42,7 @@ function convertRemaining( date ) {
 
     let Difference_In_Time = date2.getTime() - date1.getTime(); 
     let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+    console.log( Math.ceil( Difference_In_Days ))
     if ( Math.ceil(Difference_In_Days) < 0 ) {
         return '- '
     }

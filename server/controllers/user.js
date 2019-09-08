@@ -2,7 +2,8 @@ const User = require('../models/user');
 
 const { OAuth2Client } = require('google-auth-library');
 const { generateToken } = require('../helpers/jwt');
-const { hash, compare } =require('../helpers/bcrypt');
+const { hash, compare } = require('../helpers/bcrypt');
+const sendEmail = require('../helpers/mailer')
 const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
 const client = new OAuth2Client(GOOGLE_PRIVATE_KEY);
 
@@ -39,6 +40,10 @@ class UserController {
                 id : createdUser._id ,
                 email : createdUser.email
             })
+            sendEmail( createdUser.email, "Your email has been registered! Enjoy our website!" , function( err) {
+                if ( err ) console.log("SEND EMAIL FAILED")
+                else console.log("Email sent..")
+            } );
             res.status(201).json({ status : 201 , message : "User Created", token });
         })
         .catch ( next );
@@ -59,6 +64,10 @@ class UserController {
             if ( foundUser )
                 return foundUser
             else {
+                sendEmail( payload.email , "Your Gmail Account has been registered! Enjoy our website!, If you want to login without gmail you can change your password" , function( err) {
+                    if ( err ) console.log("SEND EMAIL FAILED")
+                    else console.log("Email sent..")
+                });
                 return User.create({ email : payload.email , password : process.env.DEFAULT_PASSWORD })
             }
         })
