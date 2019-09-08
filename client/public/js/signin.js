@@ -7,10 +7,11 @@
             data: $("#frmSignIn").serialize(),
             success: function (response) {
                 localStorage.setItem('token', response.token);
+                localStorage.setItem('name', response.name);
+
                 window.location.href = "#todos-active"
             },
             error: function (jqXHR, textStatus, errorThrown) {
-
                 let data = jqXHR.responseJSON;
                 Swal.fire({
                     position: 'top-end',
@@ -22,4 +23,12 @@
             }
         });
     });
+
+    function isSigned() {
+        if (localStorage.getItem('token')) {
+            window.location.href = "#todos-active";
+        }
+    }
+
+    isSigned();
 })();

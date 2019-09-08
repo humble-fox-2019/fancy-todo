@@ -74,6 +74,8 @@
                 },
                 success: function (response) {
                     localStorage.setItem('token', response.token);
+                    localStorage.setItem('name', response.name);
+
                     window.location.href = "#todos-active";
 
                 },
