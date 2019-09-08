@@ -1,4 +1,5 @@
 const Project = require('../models/project');
+const User = require('../models/user');
 
 class ProjectController {
     static getUserProject(req, res, next) {
@@ -50,7 +51,7 @@ class ProjectController {
             .then((info) => {
                 res.status(201).json({ message: 'successfully updated', data: info });
             })
-            .catch(next)
+            .catch(next);
     }
 
     static delete(req, res, next) {
@@ -64,21 +65,26 @@ class ProjectController {
     }
 
     static invite(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
 
-    static accept(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
-    }
-
-    static decline(req, res, next) {
-        res.status(200).json({
-            "message": 'ok'
-        });
+        Project.findOne(
+            { 'members': req.body.userId }
+        ).then(member => {
+            if (member) {
+                throw next({ statusCode: 401, msg: 'The user has been join this project' });
+            } else {
+                return User.findOne({
+                    _id: req.body.userId
+                });
+            }
+        }).then(user => {
+            if (user) {
+                return Project.updateOne({ _id: req.params.id }, { $push: { members: req.body.userId } }, { omitUndefined: true });
+            } else {
+                throw next({ statusCode: 404, msg: 'The user no longer exists.' });
+            }
+        }).then((info) => {
+            res.status(201).json({ message: 'successfully updated', data: info });
+        }).catch(next);
     }
 
     static leave(req, res, next) {
@@ -86,6 +92,18 @@ class ProjectController {
             "message": 'ok'
         });
     }
+
+    // static accept(req, res, next) {
+    //     res.status(200).json({
+    //         "message": 'ok'
+    //     });
+    // }
+
+    // static decline(req, res, next) {
+    //     res.status(200).json({
+    //         "message": 'ok'
+    //     });
+    // }
 }
 
 module.exports = ProjectController

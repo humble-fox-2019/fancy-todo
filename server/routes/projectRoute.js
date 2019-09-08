@@ -13,8 +13,9 @@ router.patch('/:id', isMember, ProjectController.update);
 router.delete('/:id', isMember, ProjectController.delete);
 
 router.post('/invite/:id', isMember, ProjectController.invite);
+router.delete('/leave/:id', isMember, ProjectController.leave);
+
 // router.post('/accept/:id', isMember, ProjectController.accept);
 // router.post('/decline/:id', isMember, ProjectController.decline);
-// router.post('/leave/:id', isMember, ProjectController.leave);
 
 module.exports = router;
