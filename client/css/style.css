@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #341677;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+  background-color: #341677;
+}
+.scroll{
+    height: 800px;
+    overflow-y: scroll;
+}
+.brand-color {
+    color: #ff6363;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+.form {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 50%;
+}
+.center {
+    text-align: center;
+}
+
+.center-container {
+    margin: 0 auto;
+    margin-top: 10%;
+}
+.eclipse{
+    border-radius: 20px;
+}
+
+.gsignin-btn{
+    padding: 20px;
+    text-align: center
+}
+#login-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
