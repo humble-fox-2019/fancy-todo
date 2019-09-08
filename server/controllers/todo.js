@@ -18,6 +18,7 @@ class TodoController {
           res.status(200).json({ todo })
         }
       })
+      .catch(next({ status: 402, message: `todo's not found` }))
   }
 
   static create(req, res, next) {

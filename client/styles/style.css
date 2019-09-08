@@ -68,6 +68,7 @@ header nav ul li #login-btn {
 
 header nav ul li #logout-btn {
   margin-right: 30px;
+  display: none;
 }
 
 header nav ul li a {
@@ -93,7 +94,9 @@ header nav ul li a {
           align-items: center;
 }
 
-.login-page, .registration-page, .todoOne-page {
+.login-page,
+.registration-page,
+.todoOne-page {
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2/3;
@@ -139,6 +142,12 @@ header nav ul li a {
   margin: 50px;
 }
 
+.todo-page .todo-tag .random-quotes {
+  padding: 5px 0;
+  width: 50%;
+  color: green;
+}
+
 .todo-page .todo-tag input {
   margin-top: 10px;
   padding: 8px 70px;
@@ -162,7 +171,8 @@ header nav ul li a {
   text-align: center;
 }
 
-.todo-page .todo-container th, .todo-page .todo-container td {
+.todo-page .todo-container th,
+.todo-page .todo-container td {
   padding: 10px 20px;
 }
 

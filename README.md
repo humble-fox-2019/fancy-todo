@@ -34,7 +34,7 @@ Method | Header | Params | Data |
 
 Success Response | Error Response
 --- | ---
-Status: `200` <br> Content: `{token}` | Status: <br> Content: `{"message": "The verifyIdToken method requires an ID Token"}`
+Status: `200` <br> Content: `{token}` | Status: `403` <br> Content: `{"message": "The verifyIdToken method requires an ID Token"}`
 
 
 ## Todo
@@ -49,7 +49,7 @@ Method | Header | Params | Data |
 
 Success Response | Error Response
 --- | ---
-Status: `200` <br> Content: `array of objects` | Status: <br> Content: `{"message": "The verifyIdToken method requires an ID Token"}`
+Status: `200` <br> Content: `array of objects` | Status: `403` <br> Content: `{"message": "The verifyIdToken method requires an ID Token"}`
 
 - **/user/todo/**
 Create a todo for authenticated user.
@@ -60,7 +60,7 @@ Method | Header | Params | Data |
 
 Success Response | Error Response
 --- | ---
-Status: `200` <br> Content: `object of todo` | Status: <br> Content: `{"message": "Todo validation failed: name: Path 'name' is required."}`
+Status: `200` <br> Content: `object of todo` | Status: `403` <br> Content: `{"message": "Todo validation failed: name: Path 'name' is required."}`
 
 - **/user/todo/:id**
 Get one todo from authenticated user with specific todo `id`.
@@ -110,3 +110,13 @@ Method | Header | Params | Data |
 Success Response | Error Response
 --- | ---
 Status: `200` <br> Content: `{"message": todo deleted}` | Status: `404` <br> Content: `{"message": "todo's not found"}`
+
+## Usage
+Make sure you jave Node.js and npm installed in your computer, and then run these commands:
+
+```
+$ npm install
+$ npm run dev
+```
+## Link
+Access the API via `http://localhost:3000/`

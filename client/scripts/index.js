@@ -85,7 +85,6 @@ function registerBtn() {
 
 function registerPage() {
   $('.registration-page button').click(function () {
-    console.log('masuk');
     $.ajax({
       method: 'POST',
       url: 'http://localhost:3000/user/register',
@@ -163,6 +162,8 @@ function loadTodo() {
       deleteTodo()
       completeTodo()
       loadTodoOne()
+      randomQuotes()
+      $('#table').DataTable();
     })
     .fail(err => {
       console.log(err)
@@ -273,4 +274,23 @@ function updateTodo(id) {
         console.log(err.responseJSON.message)
       })
   })
+}
+
+function randomQuotes() {
+  $.ajax({
+    method: 'GET',
+    url: 'https://programming-quotes-api.herokuapp.com/quotes/random',
+  })
+    .done(quote => {
+      console.log(quote);
+      $('.random-quotes').empty()
+      $('.random-quotes').append(
+        `
+        <p>${quote.en} -${quote.author}</p>
+        `
+      )
+    })
+    .fail(err => {
+      console.log(err.responseJSON.message)
+    })
 }

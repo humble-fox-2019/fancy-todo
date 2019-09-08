@@ -8,6 +8,7 @@
   <meta name="google-signin-client_id"
     content="250484679063-cb34pi8qsjc1dvfmdmgegu5vo2mpan32.apps.googleusercontent.com">
   <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
   <title>.todo</title>
 </head>
@@ -15,6 +16,7 @@
 <body>
   <!-- <script src="scripts/facebook.js"></script> -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 
   <div class="grid-container">
     <header>
@@ -79,6 +81,8 @@
     <section class="todo-page">
       <div class="todo-tag">
         <h2>Todo List</h2>
+        <div class="random-quotes">
+        </div>
         <form action="/">
           <input type="text" id="todo-name">
           <!-- <br> -->
@@ -87,7 +91,7 @@
       </div>
 
       <div class="todo-container">
-        <table>
+        <table id="table">
           <thead>
             <th>Title</th>
             <th>Description</th>
@@ -131,6 +135,7 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="scripts/google.js"></script>
 <script src="./scripts/index.js"></script>
 
