@@ -194,6 +194,25 @@
                     </div>
                     <!-- END Collapsible Tasks Navigation -->
 
+                    <div class="block">
+                        <div class="block-header bg-body-light">
+                            <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i>Friends</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-toggle="block-option"
+                                    data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh"></i>
+                                </button>
+                                <button type="button" class="btn-block-option" data-toggle="block-option"
+                                    data-action="content_toggle"></button>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <ul class="nav-users push">
+                                <div id="displayMember"></div>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col-md-7 col-xl-9">
@@ -230,6 +249,22 @@
                 request.setRequestHeader("token", localStorage.getItem('token'));
             },
             success: function (response) {
+                console.log(response.members);
+
+                let tmpMember = '';
+                $.each(response.members, (i, el) => {
+                    tmpMember += `<li>
+                                    <a href="#">
+                                        <img class="img-avatar" src="assets/media/avatars/avatar2.jpg" alt="">
+                                        <i class="fa fa-circle text-success"></i>
+                                        ${el.name}
+                                        <div class="font-w400 font-size-xs text-muted">${el.email}</div>
+                                    </a>
+                                </li>`
+                });
+
+                $('#displayMember').html(tmpMember);
+
                 getTodos('active');
             },
             error: function (jqXHR, textStatus, errorThrown) {
