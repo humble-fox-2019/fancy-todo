@@ -10,7 +10,7 @@
             window.location.href = "#signin";
 
             Swal.fire({
-                position: 'top-end',
+                position: 'top-center',
                 type: 'error',
                 title: "you does not have permission to access this page.",
                 showConfirmButton: false,

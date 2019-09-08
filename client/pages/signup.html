@@ -20,30 +20,28 @@
                 <!-- Sign Up Form -->
                 <div class="row justify-content-center px-5">
                     <div class="col-sm-8 col-md-6 col-xl-4">
-                        <form class="js-validation-signup" action="be_pages_auth_all.html" method="post">
+                        <form class="js-validation-signup" action="" method="post" id="frmsignup">
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="form-material floating">
-                                        <input type="email" class="form-control" id="signup-email" name="signup-email">
-                                        <label for="signup-email">Email</label>
+                                        <input type="text" class="form-control" id="name" name="name">
+                                        <label for="name">Name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="form-material floating">
-                                        <input type="password" class="form-control" id="signup-password"
-                                            name="signup-password">
-                                        <label for="signup-password">Password</label>
+                                        <input type="email" class="form-control" id="email" name="email">
+                                        <label for="email">Email</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="form-material floating">
-                                        <input type="password" class="form-control" id="signup-password-confirm"
-                                            name="signup-password-confirm">
-                                        <label for="signup-password-confirm">Password Confirmation</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                        <label for="password">Password</label>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +57,7 @@
                             </div>
                             <div class="form-group row gutters-tiny">
                                 <div class="col-12 mb-10">
-                                    <button type="submit"
+                                    <button type="button" id="signup"
                                         class="btn btn-block btn-hero btn-noborder btn-rounded btn-alt-success">
                                         <i class="si si-user-follow mr-10"></i> Sign Up
                                     </button>
@@ -141,3 +139,4 @@
 <!-- END Terms Modal -->
 
 <script src="assets/js/codebase.app.min.js"></script>
+<script src="./public/js/signup.js"></script>

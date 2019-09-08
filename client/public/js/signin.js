@@ -14,7 +14,7 @@
             error: function (jqXHR, textStatus, errorThrown) {
                 let data = jqXHR.responseJSON;
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'top-center',
                     type: 'error',
                     title: data.message,
                     showConfirmButton: false,
