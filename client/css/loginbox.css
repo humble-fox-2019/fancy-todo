@@ -1,0 +1,47 @@
+.firstPage {
+    background-color: white;
+    width: 35vw;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 25vh;
+    border-radius: 10px;
+}
+
+.firstPage form input{
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+.g-signin2 {
+    padding-bottom: 10px;
+
+}
+
+#logout {
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+}
+
+a:hover {
+    color: black;
+}
+a:active {
+    color: black;
+}
+a {
+    text-decoration: none;
+}
+
+#welcome {
+    position: relative;
+    top: 5vh;
+    left: 5vw;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="917807764644-qqiq87prj40peut9dhnmb20et2j9k0bu.apps.googleusercontent.com">
+    <link rel="stylesheet" href="./css/loginbox.css">
+    <link rel="stylesheet" href="./css/todogrid.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!---->
+    
+    <title>Best DoiT</title>
+</head>
+<body>  
+    
+    <div class="firstPage">
+        <p class="errorForm" style="color: red; visibility: hidden"></p>
+        <h5 id="success" style="display: none">Successfully registered your Account</h5>
+        <!--register-->
+        <form action="" id="registerForm" style="display: none" method="post">
+            Username
+            <input type="text" name="username" id="usernameRegister">
+            Password
+            <input type="password" name="password" id="passwordRegister">
+            Verify password
+            <input type="password" name="password" id="passwordRegisterVerify">
+            Email
+            <input type="email" name="email" id="emailRegister">
+            <a href="#" onclick="register()">Submit</a>
+        </form>
+        <!--login-->
+        
+        <form action=""  id="loginForm" method="post">
+            Email
+            <input type="email" name="email" id="emailLogin">
+            Password
+            <input type="password" name="password" id="passwordLogin">
+            <a href="#" onclick="loginForm()">Submit</a>
+        </form>
+        
+        <button id="doRegister" onclick="iWantRegister()">Create an account?</button>
+        <button id="skipRegister" onclick="iWantLogin()" style="display: none">Have an account?</button>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+
+    <div class="secondPage">
+        <h2 id="welcome"></h2>
+        <a href="#" id="logout" onclick="logout()">sign out</a>
+        <div class="todo">
+            <div class="boxFirst">
+               <div class="content" style="display: block">
+                
+               </div>
+               <a href="#" id="addTodo" onclick="openTodoRegister()">Add new Todo</a>
+            </div>
+            <div class="registerTodo" style="display: none">
+                <form action="" method="post">
+                    <label for="todoTitle">Title</label>
+                    <input type="text" name="" id="todoTitle">
+                    <label for="todoDescription">Description</label>
+                    <input type="text" name="" id="todoDescription">
+                    <label for="todoTag">Tag</label>
+                    <input type="text" name="" id="todoTag">
+                    <a href="#"  onclick="registerTodo()">Submit</a>
+                </form>
+                <a href="#" id="cancelAddTodo" onclick="cancelRegister()">Cancel</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/todo.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="./js/login.js"></script>
+    <script>
+         
+         $(document).ready(function(){
+            
+            console.log('masuk')
+            refreshPage()
+
+        })   
+        function refreshPage(){
+                if(localStorage.getItem('token')){
+                    $('.firstPage').hide()
+                    $('#logout').show()
+                    putTodosToContent()
+                    $('.secondPage').show()
+                }else{
+                    $('.secondPage').hide()
+                    $('#logout').hide()
+                    iWantLogin()
+                    $('.errorForm').text('You need to Login first').css('visibility', 'visible')
+                }
+            }
+    </script>
+</body>
+</html>
