@@ -5,19 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id"
+    content="250484679063-cb34pi8qsjc1dvfmdmgegu5vo2mpan32.apps.googleusercontent.com">
   <link rel="stylesheet" href="./styles/style.css">
   <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
   <title>.todo</title>
 </head>
 
 <body>
+  <!-- <script src="scripts/facebook.js"></script> -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
   <div class="grid-container">
     <header>
       <nav>
         <ul>
           <li><a href="" id="logo">.todo</a></li>
           <li><a href="" id="login-btn">Login</a></li>
-          <li><a href="" id="logout-btn">Logout</a></li>
+          <li><a href="" id="logout-btn" onclick="signOut()">Logout</a></li>
+          <!-- <li><a href="" id="logout-btn-fb" onlogin="FB.logout()">Logout FB</a></li> -->
+          <!-- <li><a href="" id="logout-btn-google" onclick="signOut()">Logout G</a></li> -->
           <li><a href="" id="register-btn">Register</a></li>
         </ul>
       </nav>
@@ -43,6 +50,12 @@
         <br>
         <button>Login</button>
       </form>
+      <!-- facebook -->
+      <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+        <div id="status">
+        </div> -->
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </section>
 
     <section class="registration-page">
@@ -112,13 +125,13 @@
     </section>
 
     <footer>
-      Portfolio by William Heryanto
+      Todo Portfolio by William Heryanto
     </footer>
   </div>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script> -->
+<script src="scripts/google.js"></script>
 <script src="./scripts/index.js"></script>
 
 </html>

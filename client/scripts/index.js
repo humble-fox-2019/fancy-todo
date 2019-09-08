@@ -21,6 +21,7 @@ function checkToken() {
   const token = localStorage.getItem('token')
   if (token) {
     $('.main-page').hide()
+    $('.login-page').hide()
     $('.todo-page').show()
     $('#login-btn').hide()
     $('#logout-btn').css('display', 'flex')
