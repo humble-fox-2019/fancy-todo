@@ -11,14 +11,14 @@ http://localhost:3000
 
 ## User API
 |  HTTP  | Endpoint | Headers | Body | Description |
-|---|---|---|:-:|---|---|
+|--------|----------|---------|------|-------------|
 | POST | /user/signup | none | name: string<br>email: string<br>password: string | Register new user |
 | POST | /user/signin | none | email: string<br>password: string | Login user |
 | POST | /user/signInGoogle | none | log in using user google account | Login user |
 
 ## Todo API
 |  HTTP  | Endpoint | Headers | Body | Description | 
-|---|---|---|:-:|---|---|
+|--------|----------|---------|------|-------------|
 | GET | /todo | {token: JWT token} | none | get user todo list |
 | POST | /todo| {token: JWT token} | todo : string<br>description : string<br>dueDate : date | create todo list |
 | GET | /todo/search | {token: JWT token, id : userId, todo : string} | none | find user todo and display  |
