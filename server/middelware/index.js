@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { TokenVerify} = require('../helpers')
-const { Todo } = require('../models')
+const { Todo , Project } = require('../models')
 module.exports = {
     VerifyToken : (token)=>{
         try {
@@ -51,5 +51,26 @@ module.exports = {
       .catch(err=>{
         next(err)
       })
+    },
+    AuthorizedProject : (req,res,next) =>{
+      Project.findOne({
+        _id : req.params.id
+      })
+      .then(project=>{
+        let kondisi = false
+        project.memberUser.forEach(el=>{
+          if(el == req.decode.data._id){
+            kondisi = true
+            next()
+          }
+          // console.log(el , ' DARI MIDDELLWARE !!!!')
+        })
+          if(!kondisi){
+            res.status(401).json({
+              message : "You don't have access HERE"
+            })
+          }
+      })
+      .catch(next)
     }
 }

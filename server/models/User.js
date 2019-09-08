@@ -11,12 +11,7 @@ const UserSchema = new Schema({
   }, 
   email : {
     type : String
-  },
-  Todos : [
-    {
-      type : Schema.Types.ObjectId ,  ref : 'Todo'
-    }
-  ]
+  }
 });
 // const UserSchema = new Schema({
 //   name : {

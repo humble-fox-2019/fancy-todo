@@ -18,6 +18,30 @@ var ProjectSchema = new Schema({
     default : new Date(),
     required : true
   },
+  Todo : [{
+    name : {
+        type : String,
+      required : true
+    },
+    description : {
+      type : String
+    }, 
+    status : {
+      type : Boolean,
+      default : false
+    }, 
+    due_date : {
+      type : Date,
+      default : new Date(),
+      required : true
+    },
+    maker : {
+      type :  Schema.Types.ObjectId , ref : 'User'
+    }
+  }],
+  owner : {
+    type : Schema.Types.ObjectId ,  ref : 'User'
+  },
   memberUser : [{
     type : Schema.Types.ObjectId ,  ref : 'User',
     default : []

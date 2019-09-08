@@ -1,0 +1,57 @@
+
+
+.detail-left-mine {
+    background-color: #fd7e14 !important;
+    margin-top: 10px;
+    width: 700px;
+    height : 320px;
+    margin-right: 50px;
+    color: white;
+    border-radius: 0.1rem;
+    overflow-y: scroll;
+}
+
+#detail-project-left::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+#detail-project-left::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    height: 30px;
+}
+
+
+
+
+.detail-right-mine {
+    background-color: #fd7e14 !important;
+    margin-top: 10px;
+    width: 600px;
+    height : 320px;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.title-first-one {
+    color: aliceblue;
+    font-size: 30px;
+    /* margin-left: 17px; */
+    font-family: 'Kaushan Script', cursive;
+}
+
+.body-first-one {
+
+    border-top: solid black;
+}
+
+.body-first-one p {
+    /* font-size: 20px;
+    
+    margin-left: 17px; */
+    /* margin-left: 17px; */
+    font-size: 17px;
+    font-family: 'Kaushan Script', cursive;
+}

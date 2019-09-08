@@ -10,6 +10,17 @@ function WhenUserHasLogin(){
   $('#sukses-add').hide()
   $('#input-todo-123').show() 
   $('#edit-todo').hide()
+  $('#nav-item-1').removeClass('a-disabled')
+  $('#nav-item-2').removeClass('a-disabled')
+  $('#nav-item-3').removeClass('a-disabled')
+  $('#nav-item-4').removeClass('a-disabled')
+  $('#nav-item-5').removeClass('a-disabled')
+  $('#h1-project').hide()
+  $('#project-list').hide()
+  $('#project-body').hide()
+  $('#detail-Projects').hide()
+  $('#detail-project-right').hide()
+  $('#detail-project-left').hide()
 }
 
 // function WhenUserHasLoginAsync(cb){
@@ -35,6 +46,17 @@ function WhenUserHasNotLogin(){
   $('#h1-todo').hide()
   $('#sukses-add').hide()
   $('#edit-todo').hide()
+  $('#nav-item-1').addClass('a-disabled')
+  $('#nav-item-2').addClass('a-disabled')
+  $('#nav-item-3').addClass('a-disabled')
+  $('#nav-item-4').addClass('a-disabled')
+  $('#nav-item-5').addClass('a-disabled')
+  $('#h1-project').hide()
+  $('#project-list').hide()
+  $('#project-body').hide()
+  $('#detail-Projects').hide()
+  $('#detail-project-right').hide()
+  $('#detail-project-left').hide()
 }
 
 if(localStorage.getItem(`token`)){
@@ -261,6 +283,9 @@ function ShowAfterCreate(id){
         $('#todo-list').show()
         $('#input-todo').hide()
         $('#project').hide()
+        $('#h1-project').hide()
+        $('#project-list').hide()
+        $('#project-body').hide()
     })
     .fail(function(jqXHR, textStatus) {
       console.log('Error:', textStatus ,  jqXHR);
@@ -302,6 +327,12 @@ function renderProject (){
         $('#input-todo').hide()
         $('#edit-todo').hide()
         $('#project').show()
+        $('#h1-project').hide()
+        $('#project-list').hide()
+        $('#project-body').hide()
+        $('#detail-Projects').hide()
+        $('#detail-project-right').hide()
+        $('#detail-project-left').hide()
         $.ajax({
           url : 'http://localhost:3000/project/AllUser',
           method : 'GET',
@@ -430,6 +461,13 @@ function RenderDash(){
   $('#input-todo').show()
   $('#edit-todo').hide()
   $('#project').hide()
+  $('#h1-project').hide()
+  $('#project-list').hide()
+  $('#project-body').hide()
+  $('#detail-Projects').hide()
+  $('#detail-project-right').hide()
+  $('#detail-project-left').hide()
+  
 }
 
 
@@ -437,6 +475,7 @@ function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
     console.log('User signed out.');
+    // $('#reqProject').empty()
     WhenUserHasNotLogin()
       localStorage.clear()
       

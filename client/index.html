@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="./css/dropdown.css">
     <link rel="stylesheet" href="./css/member.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="./css/disable.css">
+    <link rel="stylesheet" href="./css/Detail.css">
 </head>
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
@@ -55,13 +57,13 @@
     <div class="navbar d-flex flex-row justify-content-around">
             <div class="left-navbar d-flex flex-row justify-content-start">
                 <img class="logo-1 p-3" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIyLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyMDAgMjAwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTEwMCwyMDBMMCwxMDBoMTAwVjIwMGM1NS4yLDAsMTAwLTQ0LjgsMTAwLTEwMFMxNTUuMiwwLDEwMCwwSDB2MTAwIi8+Cgk8cG9seWdvbiBwb2ludHM9IjEwMCwyMDAgMCwyMDAgMCwxMDAgCSIvPgo8L2c+Cjwvc3ZnPgo=">
-                <a href="#" onclick="RenderDash()" class="p-3">Add New Todo</a>
-                <a href="#" class="p-3"onclick="ShowAfterCreate()">My Todo List</a>
-                <a href="#" class="p-3"onclick="renderProject()" >Project</a>
-                <a href="#" class="p-3">List</a>
+                <a href="#" onclick="RenderDash()" class="p-3" id="nav-item-1">Add New Todo</a>
+                <a href="#" class="p-3"onclick="ShowAfterCreate()" id="nav-item-2">My Todo List</a>
+                <a href="#" class="p-3"onclick="renderProject()" disabled="disabled" id="nav-item-3" >Project</a>
+                <a href="#" class="p-3" id="nav-item-4" onclick="RenderProjectList()">Project List</a>
             </div>
             <div class="right-navbar d-flex flex-row justify-content-start">
-                <a href="#" class="p-3" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Project Confirms </a>
+                <a href="#" class="p-3" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" onclick="RenderInvitation()" id="nav-item-5">Project Invited </a>
                 <input type="button" onclick="signOut();" value="log-out" class="btn btn-danger m-2" id="logOut" style="height: 34px;" >
             </div>
     </div>
@@ -129,36 +131,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body" id="reqProject">
-                <div class="d-flex flex-column">
-                    <div class="mb-3 confirm-list">
-                        <div class="d-flex flex-column confirm-left">
-                            <p style="color : blue; font-size: 19px; margin-bottom: 5px;">Sultan Rayhan</p>
-                            <p style="font-size: 14px;">Invite You to join his project</p>
-                        </div>
-                        <div class="d-flex flex-row">
-                            <div>
-                                <button class="button-confirm mt-2" >Confirm</button>
-                            </div>
-                            <div class="ml-2">
-                                    <button class="button-confirm-delete mt-2">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex flex-column confirm-left">
-                            <p style="color : blue; font-size: 19px; margin-bottom: 5px;">Sultan Rayhan</p>
-                            <p style="font-size: 14px;">Invite You to join his project</p>
-                        </div>
-                        <div class="d-flex flex-row">
-                            <div>
-                                <button class="button-confirm mt-2" >Confirm</button>
-                            </div>
-                            <div class="ml-2">
-                                <button class="button-confirm-delete mt-2">Delete</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="modal-body" >
+                <div class="d-flex flex-column" id="reqProject">
                     
                 </div>
             </div>
@@ -170,12 +144,57 @@
         </div>
       </div>
     
-    <div class="container">
 
+    
+
+    <!-- LIST-PROJECT-32 -->
+    <div class="container pt-4" id="h1-project" style="margin-top: 70px; ">
+        <h1 style="color: #dae4f5">Your Project List</h1>
+    </div>
+    <div class="container pt-2">
+        <table class="table table-striped" id="project-list" style="padding: 10px;">
+            <thead>
+                <tr>
+                    <th scope="col" style="color: #6a9ae6; ">No</th>
+                    <th scope="col" style="color: #6a9ae6; ">Name</th>
+                    <th scope="col" style="color: #6a9ae6; ">Detail</th>
+                    <th scope="col" style="color: #6a9ae6; ">Action</th>
+                </tr>
+            </thead>
+            <tbody id="project-body">
+    
+            </tbody>
+        </table>
     </div>
 
+    <!-- END -->
+
+    <!-- Detail-PROJECT -->
+    <div class="container pt-5 d-flex flex-row justify-content-start" style="margin-top: 70px;" id="detail-Projects">
+        <div id="detail-project-left" class="detail-left-mine container">
+            
+        </div>
+        <div id="detail-project-right" class="detail-right-mine container">
+            <h5 style="color: #dae4f5" class="mb-2 mt-3">Insert New Project</h5>
+            <form id="input-todo2-form-mine" style="opacity: 0.7; color: #000000;" class="mt-4" >
+                <input class="form-control" type="text" placeholder="name.." id="todo-name-p"  >
+                <br>
+                <textarea class="form-control" aria-label="With textarea" placeholder="description.." id="todo-des-p"></textarea>
+                <br>
+                <input id="datepicker-p" width="276" placeholder="due date.." />  
+                <script>
+                    $('#datepicker-p').datepicker({
+                        uiLibrary: 'bootstrap4'
+                    });
+                </script>
+                <input type="submit" class="btn btn-primary mt-3" >
+            </form>
+        </div>
+    </div>   
+    <!-- END -->
+
     <!-- Create the toolbar container -->
-    <div class="offset-md-4 mt-5" id="login-form" style="padding-top: 100px;" >
+    <div class="offset-md-4 mt-2" id="login-form" style="padding-top: 7px;" >
         <div class="myform form" style=" opacity: 0.9;">
             <div class="logo mb-3">
                 <div class="col-md-12 text-center">
@@ -243,9 +262,71 @@
             </tbody>
         </table>
     </div>
+
+
     
+    <div class="offset-md-4 mt-2"  id="register-form" style="padding-top: 8px;" >
+        <div class="myform form" style=" opacity: 0.9;">
+            <div class="logo mb-3">
+                <div class="col-md-12 text-center">
+                    <h1>Register</h1>
+                </div>
+            </div>
+            <form id="register-click" style="height: 470px; " >
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" name="password" id="name-register" class="form-control"
+                        aria-describedby="emailHelp" placeholder="Enter Username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" name="email" class="form-control" id="email-register"aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input type="password" name="password" id="password-register"  class="form-control"
+                        aria-describedby="emailHelp" placeholder="Enter Password">
+                </div>
+                <div class="form-group">
+                    <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+                </div>
+                <div class="col-md-12 text-center ">
+                    <input type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" value="login" />
+                </div>
+                <div class="col-md-12 ">
+                    <div class="login-or">
+                        <hr class="hr-or">
+                        <span class="span-or">or</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="text-center">Have account? <a href="#" onclick="RenderLoginForm()" >Login Here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
     
-    <div class="container register" id="register-form" style="opacity: 0.9">
+
+
+
+    <!-- <div class="form-group">
+        <input type="text" class="form-control" placeholder="Name *" value="" id="name-register" />
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Email *" value="" id="email-register" />
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password *" value="" id="password-register" />
+    </div>
+    <div class="row col-md-12" style="margin-top: -50px;">
+        <input type="submit" class="btnRegister"  value="Register"  />
+    </div> -->
+    
+    <!-- <div class="container register" id="register-form" style="opacity: 0.9">
             <div class="row">
                 <div class="col-md-3 register-left">
                     <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
@@ -287,12 +368,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!--  -->
                     </div>
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
     <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
     <!-- <input type="button" onclick="signOut();" value="log-out" class="btn btn-danger" id="logOut" > -->
@@ -308,6 +388,7 @@
     <script src="js/Render.js"></script>
     <script src="./js/member.js"></script>
     <script src="./js/other.js"></script>
+    <script src="./js/Project.js"></script>
     <script>
         $('#datepicker2-edit').datepicker({
         uiLibrary: 'bootstrap4'
