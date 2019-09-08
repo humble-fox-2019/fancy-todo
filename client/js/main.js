@@ -286,6 +286,10 @@ function ShowAfterCreate(id){
         $('#h1-project').hide()
         $('#project-list').hide()
         $('#project-body').hide()
+        $('#table-todo-mine').hide()
+        $('#detail-Projects').hide()
+        $('#detail-project-right').hide()
+        $('#detail-project-left').hide()
     })
     .fail(function(jqXHR, textStatus) {
       console.log('Error:', textStatus ,  jqXHR);

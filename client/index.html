@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fancy Todo</title>
     <meta name="google-signin-client_id"
     content="438390530813-hqkaes7ruh8js6eoc2r6cleest6jgqrh.apps.googleusercontent.com">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -56,11 +57,11 @@
     </nav> -->
     <div class="navbar d-flex flex-row justify-content-around">
             <div class="left-navbar d-flex flex-row justify-content-start">
-                <img class="logo-1 p-3" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIyLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyMDAgMjAwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTEwMCwyMDBMMCwxMDBoMTAwVjIwMGM1NS4yLDAsMTAwLTQ0LjgsMTAwLTEwMFMxNTUuMiwwLDEwMCwwSDB2MTAwIi8+Cgk8cG9seWdvbiBwb2ludHM9IjEwMCwyMDAgMCwyMDAgMCwxMDAgCSIvPgo8L2c+Cjwvc3ZnPgo=">
-                <a href="#" onclick="RenderDash()" class="p-3" id="nav-item-1">Add New Todo</a>
-                <a href="#" class="p-3"onclick="ShowAfterCreate()" id="nav-item-2">My Todo List</a>
-                <a href="#" class="p-3"onclick="renderProject()" disabled="disabled" id="nav-item-3" >Project</a>
-                <a href="#" class="p-3" id="nav-item-4" onclick="RenderProjectList()">Project List</a>
+                <!-- <img class="logo-1 p-3" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIyLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyMDAgMjAwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTEwMCwyMDBMMCwxMDBoMTAwVjIwMGM1NS4yLDAsMTAwLTQ0LjgsMTAwLTEwMFMxNTUuMiwwLDEwMCwwSDB2MTAwIi8+Cgk8cG9seWdvbiBwb2ludHM9IjEwMCwyMDAgMCwyMDAgMCwxMDAgCSIvPgo8L2c+Cjwvc3ZnPgo="> -->
+                <a href="#" onclick="RenderDash()" class="p-3 my-NavItem" id="nav-item-1">Add New Todo</a>
+                <a href="#" class="p-3 my-NavItem"onclick="ShowAfterCreate()" id="nav-item-2">My Todo List</a>
+                <a href="#" class="p-3 my-NavItem"onclick="renderProject()" disabled="disabled" id="nav-item-3" >Project</a>
+                <a href="#" class="p-3 my-NavItem" id="nav-item-4" onclick="RenderProjectList()">Project List</a>
             </div>
             <div class="right-navbar d-flex flex-row justify-content-start">
                 <a href="#" class="p-3" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" onclick="RenderInvitation()" id="nav-item-5">Project Invited </a>
@@ -171,9 +172,9 @@
 
     <!-- Detail-PROJECT -->
     <div class="container pt-5 d-flex flex-row justify-content-start" style="margin-top: 70px;" id="detail-Projects">
-        <div id="detail-project-left" class="detail-left-mine container">
+        <table id="detail-project-left" class="detail-left-mine container table table-striped" >
             
-        </div>
+        </table>
         <div id="detail-project-right" class="detail-right-mine container">
             <h5 style="color: #dae4f5" class="mb-2 mt-3">Insert New Project</h5>
             <form id="input-todo2-form-mine" style="opacity: 0.7; color: #000000;" class="mt-4" >

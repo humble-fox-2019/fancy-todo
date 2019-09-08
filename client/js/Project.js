@@ -30,6 +30,11 @@ function RenderInvitation (){
         </div>
         `)
         })
+        if(data.length <= 0){
+            $('#reqProject').append(`
+                <p>You have no invited</p>
+            `)
+        }
         console.log(data , ' ini ke render <<<<<<<<<<')
     })
     .fail(function(err){
@@ -195,7 +200,20 @@ function getOneProject(id , idDeleted ,  idUpdated , idUpdated2){
         $('#detail-Projects').show()
         $('#detail-project-right').show()
         $('#detail-project-left').show()
-        $('#detail-project-left').append(` <p class="title-first-one">Your Todo List</p>`)
+        // $('#detail-project-left').append(` <p class="title-first-one">Your Todo List</p>`)
+        $('#detail-project-left').append(`
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>Status</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody id="table-todo-mine">
+            
+        </tbody>
+        
+        `)
         data.Todo.forEach(el=>{
             if(el._id != idDeleted){
                 let status = '&#9989'
@@ -212,14 +230,21 @@ function getOneProject(id , idDeleted ,  idUpdated , idUpdated2){
                     status = '&#10060'
                     completeOrNot = `<a href="#" onclick="completeTodo('${el._id}')">Complete</a>`
                 }
-                $('#detail-project-left').append(`
-                    <div class="d-flex flex-row justify-content-between">
-                    </div>
-                    <div class="body-first-one d-flex flex-row justify-content-between">
-                        <p>${el.name}</p>  <p> ${status} </p>  
-                        <p> ${completeOrNot} | <a href="#" type=""submit  id="delete-todo-p" onclick="confirmDelete('${el._id}')">Delete</a> </p>
-                    </div>
+                $('#table-todo-mine').append(`
+                    <tr>
+                        <td>${el.name}</td>
+                        <td>${status}</td>
+                        <td>${completeOrNot} | <a href="#" onclick="confirmDelete('${el._id}')">Delete</a></td>
+                    </tr>
                 `)
+                // $('#detail-project-left').append(`
+                //     <div class="d-flex flex-row justify-content-between">
+                //     </div>
+                //     <div class="body-first-one d-flex flex-row justify-content-between">
+                //         <p>${el.name}</p>  <p> ${status} </p>  
+                //         <p> ${completeOrNot} | <a href="#" type=""submit  id="delete-todo-p" onclick="confirmDelete('${el._id}')">Delete</a> </p>
+                //     </div>
+                // `)
             }
            
         })

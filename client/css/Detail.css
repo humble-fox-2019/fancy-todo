@@ -4,11 +4,12 @@
     background-color: #fd7e14 !important;
     margin-top: 10px;
     width: 700px;
-    height : 320px;
+    height : 200px;
     margin-right: 50px;
     color: white;
     border-radius: 0.1rem;
     overflow-y: scroll;
+    border: none;
 }
 
 #detail-project-left::-webkit-scrollbar {
@@ -54,4 +55,8 @@
     /* margin-left: 17px; */
     font-size: 17px;
     font-family: 'Kaushan Script', cursive;
+}
+
+.my-NavItem {
+    width: 144px;
 }

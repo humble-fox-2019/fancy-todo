@@ -61,10 +61,11 @@ class AuthController {
     static RegisterGoogle(req,res,next){
         let data;
         let kondisi = true
-        const client = new OAuth2Client("438390530813-hqkaes7ruh8js6eoc2r6cleest6jgqrh.apps.googleusercontent.com");
+        console.log(process.env.AUDIENCE , ' INI PENTING KAAK')
+        const client = new OAuth2Client(process.env.AUDIENCE);
         client.verifyIdToken({
             idToken : req.body.id_token ,
-            audience :  "438390530813-hqkaes7ruh8js6eoc2r6cleest6jgqrh.apps.googleusercontent.com"
+            audience :  process.env.AUDIENCE
         })
         .then(ticket=>{
             data = ticket.payload
