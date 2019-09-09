@@ -65,6 +65,7 @@ function loginPage() {
         $('#login-btn').hide()
         $('#logout-btn').css('display', 'flex')
         $('.login-page').hide()
+        loadTodo()
         $('.todo-page').show()
       })
       .fail(err => {
