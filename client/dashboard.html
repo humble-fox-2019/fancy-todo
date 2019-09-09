@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <title>Fancy Todo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+</head>
+<body>
+  <div class="header-container">
+    <div class="header">
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo fancy todo">
+      </div>
+      <div class="menu">
+        <p>Welcome, <b>Josprima</b></p>
+        <button class="button line">Logout</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="dashboard-title">
+          <h2>Projects</h2>
+        </div>
+        <div class="dasboard-action">
+          <button class="button secondary">New Project</button>
+        </div>
+      </div>
+      <div class="dashboard-body">
+        <div class="project-item">
+          <h1>Project tugas akhir</h1>
+          <p>Memulai project tugas akhir untuk hari depan yang lebih baik</p>
+
+          <div class="project-item-footer">
+            <div class="project-owner">
+              <i class="fas fa-user-tie"></i>
+              <p>Josprima</p>
+            </div>
+            <div class="project-item-action">
+              <button class="btn delete"><i class="fas fa-trash-alt"></i></button>
+              <button class="btn edit"><i class="far fa-edit"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+</html>
