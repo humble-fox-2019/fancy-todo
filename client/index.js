@@ -299,7 +299,7 @@ function readTodo (id, tag, find) {
       })
     })
     .fail(function (jqXHR, status) {
-      console.log(status)
+      console.log(jqXHR.responseJSON)
     })
 }
 
@@ -324,7 +324,7 @@ function createTodo () {
       readTodo()
     })
     .fail(function (jqXHR, status) {
-      console.log(status)
+      console.log(jqXHR.responseJSON)
     })
 }
 
@@ -356,7 +356,7 @@ function deleteTodo (id) {
       readTodo()
     })
     .fail(function (jqXHR, status) {
-      console.log(status)
+      console.log(jqXHR.responseJSON)
     })
 }
 
@@ -432,7 +432,7 @@ function doneTodo (id, value) {
       }
     })
     .fail(function (jqXHR, status) {
-      console.log(jqXHR)
+      console.log(jqXHR.responseJSON)
     })
 }
 
@@ -517,7 +517,7 @@ function readArchive () {
       }
     })
     .fail(function (jqXHR, status) {
-      console.log(status)
+      console.log(jqXHR.responseJSON)
     })
 }
 
@@ -541,6 +541,6 @@ function editTodo (id) {
       readTodo()
     })
     .fail(function (jqXHR, textStatus) {
-      console.log(jqXHR)
+      console.log(jqXHR.responseJSON)
     })
 }
