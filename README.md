@@ -1,7 +1,9 @@
 # toDone (fancy-todo)
 Turning Do into Done!
 
-## How to use
+## Usage
+
+Make sure you have Node.js and npm installed in your computer, and then run these commands:
 ```
 $ npm install -> to install dependencies
 Create a new .env file and fill the key with appropriate value
