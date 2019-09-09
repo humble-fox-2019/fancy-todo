@@ -4,7 +4,7 @@ const url = 'http://localhost:3000'
 
 // Check if all document ready
 $(document).ready(function () {
-  console.log('web app ready!')
+  console.log('toDone app ready!')
   currentPage()
 
   // Login using GitHub OAuth
@@ -18,8 +18,6 @@ $(document).ready(function () {
       console.log(github.me())
     })
   })
-
-  // Login using Google OAuth
 
   // Link from login form to register form
   $('#register-button').click(function () {
@@ -63,13 +61,6 @@ $(document).ready(function () {
   $('#saveCreateModal').click(function () {
     event.preventDefault()
     createTodo()
-  })
-
-  // Delete to-do button -> show deleteModal
-  $(document).on('click', '#deleteTodoButton', function () {
-    event.preventDefault()
-    const todoId = $(this).data('id')
-    $('#yesDeleteModal').val(todoId)
   })
 })
 
@@ -383,6 +374,7 @@ function showDelete (id) {
 
 // Show edit modal when edit to-do button is clicked
 function showEdit (id, title, description, dueDate, urgency) {
+  console.log(urgency)
   $('#login-form').hide()
   $('#register-form').hide()
   $('#createModal').hide()
@@ -420,7 +412,6 @@ function showEdit (id, title, description, dueDate, urgency) {
 
 // Set status to-do to "done"
 function doneTodo (id, value) {
-  console.log('Cek doneTodo ke click ga >>>>')
   $.ajax({
     url: `${url}/todos/${id}`,
     method: 'PATCH',
@@ -432,10 +423,11 @@ function doneTodo (id, value) {
     }
   })
     .done(function (response) {
-      console.log(`Todo with id ${id} is completed`)
       if (value === 0) {
-        // readArchive()
+        console.log(`Todo with id ${id} is undoned`)
+        readArchive()
       } else if (value === 1) {
+        console.log(`Todo with id ${id} is completed`)
         readTodo()
       }
     })
@@ -509,7 +501,7 @@ function readArchive () {
             <td>${dueDate}</td>
             <td>${completedDate}</td>
             <td>
-                <button type="button" class="btn btn-warning btn-block" onclick="doneTodo('${value._id}', 1)"
+                <button type="button" class="btn btn-warning btn-block" onclick="doneTodo('${value._id}', 0)"
                     id="doneTodoButton"><i class="fas fa-thumbs-up"></i> Undone</button>
                 <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
                     data-target="#deleteModal" id="deleteTodoButton" onclick="showDelete('${value._id}')"><i class="fas fa-trash-alt"></i>
