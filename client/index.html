@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id" content="385113193051-gfufptka9sfsktifdcqbqsiq6kd5r9e4.apps.googleusercontent.com">
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="https://kit.fontawesome.com/5cd1e1d933.js"></script>
+    <title>Fancy TODO</title>
+</head>
+<body>
+    <!-- Navigasi -->
+    <nav style="display: none">
+        <button class="newList">New List</button>
+        <button class="back">Back</button>
+        
+        <div class="rigth-nav">
+            <ul>
+                <li>
+                    <form action="">
+                        <input type="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
+                <li>
+                    <i class="fas fa-bars" onclick="openNav()"></i>
+                </li>
+            </ul>
+        </div>
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Edit Profile</a>
+            <a href="#">Change Password</a>
+            <a href="#" class="sign-out" onclick="signOut();">Sign out</a>
+        </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+    
+    <!-- Register -->
+    <section class="box-regis" style="display: none">
+        <h3>Fancy todos</h3>
+        <h3>Register New Account</h3>
+        <form action="" method="POST">
+            <div class="txtb">
+                <input type="text" id="nameRegister" >
+                <span data-placeholder="Name"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="usernameRegis">
+                <span data-placeholder="Username"></span>
+            </div>
+
+            <div class="txtb">
+                <input type="password" id="passwordRegis">
+                <span data-placeholder="Password"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="email" id="emailRegister">
+                <span data-placeholder="Email"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="phoneRegister">
+                <span data-placeholder="Phone Number"></span>
+            </div>
+            
+            <button class="btn btn-register">Register</button>
+            <div class="btn-text">
+                Have account? <a href="#" class="toLogin">Sign In</a>
+            </div>
+        </form>
+    </section>
+    <!-- Akhir Regster -->
+
+    <!-- login -->
+    <section class="box-login" style="display: none">
+        <h3>Fancy Todos</h3> 
+        <h3>Sign In</h3>
+        <form action="" method="POST">
+            <div class="txtb">
+                <input type="text" id="emailLogin">
+                <span data-placeholder="Email"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="password" id="passwordLogin">
+                <span data-placeholder="Password"></span>
+            </div>
+            
+            <button class="btn btn-login">Login</bu tton>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="btn-text">
+                Don't have account? <a href="#" class="toRegister">Sign Up</a>
+            </div>
+        </form>
+    </section>
+    <!-- Akhir Login -->
+
+    <!-- Edit Profile -->
+    <section class="box-edit-profile" style="display: none">
+        <form action="">
+            <div class="txtb">
+                <input type="text" id="nameUpdate">
+                <span data-placeholder="Name"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="usernameUpdate">
+                <span data-placeholder="Username"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="email" id="emailUpdate">
+                <span data-placeholder="Email"></span>
+            </div>
+            
+            <div class="txtb">
+                <input type="text" id="phoneUpdate">
+                <span data-placeholder="Phone Number"></span>
+            </div>
+            
+            <button class="btn btn-update">Save</button>
+        </form>
+    </section>
+    <!-- Akhir Edit Profile -->
+
+    <!-- Change Password -->
+        <section class="box-password" style="display: none">
+            <form action="" method="POST">
+                <div class="txtb">
+                    <input type="password" id="oldPass">
+                    <span data-placeholder="Old Password"></span>
+                </div>
+
+                <div class="txtb">
+                    <input type="password" id="newPass">
+                    <span data-placeholder="New Password"></span>
+                </div>
+
+                <div class="txtb">
+                    <input type="password" id="pass-verify">
+                    <span data-placeholder="Retype New Password"></span>
+                </div>
+                <button class="btn btn-update">Save</button>
+            </form>
+        </section>
+    <!-- Akhir Change Password -->
+
+    <!-- Form Add LIST -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+            <form action="">
+                <input type="text" id="name-list">
+                <span data-placeholder="Name List"></span>
+                <button class="create-list">Create List</button>
+            </form>
+        </div>
+    </div>
+    <!-- akhir Add List -->
+
+    <!-- list task -->
+    <section class="box-cardList" style="display: none; width: 100%">
+        
+    </section>
+    <!-- akhir list task -->
+
+    <!-- todos -->
+    <section class="box-todos" style="display: none">
+        <div>
+            <form action="">
+                <input type="checkbox" id="status">
+                <input type="text" value="nama todo" id="name">
+                <input type="textarea" value="description" id="description">
+                <input type="text" id="due-date" value="due-date">
+                <button>Update</button>
+                <button>Delete</button>
+            </form>
+        </div>
+    </section>
+    <!-- Akhir Todos -->
+    
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="./script/index.js"></script>
+    <script src="./script//register.js"></script>
+    <script src="./script/login.js"></script>
+    <script src="./script/loginGoogle.js"></script>
+    <script src="./script/logout.js"></script>
+    <script>
+        $('.txtb input').on("focus", function(){
+            $(this).addClass("focus")
+        })
+
+        $('.txtb input').on("blur", function(){
+            if($(this).val() == "")
+            $(this).removeClass("focus")
+        })
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        // Modal add list
+        $('.newList').on("click", function(){
+            $('.modal').show()
+        })
+
+        $('.close').on("click", function(){
+            $('.modal').hide()
+        })
+
+        function deleteList(input){
+            console.log(input)
+        }
+
+    </script>
+</body>
+</html>
