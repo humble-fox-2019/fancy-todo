@@ -237,6 +237,7 @@
 </div>
 <script src="./public/js/all.js"></script>
 <script src="./public/js/projects.js"></script>
+<script src="./public/js/md5.min.js"></script>
 <script>
     function isMember() {
         $.ajax({
@@ -250,7 +251,7 @@
                 $.each(response.members, (i, el) => {
                     tmpMember += `<li>
                                     <a href="#">
-                                        <img class="img-avatar" src="./public/avatar.jpg" alt="">
+                                        <img class="img-avatar" src="https://www.gravatar.com/avatar/${md5(el.email)}" alt="">
                                         <i class="fa fa-circle text-success"></i>
                                         ${el.name}
                                         <div class="font-w400 font-size-xs text-muted">${el.email}</div>
