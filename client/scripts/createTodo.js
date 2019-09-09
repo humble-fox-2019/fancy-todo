@@ -1,4 +1,5 @@
 function formCreate() {
+  newClick()
   $("div.yourTodo#yourTodo").empty()
   let html = ` 
   <div class="container" id="createTodo">
@@ -29,6 +30,7 @@ function formCreate() {
 }
 
 function buttonCreate() {
+  newClick()
   $("div.yourTodo#yourTodo").empty()
   $("div.yourTodo#yourTodo").append(`
   <center>
@@ -42,6 +44,7 @@ function buttonCreate() {
 }
 
 function createTodo() {
+  newClick()
   let name = $('#nameCreate').val()
   let description = $('#descCreate').val()
   let dueDate = $('#dueDateCreate').val()

@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <meta name="google-signin-client_id"
@@ -86,8 +85,8 @@
             </div>
             <br>
           </form>
-        </div>
-    </center>
+      </div>
+      </center>
       <center>
         <h5 style="text-decoration: underline"><b>Or</b></h5>
         <br>
@@ -95,8 +94,8 @@
           style="background-color: rgb(11, 191, 223); width: 300px; height: 100px; padding: 10px; border-radius: 15px ">
           <h6 style="color: rgb(247, 248, 252);">
             Sign in with Google <br>
-            </h6>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          </h6>
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
       </center>
       <br>
@@ -119,171 +118,11 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function showForm() {
-      if (localStorage.token) {
-        console.log('i don knor');
-
-        console.log('why');
-
-      } else {
-        console.log(`This form can't be access`);
-      }
-    }
-
-    function onSignIn(googleUser) {
-      const token = googleUser.getAuthResponse().id_token
-      console.log(token);
-      $.ajax({
-          method: 'POST',
-          url: 'http://localhost:3000/users/signGoogle',
-          data: {
-            googleToken: token
-          }
-        })
-        .done(function (data) {
-          localStorage.setItem('token', data.token);
-          $(".beforeLogin").hide()
-          $(".afterLogin").show()
-          $(".regist").hide()
-          $(".signIn").hide()
-          $(".signOut").show()
-          getAll()
-          buttonCreate()
-        })
-        .fail(() => {
-          console.log('err');
-        })
-    }
-
-
-    function register() {
-      newClick()
-      var name = $("#nameRegister").val();
-      var email = $("#emailRegister").val();
-      var password = $("#passRegister").val();
-      $.ajax({
-          method: 'POST',
-          url: `http://localhost:3000/users/create`,
-          data: {
-            name: name,
-            email: email,
-            password: password
-          }
-        })
-        .done(data => {
-          $(".erros").hide()
-          console.log(data);
-          if (data.errors) {
-            console.log(email, "<<<<<<ini email");
-            if (data.message.includes('validation failed')) {
-              // console.log();
-              let listError = data.message.split(',').join('.').split('.').join('').split(':')
-              let html = ''
-              for (let i = 2; i < listError.length; i++) {
-                html += `<p>${listError[i]}</p>`
-                console.log(listError[i]);
-              }
-              $(".errors").show()
-              $(".errorsList").empty()
-              $(".errorsList").append(html)
-            }
-          } else {
-            $('input').val("")
-          }
-        })
-        .fail(function (err) {
-          console.log(err)
-        })
-    }
-
-    function login() {
-      newClick()
-      console.log('hereee');
-
-      let email = $("#emailSign").val()
-      let password = $("#passSign").val()
-      console.log(password, '<<<!!!!!!');
-      console.log(email, '<<<!!!!!!');
-      $.ajax({
-          method: 'POST',
-          url: `http://localhost:3000/users/login`,
-          data: {
-            email: email,
-            password: password
-          }
-        })
-        .done(user => {
-          $('input').val("")
-          localStorage.setItem('token', user.token);
-          $(".beforeLogin").hide()
-          $(".afterLogin").show()
-          $(".regist").hide()
-          $(".signIn").hide()
-          $(".signOut").show()
-          getAll()
-          buttonCreate()
-        })
-        .fail(input => {
-          console.log(input);
-          $(".errors").show()
-          $(".errorsList").empty()
-          $(".errorsList").append(
-            `<p>${input.status} ${input.statusText}: ${input.responseJSON.message}</p>`)
-        })
-    }
-
-    function signOut() {
-      console.log('heiiiioooooo');
-      newClick()
-      if (gapi.auth2) {
-        console.log(gapi.auth2);
-        console.log('her?');
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut()
-          .then(function () {
-            localStorage.clear()
-            $(".signOut").hide()
-            $(".afterLogin").hide()
-            $(".beforeLogin").show()
-            showRegist()
-          })
-      }
-    }
-
-    function newClick() {
-      $(".errors").hide()
-      $(".errorsList").empty()
-    }
-
-    function showRegist() {
-      newClick()
-      $('.container#register').show()
-      $('.container#signin').hide()
-    }
-
-    function manualSign() {
-      newClick()
-      $('div.container#register').hide()
-      $('div.container#signin').show()
-    }
-
-    function hideAll() {
-      newClick()
-      $('div.container#register').hide()
-      $('div.container#signin').hide()
-    }
-
-    function sendEmail() {
-      $.ajax({
-        method = "POST"
-      })
-    }
-  </script>
+  <script src="./scripts/user.js"></script>
   <script src="./scripts/getTodos.js"></script>
   <script src="./scripts/createTodo.js"></script>
   <script src="./scripts/showEdit.js"></script>
+  <script src="./scripts/htmlEmail.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
   </script>
@@ -291,5 +130,4 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
 </body>
-
 </html>

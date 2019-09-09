@@ -9,6 +9,7 @@ let id = input.id
     }
   })
     .done(({todo}) => {
+      newClick()
       let placeholderV = todo.description
       if(todo.description === undefined){
        placeholderV = '---'
@@ -61,6 +62,7 @@ let id = input.id
 }
 
 function editToDo(input){
+  newClick()
   let name = $('#nameTodo').val()
   let description = $('#comment').val()
   let dueDate = $('#dueDateTodo').val()
@@ -91,6 +93,7 @@ function editToDo(input){
 }
 
 function cancelEdit(input){
+  newClick()
   getAll()
   let {id} = input
   $(`div#${id}.edit`).remove()
