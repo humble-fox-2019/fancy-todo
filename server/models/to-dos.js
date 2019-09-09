@@ -19,7 +19,8 @@ let ToDosSchema = new Schema({
     },
     owner : {
         type : Schema.Types.ObjectId,
-        ref : 'User'
+        ref : 'User',
+        msg : "unvalid token: ID unrecognized"
     }
 })
 

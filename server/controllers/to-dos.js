@@ -7,7 +7,7 @@ class ToDosController{
             name : req.body.name,
             description : req.body.description,
             due : req.body.due,
-            owner : req.body.owner
+            owner : req.decode.id
         }
         ToDos.create(toDos).then((newTodos)=>{
             res.status(201).json({
@@ -23,14 +23,15 @@ class ToDosController{
     }
 
     static findAll(req,res){
-        ToDos.find().then((toDos)=>{
+        ToDos.find({ owner : req.decode.id }).then((toDos)=>{
+            console.log(req.decode.id)
             res.status(201).json({
-                message: "displaying all to dos",
+                message: "displaying all to dos created by you",
                 toDos
             })
         }).catch((err)=>{
             res.status(400).json({
-                message: "failed loading to dos",
+                message: "failed loading to dos created by you",
                 error : err
             })
         })
