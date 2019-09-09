@@ -98,6 +98,41 @@
     </div>
     <!-- END Add Task Modal -->
 
+    <!-- Add Member Modal -->
+    <div class="modal fade" id="modal-member" tabindex="-1" role="dialog" aria-labelledby="modal-member"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popin" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title"></h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Enter member email..">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-alt-primary" onclick="saveMember()">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Add Member Modal -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="./assets/js/codebase.core.min.js"></script>
     <script src="./assets/js/codebase.app.min.js"></script>

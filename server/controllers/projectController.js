@@ -66,27 +66,30 @@ class ProjectController {
     }
 
     static invite(req, res, next) {
-        Project.findOne(
-            {
-                _id: req.params.id,
-                'members': req.body.userId
-            }
-        ).then(member => {
-            if (member) {
-                throw next({ statusCode: 401, msg: 'The user has been join this project.' });
-            } else {
-                return User.findOne({
-                    _id: req.body.userId
-                });
-            }
-        }).then(user => {
+
+        let userData;
+
+        User.findOne({
+            email: req.body.email
+        }
+        ).then(user => {
             if (user) {
-                return Project.updateOne({ _id: req.params.id }, { $push: { members: req.body.userId } }, { omitUndefined: true });
+                userData = user;
+                return Project.findOne({
+                    _id: req.params.id,
+                    'members': user._id
+                });
             } else {
                 throw next({ statusCode: 404, msg: 'The user no longer exists.' });
             }
+        }).then(member => {
+            if (member) {
+                throw next({ statusCode: 401, msg: 'The user has been join this project.' });
+            } else {
+                return Project.updateOne({ _id: req.params.id }, { $push: { members: userData._id } }, { omitUndefined: true });
+            }
         }).then((info) => {
-            res.status(201).json({ message: 'User has been invited', data: info });
+            res.status(201).json({ message: 'Invite user successfully', data: info });
         }).catch(next);
     }
 

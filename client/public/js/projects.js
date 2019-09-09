@@ -452,3 +452,84 @@ function getTodos(status = 'all') {
         }
     });
 }
+
+function addMember() {
+    $('#modal-member').modal('show');
+    $('#modal-member .block-title').text('Add a new member');
+    $('#modal-member form')[0].reset();
+}
+
+function saveMember() {
+    $('#modal-member').modal('hide');
+    Swal.showLoading();
+
+    $.ajax({
+        url: baseUrl + '/projects/invite/' + localStorage.getItem('projectId'),
+        type: 'POST',
+        data: $("#modal-member form").serialize(),
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            Swal.fire({
+                position: 'top-center',
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            getMembers();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            let data = jqXHR.responseJSON;
+            Swal.close();
+
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: data.message
+            }).then((result) => {
+                $('#modal-member').modal('show');
+            });
+        }
+    });
+}
+
+function getMembers() {
+    $.ajax({
+        type: "GET",
+        url: baseUrl + '/projects/' + localStorage.getItem('projectId'),
+        beforeSend: function (request) {
+            request.setRequestHeader("token", localStorage.getItem('token'));
+        },
+        success: function (response) {
+            let tmpMember = '';
+            $.each(response.members, (i, el) => {
+                tmpMember += `<li>
+                                    <a href="#">
+                                        <img class="img-avatar" src="assets/media/avatars/avatar2.jpg" alt="">
+                                        <i class="fa fa-circle text-success"></i>
+                                        ${el.name}
+                                        <div class="font-w400 font-size-xs text-muted">${el.email}</div>
+                                    </a>
+                                </li>`
+            });
+
+            $('#displayMember').html(tmpMember);
+
+            getTodos('active');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            window.location.href = "#projects";
+
+            Swal.fire({
+                position: 'top-center',
+                type: 'error',
+                title: "you does not have permission to access this page.",
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    });
+}

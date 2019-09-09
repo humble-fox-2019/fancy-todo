@@ -196,14 +196,11 @@
 
                     <div class="block">
                         <div class="block-header bg-body-light">
-                            <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i>Friends</h3>
+                            <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i>Members</h3>
                             <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="state_toggle" data-action-mode="demo">
-                                    <i class="si si-refresh"></i>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="addMember()">
+                                    Add member
                                 </button>
-                                <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="content_toggle"></button>
                             </div>
                         </div>
                         <div class="block-content">
@@ -249,8 +246,6 @@
                 request.setRequestHeader("token", localStorage.getItem('token'));
             },
             success: function (response) {
-                console.log(response.members);
-
                 let tmpMember = '';
                 $.each(response.members, (i, el) => {
                     tmpMember += `<li>
