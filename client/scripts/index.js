@@ -8,6 +8,7 @@ $(document).ready(function () {
   loginBtn()
   logoutBtn()
   registerBtn()
+  logo()
 
   // pages
   loginPage()
@@ -75,6 +76,15 @@ function loginPage() {
 }
 
 // register
+function logo() {
+  $('#logo').click(function () {
+    $('.main-page').hide()
+    $('.login-page').hide()
+    $('.registration-page').hide()
+    $('.todo-page').show()
+  })
+}
+
 function registerBtn() {
   $('#register-btn').click(function () {
     $('.main-page').hide()
