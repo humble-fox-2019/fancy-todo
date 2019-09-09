@@ -1,6 +1,6 @@
 'use strict'
 
-const { Todo, User } = require('../models')
+const { Todo } = require('../models')
 
 class TodoController {
   static create (req, res, next) {

@@ -43,7 +43,7 @@
     <!--Login Form-->
     <div class="container" id="login-form">
         <h4>Login</h4>
-        <div id="errorSignup"></div>
+        <div id="errorLogin"></div>
         <div id="emailLogin">
             <form action="/action_page.php">
                 <div class="form-group">
@@ -77,10 +77,9 @@
     <!--Register Form-->
     <div class="container" id="register-form" style="display: none">
         <div id="registerContent">
-            <div id="errorSignup"></div>
             <form action="/action_page.php">
                 <h4>Register</h4>
-
+                <div id="errorRegister"></div>
                 <div class="form-group">
                     <label for="register-name">Name:</label>
                     <input type="text" class="form-control" id="register-name" placeholder="Enter name" name="name">
@@ -173,6 +172,7 @@
                                         id="urgentCreateModal" value="false" style="color: #000000">Yes
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
 
@@ -204,6 +204,7 @@
                             <div class="form-group" style="color: #000000">
                                 <p>Are you sure you want to delete this to-do?</p>
                             </div>
+                        </form>
                     </div>
                 </div>
 
@@ -228,7 +229,7 @@
                 <!-- Modal body -->
                 <div class="modal-body" style="color: #000000">
                     <div class="container">
-                        <form action="/action_page.php">
+                        <form action="/action_page.php" id="editModalForm">
                             <div class="form-group" style="color: #000000">
                                 <label for="titleEditModal">To-Do:</label>
                                 <input type="text" class="form-control" id="titleEditModal" placeholder="Enter task"
@@ -251,13 +252,12 @@
                                         value="false" style="color: #000000">Yes
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
 
                 <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="saveEditModal" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <div class="modal-footer" id="editModalFooter">
                 </div>
             </div>
         </div>

@@ -154,7 +154,16 @@ function register () {
       showLogin()
     })
     .fail(function (jqXHR, status) {
-      console.log(status)
+      console.log(jqXHR.responseJSON)
+      $('#errorRegister').empty()
+      jqXHR.responseJSON.forEach(err => {
+        $('#errorRegister').append(`
+        <div class="alert alert-danger alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Error!</strong> ${err}
+        </div>
+      `)
+      })
     })
 }
 
@@ -173,8 +182,14 @@ function login () {
       console.log('User successfully signed in')
       currentPage()
     })
-    .fail(function (jqXHR, textStatus) {
-      console.log(status)
+    .fail(function (jqXHR, status) {
+      console.log(jqXHR.responseJSON)
+      $('#errorLogin').empty().append(`
+        <div class="alert alert-danger alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Error!</strong> ${jqXHR.responseJSON}
+        </div>
+      `)
     })
 }
 
@@ -277,7 +292,7 @@ function readTodo (id, tag, find) {
               <td>
                   <button type="button" class="btn btn-success btn-block" onclick="doneTodo('${value._id}', 1)"
                       id="doneTodoButton"><i class="fas fa-thumbs-up"></i> Done</button>
-                  <button type="button" class="btn btn-warning btn-block" data-toggle="modal"
+                  <button type="button" class="btn btn-warning btn-block" id="editTodoButton${index}" data-toggle="modal"
                       data-target="#editModal"><i class="fas fa-edit"></i> Edit</button>
                   <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
                       data-target="#deleteModal" id="deleteTodoButton" onclick="showDelete('${value._id}')"><i class="fas fa-trash-alt"></i>
@@ -286,11 +301,11 @@ function readTodo (id, tag, find) {
           </tr>
           `
         )
+        $(`#editTodoButton${index}`).click(() => {
+          // console.log('masuk broo!!!')
+          showEdit(value._id, value.title, value.description, value.dueDate, value.urgency)
+        })
       })
-
-      if (response.length === 0) {
-        $('#readTodo3').html('<p>Your To-Do is empty</p>')
-      }
     })
     .fail(function (jqXHR, status) {
       console.log(status)
@@ -363,6 +378,43 @@ function showDelete (id) {
   $('#deleteModalFooter').empty().append(`
     <button type="button" class="btn btn-success" id="yesDeleteModal" onclick="deleteTodo('${id}')" data-dismiss="modal">Yes</button>
     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>`
+  )
+}
+
+// Show edit modal when edit to-do button is clicked
+function showEdit (id, title, description, dueDate, urgency) {
+  $('#login-form').hide()
+  $('#register-form').hide()
+  $('#createModal').hide()
+  $('#deleteModal').hide()
+  $('#editModal').show()
+  $('#editModalForm').empty().append(`
+    <div class="form-group" style="color: #000000">
+      <label for="titleEditModal">To-Do:</label>
+      <input type="text" class="form-control" id="titleEditModal" value="${title}"
+          name="title">
+    </div>
+    <div class="form-group" style="color: #000000">
+      <label for="descriptionEditModal">Description:</label>
+      <input type="text" class="form-control" id="descriptionEditModal" value="${description}"
+          name="description">
+    </div>
+    <div class="form-group" style="color: #000000">
+      <label for="dueDateEditModal">Date:</label>
+      <input value="${new Date(dueDate).toISOString().split('T')[0]}" type="date" class="form-control" id="dueDateEditModal" name="date">
+    </div>
+    <div class="form-check-inline">
+      <label class="form-check-label" for="urgentEditModal"
+          style="color: #000000">Urgent:</label>
+      <div class="container" style="color: #000000">
+          <input type="checkbox" class="form-check-input" name="urgency" id="urgentEditModal"
+              value="${urgency}" style="color: #000000">Yes
+      </div>
+    </div>`
+  )
+  $('#editModalFooter').empty().append(`
+  <button type="button" class="btn btn-success" id="saveEditModal" onclick="editTodo('${id}')" data-dismiss="modal">Save</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>`
   )
 }
 
@@ -483,10 +535,10 @@ function editTodo (id) {
     url: `${url}/todos/${id}`,
     method: 'PATCH',
     data: {
-      title: $(`#editTitle${id}`).val(),
-      description: $(`#editDescription${id}`).val(),
-      dueDate: $(`#editDueDate${id}`).val(),
-      urgency: $(`#editUrgency${id}`).val()
+      title: $('#titleEditModal').val(),
+      description: $('#descriptionEditModal').val(),
+      dueDate: $('#dueDateEditModal').val(),
+      urgency: $('#urgencyEditModal').is(':checked')
     },
     headers: {
       token: localStorage.getItem('token')
@@ -494,7 +546,7 @@ function editTodo (id) {
   })
     .done(function (response) {
       console.log(`Todo with id ${id} updated.`)
-      readTodo(id)
+      readTodo()
     })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR)
