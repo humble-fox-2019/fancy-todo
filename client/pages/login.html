@@ -1,0 +1,43 @@
+<div id="login" style="height: 100vh; display: none;">
+    <div class="flex-center flex-column px-2">
+        <!-- Login // id = "login-container" -->
+        <div id="login-container" class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            Login
+                        </div>
+                        <div class="card-body">
+                            <form id="login-form" name="login-form">
+                                <div class="form-group">
+                                    <label for="login-email">Email address</label>
+                                    <input autofocus name="email" type="email" class="form-control" id="login-email"
+                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">Password</label>
+                                    <input name="password" type="password" class="form-control" id="login-password"
+                                        placeholder="Password">
+                                </div>
+
+                                <button type="submit" class="btn btn-outline-primary"> Login </button>
+                                <hr>
+                                <span>
+                                    No account ? <a id="linkregister" href="#"><b>Create an account</b></a> to use Fancy Todo for
+                                    free!
+                                </span>
+                                <hr>
+                                    Or you can Sign In with your Google Account
+                                    <div class="g-signin2 mt-2" data-onsuccess="onSignIn"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- END LOGIN -->
+    </div>
+</div>
+<!-- Start your project here-->
