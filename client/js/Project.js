@@ -4,7 +4,7 @@ let RenderFn;
 function RenderInvitation (){
     event.preventDefault();
     $.ajax({
-        url: 'http://localhost:3000/project/invite',
+        url: 'http://35.188.86.34/project/invite',
         method : 'GET',
         headers : {
           token : localStorage.token
@@ -62,7 +62,7 @@ function confirmJoin (id,name){
 function AcceptInvitation (id){
     event.preventDefault();
     $.ajax({
-        url: `http://localhost:3000/project/confirm/${id}`,
+        url: `http://35.188.86.34/project/confirm/${id}`,
         method : 'PATCH',
         headers : {
           token : localStorage.getItem('token')
@@ -88,7 +88,7 @@ function RenderProjectList (){
     event.preventDefault();
     Loadinss()
     $.ajax({
-        url: `http://localhost:3000/project`,
+        url: `http://35.188.86.34/project`,
         method : 'GET',
         headers : {
           token : localStorage.getItem('token')
@@ -158,7 +158,7 @@ $(document).ready(function() {
     $('#input-todo2-form-mine').submit(function() {
         event.preventDefault();
         $.ajax({
-            url: `http://localhost:3000/project/${IdProjectCurrent}/todo`,
+            url: `http://35.188.86.34/project/${IdProjectCurrent}/todo`,
             method : 'PATCH',
             headers : {
               token : localStorage.token
@@ -190,7 +190,7 @@ function getOneProject(id , idDeleted ,  idUpdated , idUpdated2){
     console.log('kenapa error anjir')
     $('#detail-project-left').empty()
     $.ajax({
-        url: `http://localhost:3000/project/${id}`,
+        url: `http://35.188.86.34/project/${id}`,
         method : 'GET',
         headers : {
           token : localStorage.getItem('token')
@@ -264,7 +264,7 @@ $(document).ready(function() {
             // console.log('JALAN CUY ININ SFKDSKFDSKFDSFKDS')
             event.preventDefault();
             $.ajax({
-                url: `http://localhost:3000/project/${IdProjectCurrent}/todo/${id}`,
+                url: `http://35.188.86.34/project/${IdProjectCurrent}/todo/${id}`,
                 method : 'DELETE',
                 headers : {
                   token : localStorage.getItem('token')
@@ -303,7 +303,7 @@ function deleteTodoHere(id){
     getOneProject(IdProjectCurrent , id)
     console.log(IdProjectCurrent)
     $.ajax({
-        url: `http://localhost:3000/project/${IdProjectCurrent}/todo/${id}`,
+        url: `http://35.188.86.34/project/${IdProjectCurrent}/todo/${id}`,
         method : 'DELETE',
         headers : {
           token : localStorage.getItem('token')
@@ -321,7 +321,7 @@ function deleteTodoHere(id){
 function completeTodo (id){
     getOneProject(IdProjectCurrent , null , id  )
     $.ajax({
-        url: `http://localhost:3000/project/${IdProjectCurrent}/todo/${id}/complete`,
+        url: `http://35.188.86.34/project/${IdProjectCurrent}/todo/${id}/complete`,
         method : 'PATCH',
         headers : {
           token : localStorage.getItem('token')
@@ -341,7 +341,7 @@ function completeTodo (id){
 function unCompleteTodo (id){
     getOneProject(IdProjectCurrent , null , null ,  id  )
     $.ajax({
-        url: `http://localhost:3000/project/${IdProjectCurrent}/todo/${id}/uncomplete`,
+        url: `http://35.188.86.34/project/${IdProjectCurrent}/todo/${id}/uncomplete`,
         method : 'PATCH',
         headers : {
           token : localStorage.getItem('token')
@@ -358,7 +358,7 @@ function unCompleteTodo (id){
 
 function getDataUser(id){
     $.ajax({
-        url: `http://localhost:3000/project/${IdProjectCurrent}/getUser`,
+        url: `http://35.188.86.34/project/${IdProjectCurrent}/getUser`,
         method : 'GET',
         headers : {
           token : localStorage.getItem('token')

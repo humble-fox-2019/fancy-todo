@@ -82,7 +82,7 @@ function onSignIn(googleUser) {
 function AddToDB(token){
   event.preventDefault();
   $.ajax({
-    url: 'http://localhost:3000/user/register/google',
+    url: 'http://35.188.86.34/user/register/google',
     method: 'POST',
     data: {
       id_token : token,
@@ -104,7 +104,7 @@ $(document).ready(function() {
   $('#login-click').submit(function(){
     event.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/user/login',
+      url: 'http://35.188.86.34/user/login',
       method: 'POST',
       data: {
         email: $('#email-login').val(),
@@ -135,7 +135,7 @@ $(document).ready(function() {
   $('#register-click').submit(function() {
     event.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/user/register',
+      url: 'http://35.188.86.34/user/register',
       method: 'POST',
       data: {
         name: $('#name-register').val(),
@@ -156,7 +156,7 @@ $(document).ready(function() {
   $('#input-todo2-form').submit(function(){
     event.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/todo',
+      url: 'http://35.188.86.34/todo',
       method: 'POST',
       data: {
         name: $('#todo-name').val(),
@@ -176,11 +176,12 @@ $(document).ready(function() {
         $("#sukses-add").fadeIn("slow");
         setTimeout((d)=>{
           return $("#sukses-add").fadeOut("slow");
-        },3000)
+        },4000)
         console.log('berhasil add todo , ======++++>>>>>>+')
         $('#sukses-add').show()
        
         // $('#sukses-add').hide()
+        
       })
       .fail(function(jqXHR, textStatus) {
         console.log(jqXHR.responseJSON.message.message)
@@ -200,7 +201,7 @@ $(document).ready(function() {
 function editTodo(id){
   console.log(id , ',,,,,,,,,,,,=m,<<<<<<<<<<<<<<<<<<<<<<<<<')
   $.ajax({
-    url: `http://localhost:3000/todo/${id}`,
+    url: `http://35.188.86.34/todo/${id}`,
     method: 'PUT',
     data: {
       name: document.getElementById('todo-name-edit').value,
@@ -230,8 +231,9 @@ function editTodo(id){
 function ShowAfterCreate(id){
   event.preventDefault();
   // $('#todo-body').empty()
+  Loadinss()
   $.ajax({
-    url: 'http://localhost:3000/todo',
+    url: 'http://35.188.86.34/todo',
     method: 'GET',
     headers :  {
       token : localStorage.token
@@ -338,7 +340,7 @@ function renderProject (){
         $('#detail-project-right').hide()
         $('#detail-project-left').hide()
         $.ajax({
-          url : 'http://localhost:3000/project/AllUser',
+          url : 'http://35.188.86.34/project/AllUser',
           method : 'GET',
           headers : {
             token : localStorage.getItem('token')
@@ -351,7 +353,7 @@ function renderProject (){
 
         })
   // $.ajax({
-  //   url: 'http://localhost:3000/project',
+  //   url: 'http://35.188.86.34/project',
   //   method: 'GET',
   //   headers :  {
   //     token : localStorage.token
@@ -401,7 +403,7 @@ function CompleteTodo(id){
   event.preventDefault();
   console.log(id , ' ini id nya ya ==================>><><')
   $.ajax({
-    url: `http://localhost:3000/todo/${id}/complete`,
+    url: `http://35.188.86.34/todo/${id}/complete`,
     method: 'PATCH',
     headers : {
       token : localStorage.token
@@ -422,7 +424,7 @@ function UnCompleteTodo(id){
   event.preventDefault();
   console.log(id , ' ini id nya ya ==================>><><')
   $.ajax({
-    url: `http://localhost:3000/todo/${id}/uncomplete`,
+    url: `http://35.188.86.34/todo/${id}/uncomplete`,
     method: 'PATCH',
     headers : {
       token : localStorage.token
@@ -442,7 +444,7 @@ function deleteTodo(id){
   event.preventDefault();
   console.log(id , ' ini id nya ya ==================>><><')
   $.ajax({
-    url: `http://localhost:3000/todo/${id}`,
+    url: `http://35.188.86.34/todo/${id}`,
     method: 'DELETE',
     headers : {
       token : localStorage.token

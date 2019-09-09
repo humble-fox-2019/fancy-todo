@@ -32,7 +32,7 @@ function RenderMember(){
     // console.log(dataTemp ,' before')
     // dataTemp = []
     $.ajax({
-        url : "http://localhost:3000/project/AllUser",
+        url : "http://35.188.86.34/project/AllUser",
         method : 'GET',
         headers : {
             token : localStorage.getItem('token')
@@ -40,9 +40,6 @@ function RenderMember(){
     })
     .done(function(data){
         dataTemp =  data
-        // console.log(dataTemp , ' after')
-        // dataTemp =  data.listUserName
-        // idTemp = data.listId
     })
     .fail(function(jqXHR, textStatus) {
         console.log('Error:', textStatus);
@@ -112,7 +109,7 @@ $('#input-project-form').submit(function(){
     // console.log($('#datepicker2').val())
     // console.log(dataTempBefore);
     $.ajax({
-        url: 'http://localhost:3000/project',
+        url: 'http://35.188.86.34/project',
       method: 'POST',
       data: {
         name: $('#project-name').val(),
