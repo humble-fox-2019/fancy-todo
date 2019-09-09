@@ -82,6 +82,8 @@
                             <div class="form-group">
                                 <button type="button" class="btn btn-alt-primary" id="saveTaskButton"
                                     onclick="save()">Save</button>
+                                <butto type="button" class="btn btn-alt-success" onclick="suggestion()">
+                                    Suggestion</button>
                             </div>
                         </form>
                     </div>
@@ -170,6 +172,24 @@
 
             localStorage.removeItem("token");
             window.location.href = "#signin";
+        }
+
+        function suggestion() {
+            $.ajax({
+                type: "GET",
+                url: 'http://www.boredapi.com/api/activity',
+                success: function (response) {
+                    $('#name').val(response.activity);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    let data = jqXHR.responseJSON;
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: data.message
+                    })
+                }
+            });
         }
     </script>
 </body>
