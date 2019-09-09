@@ -1,0 +1,141 @@
+.dashboard-container{
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0,0,0,.1);
+  padding: 40px 20px 20px;
+  border-radius: 5px;
+  min-height: 300px;
+}
+.dashboard-header{
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #acacac;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard-title h2{
+  font-size: 12pt;
+  color: #6C38FF;
+}
+.dashboard-body{
+  display: flex;
+  flex-wrap: wrap;
+}
+.project-item{
+  flex-basis: 250px;
+  background-color: #6C38FF;
+  margin: 10px;
+  padding: 40px 10px 10px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.project-item h1{
+  font-size: 14pt;
+}
+.project-item > p{
+  margin: 40px 0;
+}
+.project-item-footer{
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.project-owner{
+  display: flex;
+  align-items: center;
+}
+.project-owner p{
+  font-size: 10pt;
+  font-weight: bold;
+}
+.project-owner i{
+  margin-right: 10px;
+  font-size: 10pt;
+  font-weight: bold;
+}
+.btn{
+  padding: 2px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(85, 228, 233, 0.5)
+}
+.delete{
+  background-color: rgb(255, 0, 21);
+  color: #ffffff;
+}
+.delete:hover{
+  background-color: rgb(255, 95, 108);
+}
+.edit{
+  background-color: #3d47cf;
+  color: #ffffff;
+}
+.edit:hover{
+  background-color: #5964f3;
+}
+.success{
+  background-color: rgb(64, 204, 51);
+  color: #ffffff;
+}
+.success:hover{
+  background-color: rgb(85, 230, 72);
+}
+.list-todo{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.list-todo-container{
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 20px;
+  flex-basis: 40%;
+}
+.list-todo-item{
+  display: flex;
+  flex-direction: column;
+}
+.list-todo-container-title{
+  margin-bottom: 20px;
+}
+.list-todo-container-title h2{
+  color: #3d47cf;
+}
+.todo{
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 20px 10px 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1);
+}
+.todo h2{
+  font-size: 14pt;
+}
+.todo-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #f1f1f1;
+}
+.todo-owner{
+  display: flex;
+  align-items: center;
+}
+.todo-owner i{
+  margin-right: 10px;
+  font-size: 10pt;
+}
+.todo-owner p{
+  font-weight: bold;
+  font-size: 8pt;
+}
+.todo-action i{
+  font-size: 8pt;
+}
