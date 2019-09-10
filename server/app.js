@@ -8,8 +8,9 @@ const cors = require('cors');
 const router = require('./routes/indexRoutes');
 const errorHandling = require('./middlewares/errorHandler');
 const mongoose = require('mongoose');
+const db = process.env.DB || 'mongodb://localhost/fancytodo';
 
-mongoose.connect('mongodb://localhost/fancytodo', { useNewUrlParser: true, useFindAndModify: false }, function (err) {
+mongoose.connect(db, { useNewUrlParser: true, useFindAndModify: false }, function (err) {
     if (!err) { 
         console.log(`connected to database`);
     } else {
