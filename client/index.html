@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-client_id"
+        content="867718894936-jnsvnaqc4l69gndqnvc5mgk5u26qao75.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="shortcut icon" href="./css/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Fancy Todo</title>
+</head>
+
+<body>
+    <nav class="d-flex justify-content-center align-items-center p-1 shadow-lg">
+        <div id="nav-before" style="width: 100%;display: none;">
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%;">
+                <img src="./css/text-logo.png" alt="logo Fancy Todo">
+            </div>
+        </div>
+        <div id="nav-after" style="width: 100%;display: none;">
+            <div class="d-flex justify-content-around align-items-center container" style="width: 100%;">
+                <img src="./css/text-logo.png" alt="logo Fancy Todo">
+                <button onclick="gototodo()" class="main-btn btn">My Todos</button>
+                <button onclick="gotoproject()" class="main-btn btn">My Projects</button>
+                <button onclick="signOut()" class="main-btn btn">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="main-before" style="width: 100%;display: none">
+        <div class="d-flex flex-column justify-content-center align-items-center main-page">
+            <div class="p-1 sign-btn d-flex justify-content-between align-items-center">
+                <button onclick="gotoin()" class="r-btn btn m-1">Go to Sign In</button>
+                <button onclick="gotoup()" class="r-btn btn m-1">Go to Sign Up</button>
+            </div>
+
+            <div id="sign-up" class="mt-4" style="display: none;">
+                <div class="sign-form d-flex flex-column justify-content-start align-items-center shadow-lg p-5">
+                    <h3 class="content-title">Sign Up</h3>
+                    <form>
+                        <label class="mt-3">Name</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input your name"
+                            id="up-name">
+                        <label class="mt-2">Email</label>
+                        <input class="form-control" type="email" autocomplete="off" placeholder="Input your email"
+                            id="up-email">
+                        <label class="mt-2">Password</label>
+                        <input class="form-control" type="password" autocomplete="off" placeholder="Input your password"
+                            id="up-password">
+                        <div class="d-flex justify-content-center align-items-center mt-3">
+                            <button onclick="register()" class="btn r-btn">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="sign-in" class="mt-4" style="display: none;">
+                <div class="sign-form d-flex flex-column justify-content-start align-items-center shadow-lg p-5">
+                    <h3 class="content-title">Sign In</h3>
+                    <form>
+                        <label class="mt-2">Email</label>
+                        <input class="form-control" type="email" autocomplete="off" placeholder="Input your email"
+                            id="in-email">
+                        <label class="mt-2">Password</label>
+                        <input class="form-control" type="password" autocomplete="off" placeholder="Input your password"
+                            id="in-password">
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <button onclick="login()" class="btn r-btn">Login</button>
+                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-after" style="width: 100%;display:none">
+        <div class="d-flex flex-column justify-content-start align-items-center main-page">
+            <!-- todo -->
+            <div id="todos" style="margin-top: 100px;width: 100%;">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="content-title">My Todos</h2>
+                    <button type="button" data-toggle="modal" data-target="#addNewTodo" class="btn r-btn mt-3">Add new
+                        To Do</button>
+                </div>
+                <div id="todo-list" class="row m-0 mt-4 d-flex justify-content-center align-items-start shadow-lg p-4">
+                </div>
+            </div>
+            <!-- todo -->
+            <!-- project -->
+            <div id="projects" style="margin-top: 100px;width: 100%;">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="content-title">My Projects</h2>
+                    <button type="button" data-toggle="modal" data-target="#addNewProject" class="btn r-btn mt-3">Add
+                        new Project</button>
+                </div>
+                <div id="project-list"
+                    class="row m-0 mt-4 d-flex justify-content-center align-items-start shadow-lg p-4">
+                </div>
+            </div>
+            <!-- project -->
+            <!-- project detail -->
+            <div id="projectdetail" style="margin-top: 100px;width: 100%;">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <h2 id="detail-title" class="content-title"></h2>
+                    <div id="detail-btn">
+
+                    </div>
+                </div>
+                <div id="project-detail"
+                    class="row m-0 mt-4 d-flex justify-content-between align-items-start shadow-lg p-4">
+                    <div id="member-list" class="p-4 shadow m-3" style="width: 20%"></div>
+                    <div id="project-todo-list" class="row m-0 d-flex justify-content-center align-items-start" style="width: 70%"></div>
+                </div>
+            </div>
+            <!-- project detail -->
+        </div>
+    </div>
+    <!-- modal -->
+    <div class="modal fade" id="addNewTodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h5 class="modal-title content-title" id="exampleModalLabel">Add New Todo</h5>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <form class="col-12">
+                        <label class="content-title">Title</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input todo title"
+                            id="add-title">
+                        <label class="content-title">Descrption</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input todo description"
+                            id="add-description">
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-around align-items-center">
+                    <button type="button" onclick="addTodo()" class="btn r-btn">Save</button>
+                    <button type="button" class="btn r-btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    <!-- edit modal -->
+    <div class="modal fade" id="editTodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h5 class="modal-title content-title" id="exampleModalLabel">Edit Todo</h5>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <form class="col-12">
+                        <label class="content-title">Title</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input todo title"
+                            id="edit-title">
+                        <label class="content-title">Descrption</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input todo description"
+                            id="edit-description">
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-around align-items-center">
+                    <div id="edit-btn" class="d-flex justify-content-around align-items-center" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit modal -->
+    <!-- add project -->
+    <div class="modal fade" id="addNewProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h5 class="modal-title content-title" id="exampleModalLabel">Add New Project</h5>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <form class="col-12">
+                        <label class="content-title">Title</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input project title"
+                            id="project-title">
+                        <label class="content-title">Descrption</label>
+                        <input class="form-control" type="text" autocomplete="off"
+                            placeholder="Input project description" id="project-description">
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-around align-items-center">
+                    <button type="button" onclick="addProject()" class="btn r-btn">Save</button>
+                    <button type="button" class="btn r-btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add project -->
+    <!-- add member -->
+    <div class="modal fade" id="addMember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h5 class="modal-title content-title" id="exampleModalLabel">Add Member</h5>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <form class="col-12">
+                        <label class="content-title">Choose Member</label>
+                        <select id="users-list" class="form-control">
+                        </select>
+                    </form>
+                </div>
+                <div id="btn-add-member" class="modal-footer d-flex justify-content-around align-items-center">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add member -->
+    <!-- add project todo -->
+    <div class="modal fade" id="addProjectTodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h5 class="modal-title content-title" id="exampleModalLabel">Add Project Todo</h5>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <form class="col-12">
+                        <label class="content-title">Title</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input todo title"
+                            id="project-todo-title">
+                        <label class="content-title">Descrption</label>
+                        <input class="form-control" type="text" autocomplete="off" placeholder="Input todo description"
+                            id="project-todo-description">
+                    </form>
+                </div>
+                <div id="btn-add-todo" class="modal-footer d-flex justify-content-around align-items-center">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add project todo -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
