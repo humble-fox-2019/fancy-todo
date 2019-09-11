@@ -13,7 +13,10 @@ app.use(express.urlencoded({extended : false}))
 
 app.use('/', index)
 
-mongoose.connect('mongodb://localhost/fancy-TODO', {
+let localMongo = 'mongodb://localhost/fancy-TODO'
+let mongoAtlas = 'mongodb+srv://ayusudi:ayusudi@cluster0-acddn.mongodb.net/fancy-todo?retryWrites=true&w=majority'
+
+mongoose.connect(mongoAtlas, {
   useNewUrlParser : true
 }, function(err){
   if(err) console.log(`server isn't connect to mongodb`);

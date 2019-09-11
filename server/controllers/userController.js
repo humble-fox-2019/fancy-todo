@@ -75,35 +75,34 @@ class UserController {
       audience: clientID
     })
       .then(user => {
-        // console.log(user);
+        console.log('1 disini')
         let password = defaultPas
         let { email, name } = user.payload
         User.findOne({ email })
         .then(isFound => {
-        //   // console.log(email);
+          console.log('cek found and not');
           if (isFound) {
-        //     console.log(user, '<<<<<<<<');
+            console.log('is found <<<<<<<<');
               return isFound
             }
             else {
-        //       console.log('please ini user', user);
-              console.log('heyooo');
-              User.create({
+              console.log('ke create');
+              return User.create({
                 name : name,
                 email : email,
                 password
               })
-                .then(newUser => {
-                  return newUser
-                })
             }
           })
           .then(userLogin => {
+            console.log(userLogin);
             let payload = {
               id: userLogin._id,
               email: userLogin.email
             }
+            console.log('buat token');
             let token = getToken(payload)
+            console.log(token);
             res.status(200).json({
               token
             })

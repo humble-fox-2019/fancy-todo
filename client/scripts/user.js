@@ -8,14 +8,26 @@ function onSignIn(googleUser) {
     }
   })
     .done(function (data) {
+      // localStorage.setItem('token', data.token);
+      console.log('it should be here', data);
+      newClick()
+      $('input').val("")
       localStorage.setItem('token', data.token);
-      $(".beforeLogin").hide()
+      console.log('it should besi');
       $(".afterLogin").show()
+      $(".signOut").show()
+      $(".beforeLogin").hide()
       $(".regist").hide()
       $(".signIn").hide()
-      $(".signOut").show()
       getAll()
       buttonCreate()
+      // $(".afterLogin").show()
+      // $(".beforeLogin").hide()
+      // $(".regist").hide()
+      // $(".signIn").hide()
+      // $(".signOut").show()
+      // getAll()
+      // buttonCreate()
     })
     .fail(err => {
       console.log(err);
@@ -74,6 +86,7 @@ function login() {
       newClick()
       $('input').val("")
       localStorage.setItem('token', user.token);
+      console.log('it should besi');
       $(".afterLogin").show()
       $(".signOut").show()
       $(".beforeLogin").hide()
