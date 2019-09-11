@@ -1,4 +1,4 @@
-const url = `http://localhost:3000`;
+const url = `http://35.240.236.114`;
 
 $(document).ready(function () {
     checkToken();
@@ -625,4 +625,40 @@ function deleteProject(id) {
                 'error'
             )
         })
+}
+
+function addTodo() {
+    const token = localStorage.getItem('token');
+    const title = $('#add-title').val();
+    const description = $('#add-description').val();
+    axios({
+        url: `${url}/tasks`,
+        method: 'post',
+        headers: {
+            token
+        },
+        data:{
+            title,
+            description
+        }
+    })
+    .then(({data})=>{
+        console.log(data);
+        $('#add-title').val('');
+        $('#add-description').val('');
+        $('#addNewTodo').modal('hide');
+        gototodo();
+        Swal.fire(
+            'Success',
+            `Save todo success`,
+            'success'
+        );
+    })
+    .catch(err => {
+        Swal.fire(
+            'Error',
+            `${err.message}`,
+            'error'
+        );
+    })
 }
