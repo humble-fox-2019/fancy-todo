@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 module.exports = () => {
-  mongoose.connect('mongodb://localhost:27017/fancy-todo', { useNewUrlParser: true, useFindAndModify: false })
+  mongoose.connect(process.env.ATLAS_CONNECT, { useNewUrlParser: true, useFindAndModify: false })
     .then(() => {
       console.log('Connected to MongoDB database')
     }).catch((err) => {
