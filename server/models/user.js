@@ -4,8 +4,6 @@ const mongoose = require('mongoose')
 const { hashPassword } = require('../helpers/bcryptjs')
 const Schema = mongoose.Schema
 
-const ObjectId = mongoose.Schema.Types.ObjectId
-
 const userSchema = new Schema({
   name: {
     type: String,

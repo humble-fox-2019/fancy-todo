@@ -4,6 +4,8 @@ module.exports = (err, req, res, next) => {
   console.log(err)
   let status = null
   let message = null
+  // JWT
+  // TokenExpiredEror & JsonWebTokenError
   if (err.name === 'ValidationError') {
     status = 400
     const arr = []

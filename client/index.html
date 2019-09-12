@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>To-Do</title>
+    <title>toDone - Fancy Todo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-signin-client_id"
         content="450205956534-t8mv0qj0kqcc53van5mbbahtk9vg8b40.apps.googleusercontent.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -58,7 +58,6 @@
                 <p> <button type="submit" class="btn btn-primary" id="login-button2">Login</button></p>
             </form>
         </div>
-
 
         <hr>
 
@@ -169,7 +168,7 @@
                                     style="color: #000000">Urgent:</label>
                                 <div class="container" style="color: #000000">
                                     <input type="checkbox" class="form-check-input" name="urgency"
-                                        id="urgentCreateModal" value="false" style="color: #000000">Yes
+                                        id="urgencyCreateModal" style="color: #000000">Yes
                                 </div>
                             </div>
                         </form>
@@ -245,11 +244,11 @@
                                 <input type="date" class="form-control" id="dueDateEditModal" name="date">
                             </div>
                             <div class="form-check-inline">
-                                <label class="form-check-label" for="urgentEditModal"
+                                <label class="form-check-label" for="urgencyEditModal"
                                     style="color: #000000">Urgent:</label>
                                 <div class="container" style="color: #000000">
-                                    <input type="checkbox" class="form-check-input" name="urgency" id="urgentEditModal"
-                                        value="false" style="color: #000000">Yes
+                                    <input type="checkbox" class="form-check-input" name="urgency" id="urgencyEditModal"
+                                        style="color: #000000">Yes
                                 </div>
                             </div>
                         </form>
@@ -269,10 +268,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="./index.js"></script>
+    <script src="./js/index.js"></script>
 
-    <script>
-    </script>
 </body>
 
 </html>

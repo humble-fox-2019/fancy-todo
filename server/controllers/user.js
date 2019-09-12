@@ -6,14 +6,14 @@ const { checkPassword } = require('../helpers/bcryptjs')
 const { User } = require('../models')
 
 class UserController {
-  static getAll (req, res, next) {
+  static getAll(req, res, next) {
     User.find().populate('todoList')
       .then((result) => {
         res.status(200).json(result)
       }).catch(next)
   }
 
-  static findOne (req, res, next) {
+  static findOne(req, res, next) {
     const email = req.params.email
     User.findOne({ email })
       .then((result) => {
@@ -22,7 +22,14 @@ class UserController {
       }).catch(next)
   }
 
-  static register (req, res, next) {
+  /*
+   Misal:
+   Register
+   Body -> ??
+   Type Data: ??? 
+  */
+
+  static register(req, res, next) {
     const { name, email, password } = req.body
     // console.log(newUser) -> name: "Admin", email: "admin@fancytodo.com", password:"admin"
     User.create({ name, email, password })
@@ -41,7 +48,7 @@ class UserController {
       .catch(next)
   }
 
-  static login (req, res, next) {
+  static login(req, res, next) {
     const { email, password } = req.body
     User.findOne({ email })
       .then((user) => {
@@ -65,7 +72,7 @@ class UserController {
       }).catch(next)
   }
 
-  static loginGoogle (req, res, next) {
+  static loginGoogle(req, res, next) {
     // console.log('<<<< masuk login google')
     let payload = null
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)

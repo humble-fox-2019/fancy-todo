@@ -12,8 +12,5 @@ router.post('/logingoogle', UserController.loginGoogle)
 router.use(authentication)
 router.get('/', UserController.getAll)
 router.get('/:email', UserController.findOne)
-// router.put('/:email', UserController.update)
-// router.patch('/:email', UserController.updatePassword)
-// router.delete('/:email', UserController.delete)
 
 module.exports = router
