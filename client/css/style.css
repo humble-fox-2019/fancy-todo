@@ -1,0 +1,146 @@
+*{
+    margin : 0;
+    padding: 0;
+    font-family: "montserrat", sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background: url(https://www.finestwallpaper.com/uploads/5/7/7/9/5779447/s774058804322417752_p214_i3_w1366.jpeg);
+    min-height: 100vh;
+}
+.container#register {
+    color: white;
+    background: rgba(231, 18, 178, 0.767);
+    position: initial;
+    margin-top: 3%;
+    right: 50%;
+    left: 50%;
+    bottom: 0;
+    margin: 20;
+    width: 500px;
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 50px #000;
+}
+
+.container#createTodo {
+    background: rgba(231, 18, 178, 0.767);
+    color: white;
+    position: initial;
+    margin-top: 3%;
+    right: 50%;
+    left: 50%;
+    bottom: 0;
+    margin-bottom: 6vw;
+    width: 600px;
+    height: 350px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 50px #000;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: 20px;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.container#signin {
+    color: white;
+    background: rgba(17, 228, 210, 0.767);
+    position: initial;
+    margin-top: 3%;
+    right: 50%;
+    left: 50%;
+    bottom: 0;
+    margin: 20;
+    width: 500px;
+    height: 450px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 50px #000;
+}
+
+.registerTodo {
+    padding-top: 6%;
+}
+
+.signInTodo {
+    padding-top: 6%;
+}
+
+.g-signin2{
+    width: 350; 
+    height: 150;
+}
+
+.container{
+    position: initial;
+    max-width: 800px;
+    margin-top: 10%;
+    margin: auto;
+    padding: 10 px
+}
+
+.txtb{
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #000;
+    background: none;
+    padding: 10px;
+    outline: none;
+    font-size: 18px; 
+}
+
+h3{
+    margin: 10px 0;
+
+}
+
+.task{
+    border-radius: 20px; 
+    width: 100%;
+    background: rgba(244, 247, 51, 0.884);
+    padding: 18px;
+    margin: 6px 0;
+    overflow: hidden;
+}
+
+.task i {
+    margin: 1vw;
+    float: right;
+    cursor: pointer;
+}
+
+.edit{
+    border-radius: 8px; 
+    width: 100%;
+    background: rgba(17, 224, 224, 0.89);
+    padding: 1vh;
+    margin: 6px 0;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.box-desc{
+    min-height: 100px;
+    height: 90%;
+    width: 100%;
+    padding: 0;
+    margin: 3vw 1vw 0 0;
+    position: flex;
+}
+
+.desc{
+    width: 100%;
+    background: rgba(252, 252, 248, 0.966);
+    padding: 18px;
+    margin: 6px 0;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+
+.completed .task{
+    background: rgba(167, 231, 62, 0.774)
+}

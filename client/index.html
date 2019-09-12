@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <meta name="google-signin-client_id"
+    content="413097102968-5esi6ggnd8o2s2pk1bdjhocuaboaehn8.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <title>Fancy ToDo (ayusudi)</title>
+</head>
+<body>
+  <div class="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
+      <a class="navbar-brand" href="#">Fancy Todo Ayusudi</a>
+      <div class="navbar-nav ml-auto">
+        <ul style="white-space:nowrap; display:inline;">
+          <div style="min-width:200px; text-align: right">
+            <a onclick="signOut()" class="signOut" style="display: none; margin-right:10px ">SignOut </a>
+            <a onclick="manualSign()" class="signIn" style="margin-right:10px">SignIn </a>
+            <a onclick="showRegist()" class="regist" style="margin-right:10px">Register </a>
+          </div>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="errors"
+    style="display: none; color: rgb(253, 252, 252); background: rgba(0, 0, 0, 0.699); padding: 2% 0 2% 10px; margin-top: 2%">
+    <h4 style="color: rgb(247, 14, 14)"><b>Errors :</b></h4>
+    <div class="errorsList">
+    </div>
+  </div>
+  <br>
+  <div class="beforeLogin">
+    <div class="container" id="register">
+      <div class="registerTodo">
+        <center>
+          <h1>Create an Account</h1>
+          <br>
+          <form id="registration_form">
+            <input type="text" name="name-Register" id="nameRegister" placeholder="Name">
+            <p class="error_form" id="username_error_message"></p>
+            <input type="email" name="email-Register" id="emailRegister" placeholder="E-mail">
+            <p class="error_form" id="email_error_message"></p>
+            <input type="password" name="pass-Register" id="passRegister" placeholder="Password">
+            <p class="error_form" id="password_error_message"></p>
+            <div
+              style="background-color: rgb(19, 102, 226); width: 100px; height: 40px; border-radius: 6px; padding-top: 2%">
+              <a href="#" onclick="register()" style="color:white;margin: 15px; margin-top:25px ">Sign Up</a>
+            </div>
+            <br>
+          </form>
+        </center>
+      </div>
+      <br>
+      <center>
+        <h5><b>Already have an account?</b>
+          <br>
+          <a style="color: yellow; text-decoration: underline" onclick="manualSign()">Sign In Here</a> <br>
+          or
+        </h5>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      </center>
+      <br>
+    </div>
+    <br>
+    <div class="container" id="signin" style="display: none">
+      <div class="signInTodo">
+        <center>
+          <h1>Sign In</h1>
+          <br>
+          <form id="sign_form">
+            <input type="email" name="emailSign" id="emailSign" placeholder="E-mail">
+            <p class="error_form" id="email_error_message"></p>
+            <input type="password" name="passSign" id="passSign" placeholder="Password">
+            <p class="error_form" id="password_error_message"></p>
+            <div
+              style="background-color: rgb(19, 102, 226); width: 100px; height: 40px; border-radius: 6px; padding-top: 2%">
+              <a href="#" onclick="login()" style="color:white;margin: 15px; margin-top:25px ">Sign In</a>
+            </div>
+            <br>
+          </form>
+      </div>
+      </center>
+      <center>
+        <h5 style="text-decoration: underline"><b>Or</b></h5>
+        <br>
+        <div
+          style="background-color: rgb(11, 191, 223); width: 300px; height: 100px; padding: 10px; border-radius: 15px ">
+          <h6 style="color: rgb(247, 248, 252);">
+            Sign in with Google <br>
+          </h6>
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+      </center>
+      <br>
+    </div>
+    <br>
+  </div>
+  <div class="afterLogin" style="display: none;">
+    <h1>hei</h1>
+    <div class="yourTodo" id="yourTodo">
+      <h3>HEEEEEOOOO</h3>
+    </div>
+    <div class="container" style="display: none">
+      <h3><mark>Uncompleted</mark></h3>
+      <div class="uncomplete">
+      </div>
+      <br>
+      <br>
+      <h3><mark>Completed</mark></h3>
+      <div class="completed">
+      </div>
+    </div>
+  </div>
+  <script src="./scripts/user.js"></script>
+  <script src="./scripts/getTodos.js"></script>
+  <script src="./scripts/createTodo.js"></script>
+  <script src="./scripts/showEdit.js"></script>
+  <script src="./scripts/htmlEmail.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+</html>
