@@ -11,6 +11,10 @@ const port = 3000
 mongoose.connect('mongodb://localhost:27017/fancytodo', {
     useNewUrlParser: true
 });
+// mongoose.connect(process.env.MONGOATLAS, {
+//     useNewUrlParser: true
+// });
+
 app.use(morgan())
 app.use(cors())
 

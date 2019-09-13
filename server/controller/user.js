@@ -57,13 +57,12 @@ class UserController {
     }
 
     static signIn(req, res, next) {
+        console.log('masuk ke sign in')
         user.findOne({
                 email: req.body.email
             })
             .then(data => {
-                // console.log(req.body.password, '<<<<< INI PASSNYA')
-                // console.log(data.password.)
-                // console.log(data.password)
+                console.log('berhasil generate token')
                 if (checkHash(req.body.password, data.password)) {
                     res.status(200).json({
                         token: generateToken({
@@ -72,6 +71,8 @@ class UserController {
                             email: data.email
                         })
                     })
+
+                    console.log('berhasil untuk generate dan dikirim')
                 } else {
                     next({
                         code: 401,
@@ -89,7 +90,6 @@ class UserController {
             email,
             password
         } = req.body
-        // console.log(req.body)
 
         user.create({
                 name,

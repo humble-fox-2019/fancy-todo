@@ -38,10 +38,6 @@ if (localStorage.getItem('token')) {
     $('.btn-logout').hide()
     $('.home-btn').hide()
     // todoMainPage().hide()
-
-
-
-    // todoMainPage()
 }
 
 
@@ -144,58 +140,58 @@ function login() {
                 $('.btn-logout').show()
                 $('signin-form').hide()
 
-                //     $('.homepage').empty().append(`
-                //     <div class="banner-outer register-form align-items-center col-5 ">
-                //     <div class="banner-inner">
-                //         <h1 class="welcome-todomainpage">Create Something Great!</h1>
-                //         <form action="">
-                //             <table>
-                //                 <tr>
-                //                     <td>Todos</td>
-                //                     <td><input type="text" name="todo" id="todo" placeholder="activity" required>
-                //                     </td>
-                //                 </tr>
-                //                 <tr>
-                //                     <td>description</td>
-                //                     <td><input type="text" name="todo" id="description" placeholder="description" required>
-                //                     </td>
-                //                 </tr>
-                //                 <tr>
-                //                     <td>Due Date</td>
-                //                     <td><input type="date" name="date" id="duedate" required>
-                //                     </td>
-                //                 </tr>
-                //             </table>
-                //             <div class="btn-inputtodo mt-3"></div>
-                //             <a href="" class="btn-submittodo ml-3 btn btn-success">Submit</a>
-                //             <a href="" class="btn-showtodo ml-3 btn btn-primary">Show Todo List</a>
-                //             <br>
-                //         </form>
-                //         <br>
+                $('.homepage').empty().append(`
+                    <div class="banner-outer register-form align-items-center col-5 ">
+                    <div class="banner-inner">
+                        <h1 class="welcome-todomainpage">Create Something Great!</h1>
+                        <form action="">
+                            <table>
+                                <tr>
+                                    <td>Todos</td>
+                                    <td><input type="text" name="todo" id="todo" placeholder="activity" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>description</td>
+                                    <td><input type="text" name="todo" id="description" placeholder="description" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Due Date</td>
+                                    <td><input type="date" name="date" id="duedate" required>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="btn-inputtodo mt-3"></div>
+                            <a href="" class="btn-submittodo ml-3 btn btn-success">Submit</a>
+                            <a href="" class="btn-showtodo ml-3 btn btn-primary">Show Todo List</a>
+                            <br>
+                        </form>
+                        <br>
 
-                //         <center>
-                //             <table class="table-isi text-center mt-5" style="width: 800px">
-                //                 <thead class="thead-dark">
-                //                     <tr>
-                //                         <th scope="col">Todo</th>
-                //                         <th scope="col">Description</th>
-                //                         <th scope="col">Due Date</th>
-                //                         <th>Status</th>
-                //                         <th>Action</th>
-                //                     </tr>
-                //                 </thead>
+                        <center>
+                            <table class="table-isi text-center mt-5" style="width: 800px">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Todo</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Due Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
 
-                //                 <tbody class="table-body">
+                                <tbody class="table-body">
 
-                //                 </tbody>
+                                </tbody>
 
 
-                //             </table>
-                //         </center>
+                            </table>
+                        </center>
 
-                //     </div>
-                // </div>
-                //     `)
+                    </div>
+                </div>
+                    `)
 
             })
             .fail(err => {
@@ -243,9 +239,9 @@ function signOut() {
     });
 }
 
-function todoMainPage() {
-    // console.log('masuk ke main todo page')
-    // e.preventDefault()   
+function todoMainPage(e) {
+    console.log('masuk ke main todo page')
+    // e.preventDefault()
     $('.homepage').empty().append(
         `
         <div class="banner-outer register-form align-items-center col-5 ">
@@ -304,42 +300,46 @@ function todoMainPage() {
 function signout() {
     $(document).on('click', '.btn-logout', function (event) {
         event.preventDefault()
-        $('.homepage').empty().append(`
-        <div class="banner-outer register-form align-items-center col-5">
-        <div class="banner-inner">
-            <h1 class="welcome-register">Welcome to Fancy Todo</h1>
-            <h2 class="motto">ready to Organized your life?</h2>
-            <form action="">
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td><input type="text" name="name" id="name" placeholder="your username" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" name="email" id="email" placeholder="your email" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="password" id="password" placeholder="your password"
-                                required>
-                        </td>
-                    </tr>
-                </table>
+        $('.homepage').empty()
+            .append(`
+            <div class="banner-outer register-form align-items-center col-5">
+            <div class="banner-inner">
+                <h1 class="welcome-register">Welcome to Fancy Todo</h1>
+                <h2 class="motto">ready to Organized your life?</h2>
+                <form action="">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" id="name" placeholder="your username" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="text" name="email" id="email" placeholder="your email" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" name="password" id="password" placeholder="your password"
+                                    required>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div class="btn-group ml-3">
+                    <a href="" class="btn-register btn btn-success">Register</a>
+                    <div class="g-signin2 signin" data-onsuccess="onSignIn"></div>
+
+                </div>
                 <br>
-                <div class="btn-group ml-3">
-                <a href="" class="btn-register btn btn-success">Register</a>
+                </form>
+                <br>
+
 
             </div>
-        <br>
-            </form>
-            <br>
+        </div>`)
+        $('.g-signin2').show()
 
-
-        </div>
-    </div>`)
     })
 
 }
@@ -439,16 +439,12 @@ function createTodo() {
                                     <td>
                                 <a href="" class="btn-status-true btn btn-outline-success">TRUE</a>
                                 <a href="" class="btn btn-outline-danger">FALSE</a>
-        
-        
                             </td>
                             <td>
                                 <a href="" class="btn-edittodo btn btn-outline-success" id="${data._id}">Edit</a>
                                 <a href="" class="btn-deletetodo btn btn-outline-danger" id="${data._id}">Delete</a>
-    
                             </td>
-        
-        
+    
                         </tr>
                 `)
                 $('.btn-status-true').hide()
@@ -482,7 +478,6 @@ function deleteTodo() {
                 console.log(err, '<<< ini errornya di client')
                 // console.log('gagaaaal adooh')
             })
-
     })
 }
 
@@ -570,14 +565,11 @@ function update() {
                 <br>
 
 
-            </div>
-                `)
+            </div>`)
 
-                // console.log(data)
             })
             .fail(err => {
                 console.log(err, '<<< ini errornya di client')
-                // console.log('gagaaaal adooh')
             })
     })
 }
@@ -633,7 +625,6 @@ function search() {
                         $('.btn-status-false').hide()
                         $('.btn-status-true').show()
                     }
-
                 }
             })
             .fail(err => {
