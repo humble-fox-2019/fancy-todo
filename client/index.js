@@ -1,4 +1,4 @@
-const baseUrl = `http://localhost:3000`
+const baseUrl = `34.87.84.247 `
 
 
 $(document).ready(_ => {
@@ -351,7 +351,7 @@ function getTodos() {
             headers: {
                 token: localStorage.getItem('token')
             }
-        })  
+        })
         .done(data => {
             console.log(data)
             $('.table-body').empty()
