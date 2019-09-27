@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3001';
+const baseURL = 'http://api.fancytodo.guntoroyk.site';
 const token = localStorage.getItem('token');
 
 $(document).ready(function() {
