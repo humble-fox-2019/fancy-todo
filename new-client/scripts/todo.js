@@ -1,7 +1,7 @@
 function addTodo() {
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:3000/todos/',
+    url: 'http://35.185.188.15/todos/',
     headers: {
       token: localStorage.getItem('token')
     },
@@ -11,6 +11,7 @@ function addTodo() {
   })
     .done(() => {
       $.toast('Todo successfully added')
+      $('#todo-name').empty()
       fetchTodos()
     })
     .fail(err => {
@@ -21,7 +22,7 @@ function addTodo() {
 function deleteTodo(params) {
   $.ajax({
     method: 'DELETE',
-    url: `http://localhost:3000/todos/${params}`,
+    url: `http://35.185.188.15/todos/${params}`,
     headers: {
       token: localStorage.getItem('token')
     }
@@ -38,7 +39,7 @@ function deleteTodo(params) {
 function completeTodo(params) {
   $.ajax({
     method: 'PATCH',
-    url: `http://localhost:3000/todos/${params}`,
+    url: `http://35.185.188.15/todos/${params}`,
     headers: {
       token: localStorage.getItem('token')
     }
@@ -56,7 +57,7 @@ function editTodo(params) {
   $('#edit-todo').empty()
   $.ajax({
     method: 'GET',
-    url: `http://localhost:3000/todos/${params}`,
+    url: `http://35.185.188.15/todos/${params}`,
     headers: {
       token: localStorage.getItem('token')
     }
@@ -105,7 +106,7 @@ function submitEdit(params) {
   console.log(params)
   $.ajax({
     method: 'PUT',
-    url: `http://localhost:3000/todos/${params}`,
+    url: `http://35.185.188.15/todos/${params}`,
     headers: {
       token: localStorage.getItem('token')
     },
@@ -129,7 +130,7 @@ function fetchTodos() {
   $('#table').DataTable().destroy()
   $.ajax({
     method: 'GET',
-    url: 'http://localhost:3000/todos',
+    url: 'http://35.185.188.15/todos',
     headers: {
       token: localStorage.getItem('token')
     }

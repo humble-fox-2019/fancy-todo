@@ -1,7 +1,7 @@
 function register() {
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:3000/users/register',
+    url: 'http://35.185.188.15/users/register',
     data: {
       email: $('#email').val(),
       password: $('#password').val()
@@ -20,7 +20,7 @@ function register() {
 function login() {
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:3000/users/login',
+    url: 'http://35.185.188.15/users/login',
     data: {
       email: $('#email').val(),
       password: $('#password').val()
