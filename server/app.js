@@ -10,8 +10,9 @@ const routes = require('./routes');
 const { errorHandle } = require('./middlewares/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI
 
-mongoose.connect('mongodb://localhost/fancy-todo', {useNewUrlParser: true})
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true})
     .then(() => {
         console.log('mongodb connected!');
     })
