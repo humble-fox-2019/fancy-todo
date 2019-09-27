@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const app = express()
 const port = 3000
 
-mongoose.connect('mongodb://localhost:27017/fancytodo', {
+mongoose.connect('mongodb+srv://fadhilsurya:<password>@fadhilsurya-6770g.gcp.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true
 });
 // mongoose.connect(process.env.MONGOATLAS, {

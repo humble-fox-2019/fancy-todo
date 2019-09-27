@@ -273,6 +273,7 @@ function todoMainPage(e) {
             <br>
 
             <center>
+            
                 <table class="table-isi text-center mt-5" style="width: 800px">
                     <thead class="thead-dark">
                         <tr>
@@ -287,9 +288,8 @@ function todoMainPage(e) {
                     <tbody class="table-body">
 
                     </tbody>
-
-
                 </table>
+
             </center>
 
         </div>
@@ -351,7 +351,7 @@ function getTodos() {
             headers: {
                 token: localStorage.getItem('token')
             }
-        })
+        })  
         .done(data => {
             console.log(data)
             $('.table-body').empty()
