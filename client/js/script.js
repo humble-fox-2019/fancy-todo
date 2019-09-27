@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000';
+const baseURL = 'http://localhost:3001';
 const token = localStorage.getItem('token');
 
 $(document).ready(function() {
