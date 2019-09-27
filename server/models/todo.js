@@ -23,9 +23,9 @@ const todoSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
-}, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
+}, { timestamps: true })
 
-todoSchema.pre('save', function() {
+todoSchema.pre('save', function () {
   if (this.due_date < Date.now()) {
     this.due_date = Date.now()
   }

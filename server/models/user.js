@@ -35,8 +35,9 @@ function isEmail(value) {
   return regex.test(value)
 }
 
-userSchema.pre('save', function () {
+userSchema.pre('save', function (next) {
   this.password = generateHash(this.password)
+  next()
 })
 
 

@@ -18,6 +18,15 @@ $(document).ready(function () {
   addTodo()
 })
 
+function pageNavigator(target) {
+  const pages = ['.main-page', '.login-page', '.todo-page', '.registration-page', '.todo-detail']
+
+  pages.forEach(el => {
+    if (el === target) el.show()
+    el.hide()
+  })
+}
+
 function checkToken() {
   const token = localStorage.getItem('token')
   if (token) {

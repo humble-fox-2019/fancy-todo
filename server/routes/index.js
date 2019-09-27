@@ -4,7 +4,7 @@ const todo = require('./todo')
 
 router.get('/', (req, res) => res.send('Hello World!'))
 
-router.use('/user', user)
-router.use('/user/todo', todo)
+router.use('/users', user)
+router.use('/todos', todo)
 
 module.exports = router

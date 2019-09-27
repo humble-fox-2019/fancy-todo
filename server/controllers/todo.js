@@ -15,10 +15,12 @@ class TodoController {
     Todo.findById(id)
       .then(todo => {
         if (todo) {
-          res.status(200).json({ todo })
+          res.status(200).json(todo)
+        } else {
+          res.status(200).json({ message: 'Not found' })
         }
       })
-      .catch(next({ status: 402, message: `todo's not found` }))
+      .catch(next)
   }
 
   static create(req, res, next) {
@@ -39,7 +41,7 @@ class TodoController {
   static update(req, res, next) {
     const { id } = req.params // todo ID
     const { name, description, due_date } = req.body
-    const dueDate = new Date(due_date)
+    // const dueDate = new Date(due_date)
     Todo.findByIdAndUpdate(id, { name, description })
       .then(updated => {
         res.status(200).json(updated)

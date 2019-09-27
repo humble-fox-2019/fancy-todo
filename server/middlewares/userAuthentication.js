@@ -4,10 +4,18 @@ const { User } = require('../models')
 module.exports = (req, res, next) => {
   try {
     const decode = verifyToken(req.headers.token)
-    req.decode = decode
-    next()
+    User.findOne({ email: decode.email })
+      .then(user => {
+        if (user) {
+          req.decode = decode
+          next()
+        } else {
+          next({ status: 400, message: 'Bad request' })
+        }
+      })
+      .catch(next)
   }
   catch (err) {
-    next({ status: 403, message: err })
+    next(err)
   }
 }

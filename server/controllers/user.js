@@ -7,8 +7,8 @@ class UserController {
   static register(req, res, next) {
     const { email, password } = req.body
     User.create({ email, password })
-      .then(created => {
-        res.status(201).json({ token: generateToken({ _id: created._id, email: created.email }), created })
+      .then(user => {
+        res.status(201).json({ token: generateToken({ _id: user._id, email: user.email }), user })
       })
       .catch(next)
   }
@@ -22,10 +22,10 @@ class UserController {
           if (compareHash(password, user.password)) {
             res.status(200).json({ token: generateToken({ _id, email }) })
           } else {
-            next({ status: 403, message: 'invalid email / password' })
+            next({ status: 400, message: 'invalid email / password' })
           }
         } else {
-          next({ status: 403, message: 'invalid email / password' })
+          next({ status: 400, message: 'invalid email / password' })
         }
       })
       .catch(next)
@@ -44,7 +44,7 @@ class UserController {
         } else {
           return User.create({
             email: payload.email,
-            password: 'bogasari'
+            password: 'pancake'
           })
         }
       })
