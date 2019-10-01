@@ -1,0 +1,23 @@
+a:hover {
+    cursor:pointer;
+}
+   
+.signUpForm  {
+    width: 30%;
+    margin-top: 2%;
+}
+
+.signInForm {
+    width: 30%;
+    margin-top: 2%;
+}
+
+.createTodo {
+    width: 30%;
+    margin-top: 2%;
+}
+
+/* .edit {
+    width: 30%;
+    margin-top: 2%;
+} */
