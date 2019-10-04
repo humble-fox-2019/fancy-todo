@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fancy Todo</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="740667483476-9khs9h2gkqsdjp59hcbof9jajb87hb3u.apps.googleusercontent.com">
+</head>
+<body>
+    <!-- untuk bantuan supaya button logout bisa dipencet -->
+    <div class="g-signin2" data-onsuccess="onSignIn" style="display: none"></div>  
+    
+    <!-- Nav bar     -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Fancy Todo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2">
+                    <li class="nav-item ml-4">
+                        <h5 class="nav-link active" id="userLoggedIn" style="display: none"></h5>
+                    </li>
+                    <li class="nav-item ml-2 mt-2">
+                        <a class="btn btn-sm btn-danger btn-lg text-white" id="btnLogout" onclick="signOut()"  style="cursor: pointer; display: none;"><i class="fa fa-sign-out"></i> Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="content">
+        
+    </div>
+    
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messagePrompt">
+        Launch demo modal
+    </button> -->
+
+    <!-- <button type="button" class="btn btn-primary" onclick="promptMessage('')">
+        Launch demo modal
+    </button> -->
+    
+    <div class="modal fade" id="messagePrompt" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/todoList.js"></script>
+    <script src="./js/signup-signin.js"></script>
+    <script src="./js/googleSignIn.js"></script>
+    <script src="./js/googleCalendar.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+    
+</body>
+</html>                            
